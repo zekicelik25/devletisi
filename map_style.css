@@ -1,0 +1,57 @@
+/* map_style.css */
+#map-container {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    text-align: center; /* Center map if needed */
+}
+
+#map-container h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+#turkey-map {
+    max-width: 100%; /* Make map responsive */
+    height: auto;
+    display: block;
+    margin: 0 auto; /* Center map block */
+}
+
+#turkey-map path {
+  fill: #cccccc; /* Default city color */
+  stroke: #ffffff; /* Border color */
+  stroke-width: 0.5; /* Adjust border thickness */
+  stroke-linejoin: round; /* Smoother corners */
+  transition: fill 0.2s ease-in-out; /* Smooth hover effect */
+}
+
+#turkey-map path:hover {
+  fill: #4CAF50; /* Hover color (green) */
+  cursor: pointer;
+}
+
+/* Example: Highlight cities that currently have job postings */
+/* Use the exact IDs from your SVG */
+#turkey-map #Malatya,
+#turkey-map #Mersin,
+#turkey-map #Karaman {
+  fill: #a5d6a7; /* A lighter green */
+}
+
+#turkey-map #Malatya:hover,
+#turkey-map #Mersin:hover,
+#turkey-map #Karaman:hover {
+  fill: #388e3c; /* Darker green on hover for active cities */
+}
+
+/* Style for text within SVG if your map has labels */
+#turkey-map text {
+    font-family: sans-serif;
+    font-size: 10px; /* Adjust as needed */
+    fill: #444;
+    pointer-events: none; /* Make text non-clickable */
+}

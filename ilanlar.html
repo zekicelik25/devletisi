@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aktif İş İlanları - Kamu İlanları</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Kamu <span class="highlight">İlan</span> Platformu</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li class="active"><a href="ilanlar.html">Aktif İş İlanları</a></li>
+                    <li><a href="kurumlar.html">Kurumlar</a></li>
+                    <li><a href="unvanlar.html">Ünvanlar</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <!-- Heading will be updated by JavaScript if filtered -->
+            <h1 id="ilanlar-heading">Aktif İş İlanları Listesi</h1>
+            <p id="filter-info"></p> <!-- Info about filtering -->
+            <a href="ilanlar.html" id="show-all-link" style="display: none; margin-bottom: 15px; display: inline-block;">Tüm İlanları Göster</a>
+
+            <ul class="job-list">
+                <!-- Malatya Turgut Özal Üniversitesi - İlan 1 -->
+                <li data-city="Malatya"> <!-- ADD data-city -->
+                    <h2>Malatya Turgut Özal Üniversitesi</h2>
+                    <h3>Büro Personeli</h3>
+                    <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Malatya Turgut Özal Üniversitesi - İlan 2 -->
+                <li data-city="Malatya"> <!-- ADD data-city -->
+                    <h2>Malatya Turgut Özal Üniversitesi</h2>
+                    <h3>Büro Personeli</h3>
+                     <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Mersin Büyükşehir Belediyesi - İlan 1 -->
+                <li data-city="Mersin"> <!-- ADD data-city -->
+                    <h2>Mersin Büyükşehir Belediyesi</h2>
+                    <h3>İtfaiye Eri</h3>
+                     <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Karamanoğlu Mehmetbey Üniversitesi - İlan 1 -->
+                <li data-city="Karaman"> <!-- ADD data-city -->
+                    <h2>Karamanoğlu Mehmetbey Üniversitesi</h2>
+                    <h3>Öğretim Görevlisi (İlk ve Acil Yardım)</h3>
+                    <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Karamanoğlu Mehmetbey Üniversitesi - İlan 2 -->
+                <li data-city="Karaman"> <!-- ADD data-city -->
+                    <h2>Karamanoğlu Mehmetbey Üniversitesi</h2>
+                    <h3>Öğretim Görevlisi (Optisyenlik)</h3>
+                     <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Karamanoğlu Mehmetbey Üniversitesi - İlan 3 -->
+                <li data-city="Karaman"> <!-- ADD data-city -->
+                    <h2>Karamanoğlu Mehmetbey Üniversitesi</h2>
+                    <h3>Öğretim Görevlisi (Tıbbi Görüntüleme)</h3>
+                     <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Karamanoğlu Mehmetbey Üniversitesi - İlan 4 -->
+                <li data-city="Karaman"> <!-- ADD data-city -->
+                    <h2>Karamanoğlu Mehmetbey Üniversitesi</h2>
+                    <h3>Öğretim Görevlisi (Elektrik)</h3>
+                    <!-- ... rest of the details ... -->
+                </li>
+
+                <!-- Karamanoğlu Mehmetbey Üniversitesi - İlan 5 -->
+                <li data-city="Karaman"> <!-- ADD data-city -->
+                    <h2>Karamanoğlu Mehmetbey Üniversitesi</h2>
+                    <h3>Öğretim Görevlisi (Bilgi İşlem)</h3>
+                     <!-- ... rest of the details ... -->
+                </li>
+                 <!-- Add more list items here with correct data-city -->
+            </ul>
+            <p id="no-results" style="display: none; font-weight: bold; color: #888;">Seçilen şehir için ilan bulunamadı.</p>
+        </div>
+    </main>
+
+    <footer>
+        <p>Kamu İlan Platformu © 2024 (Örnek Site)</p>
+    </footer>
+
+    <!-- JavaScript for Filtering Listings -->
+    <script src="filter_listings.js"></script>
+</body>
+</html>
