@@ -2,40 +2,50 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kurumlar - Kamu İlanları</title> <!-- CORRECT TITLE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Kurumlar · Kamu İlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header>
-        <div class="container">
-            <h1>Kamu <span class="highlight">İlan</span> Platformu</h1>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="ilanlar.html">Aktif İş İlanları</a></li>
-                    <li class="active"><a href="kurumlar.html">Kurumlar</a></li>
-                    <li><a href="unvanlar.html">Ünvanlar</a></li>
+<body data-page="kurumlar">
+    <header class="site-header">
+        <div class="wrap">
+            <a class="brand" href="index.html">
+                <span class="brand-name">Kamu <span>İlan</span></span>
+                <span class="brand-tag">Personel alım ilanları</span>
+            </a>
+            <nav aria-label="Ana menü">
+                <ul class="nav">
+                <li><a href="index.html">Ana Sayfa</a></li>
+                <li><a href="ilanlar.html">Aktif İlanlar</a></li>
+                <li><a href="kurumlar.html" aria-current="page">Kurumlar</a></li>
+                <li><a href="unvanlar.html">Ünvanlar</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <main>
-        <div class="container">
-            <h1>İlan Veren Kurumlar</h1> <!-- CORRECT HEADING -->
-            <ul class="simple-list"> <!-- CORRECT CONTENT -->
-                <li>Malatya Turgut Özal Üniversitesi</li>
-                <li>Mersin Büyükşehir Belediyesi</li>
-                <li>Karamanoğlu Mehmetbey Üniversitesi</li>
-                <!-- Add more institutions here as they appear in postings -->
-            </ul>
-            <p>Not: Bu listede, sitemizde ilanı bulunan kurumlar yer almaktadır.</p>
+        <div class="wrap">
+            <section class="page-head">
+                <p class="eyebrow">Kurumlar</p>
+                <h1>İlan veren kurumlar</h1>
+                <p class="lede">Sitede şu an açık ilanı bulunan kurumlar. İlan sayısına tıklayınca o ilin ilanları açılır.</p>
+            </section>
+            <ul class="rows" id="kurum-list"></ul>
         </div>
     </main>
 
-    <footer>
-        <p>Kamu İlan Platformu © 2024 (Örnek Site)</p>
+    <footer class="site-footer">
+        <div class="wrap">
+            <span>Kamu İlan Platformu · Örnek site</span>
+            <span>Bilgiler kurumların resmi duyurularından derlenmiştir.</span>
+        </div>
     </footer>
+
+    <script src="data.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
