@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>İlan Alarmı · Kamu İlan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="alarm">
+    <header class="site-header">
+        <div class="wrap">
+            <a class="brand" href="index.html">
+                <span class="brand-name">Kamu <span>İlan</span></span>
+                <span class="brand-tag">Personel alım ilanları</span>
+            </a>
+            <nav aria-label="Ana menü">
+                <ul class="nav">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="ilanlar.html">Aktif İlanlar</a></li>
+                    <li><a href="kurumlar.html">Kurumlar</a></li>
+                    <li><a href="unvanlar.html">Ünvanlar</a></li>
+                    <li><a href="alarm.html" aria-current="page"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="wrap">
+            <section class="page-head">
+                <p class="eyebrow">İlan alarmı</p>
+                <h1>Uygun ilan çıkınca haber alın</h1>
+                <p class="lede">İl, kurum türü ve ünvan seçerek alarm kurun. Bu kriterlere uyan yeni bir ilan eklendiğinde menüdeki İlan Alarmı bağlantısında ve sayfaların üstünde gösterilir.</p>
+            </section>
+
+            <p class="notice" id="depo-uyari" hidden>Tarayıcınız bu sitede veri saklamaya izin vermiyor. Kurduğunuz alarmlar sayfayı kapattığınızda silinir.</p>
+
+            <div class="alarm-layout">
+                <form class="alarm-form" id="alarm-form" novalidate>
+                    <h2>Yeni alarm</h2>
+
+                    <div class="field">
+                        <label for="alarm-il">İller</label>
+                        <select id="alarm-il">
+                            <option value="">İl ekleyin…</option>
+                        </select>
+                        <ul class="chips" id="alarm-il-secili" aria-label="Seçilen iller" hidden></ul>
+                        <p class="hint">Birden fazla il ekleyebilirsiniz. Boş bırakırsanız tüm iller.</p>
+                    </div>
+
+                    <fieldset class="field">
+                        <legend>Kurum türü</legend>
+                        <div class="pills" id="alarm-turler"></div>
+                        <p class="hint">Boş bırakırsanız tüm kurumlar.</p>
+                    </fieldset>
+
+                    <div class="field">
+                        <label for="alarm-kelime">Ünvan veya anahtar kelime</label>
+                        <input id="alarm-kelime" type="text" placeholder="Örn. büro personeli, itfaiye" autocomplete="off">
+                        <p class="hint">Kelimeleri virgülle ayırın. Herhangi biri ünvanda, alanda veya kurum adında geçen ilanlar uyar.</p>
+                    </div>
+
+                    <label class="check" id="bildirim-satiri">
+                        <input type="checkbox" id="alarm-bildirim">
+                        <span>Site açıkken tarayıcı bildirimi de göster</span>
+                    </label>
+
+                    <p class="match-preview" id="alarm-onizleme" aria-live="polite"></p>
+
+                    <div class="form-foot">
+                        <button type="submit" class="btn-primary">Alarmı kur</button>
+                        <p class="form-msg" id="alarm-mesaj" role="status"></p>
+                    </div>
+                </form>
+
+                <section class="alarm-list-section" aria-labelledby="alarmlarim">
+                    <h2 id="alarmlarim" tabindex="-1">Alarmlarım</h2>
+                    <p class="empty" id="alarm-bos">Henüz alarm kurmadınız. Formdan kriterlerinizi seçip ilk alarmınızı kurun.</p>
+                    <ul class="alarm-list" id="alarm-list"></ul>
+                </section>
+            </div>
+
+            <p class="note"><b>Bildirimler nasıl çalışır?</b> Alarmlarınız bu tarayıcıda saklanır, üyelik gerekmez. Siteye her girdiğinizde ilanlar alarmlarınızla karşılaştırılır. Uyan yeni ilan varsa menüdeki İlan Alarmı yanında sayı ve sayfanın üstünde bir uyarı görürsünüz. Tarayıcı bildirimine izin verdiyseniz site açıkken bildirim de gelir. Başka bir tarayıcıdan veya cihazdan girdiğinizde alarmlarınız orada görünmez.</p>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="wrap">
+            <span>Kamu İlan Platformu · Örnek site</span>
+            <span>Bilgiler kurumların resmi duyurularından derlenmiştir.</span>
+        </div>
+    </footer>
+
+    <script src="data.js"></script>
+    <script src="iller.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

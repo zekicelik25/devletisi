@@ -18,10 +18,11 @@
             </a>
             <nav aria-label="Ana menü">
                 <ul class="nav">
-                <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
-                <li><a href="ilanlar.html">Aktif İlanlar</a></li>
-                <li><a href="kurumlar.html">Kurumlar</a></li>
-                <li><a href="unvanlar.html">Ünvanlar</a></li>
+                    <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
+                    <li><a href="ilanlar.html">Aktif İlanlar</a></li>
+                    <li><a href="kurumlar.html">Kurumlar</a></li>
+                    <li><a href="unvanlar.html">Ünvanlar</a></li>
+                    <li><a href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
                 </ul>
             </nav>
         </div>
@@ -29,6 +30,7 @@
 
     <main>
         <div class="wrap">
+            <div class="alarm-banner" id="alarm-banner" role="status" hidden></div>
             <section class="page-head">
                 <p class="eyebrow">81 il · tek harita</p>
                 <h1>Kamu kurumlarının açtığı ilanlar, il il.</h1>
@@ -128,6 +130,14 @@
 <path d="m 267.67477,28.372652 0.57,1.39 1.84,2.51 2.82,0.44 -0.02,2.88 0.36,0.81 1.54,1.42 -0.46,1.14 0.46,1.23 -1.56,3.31 0,0 -1.31,0.8 -0.72,0.99 -0.41,0.83 -0.45,3.48 -0.84,1.49 0.12,1.48 1.59,3.3 0,0 -3.79,0.73 -4.15,1.45 -4,0.52 -3.64,1.31 -1.32,-0.11 -1.92,-1.42 -4.98,0.39 -2.66,-0.35 -2.85,0.78 -1.86,1.02 0,0 -2.24,0.69 -2.52,-0.5 -0.69,-1.1 0,-3.03 -0.99,-1.73 0,0 1.39,-0.95 0.16,-0.85 1.6,-1.41 0.06,-0.59 0.94,-1.12 -0.13,-1.78 0.68,-1.77 -0.44,-0.65 -0.55,-0.01 -0.18,-0.29 0.26,-1.25 0.86,0 0.47,-0.56 1.01,-0.2 1.91,-1.36 2.4,-0.92 2.19,-0.44 5.68,-3.42 0.35,-0.7 2.72,-1.42 1.85,-1.6 5.6,-2.24 1.82,-1.71 z" id="TR-67" data-plaka="67" data-il="Zonguldak"><title>Zonguldak</title></path>
 </svg>
                 <ul class="chips" id="il-chips" aria-label="İlanı olan iller"></ul>
+            </section>
+
+            <section class="section cta" aria-labelledby="cta-title">
+                <div>
+                    <h2 id="cta-title">Aradığınız ilan henüz yok mu?</h2>
+                    <p>İl, kurum türü ve ünvan seçerek alarm kurun. Uygun bir ilan eklendiğinde sitede size haber verelim.</p>
+                </div>
+                <a class="btn-primary" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı kur</a>
             </section>
 
             <section class="section" aria-labelledby="recent-title">

@@ -18,10 +18,11 @@
             </a>
             <nav aria-label="Ana menü">
                 <ul class="nav">
-                <li><a href="index.html">Ana Sayfa</a></li>
-                <li><a href="ilanlar.html" aria-current="page">Aktif İlanlar</a></li>
-                <li><a href="kurumlar.html">Kurumlar</a></li>
-                <li><a href="unvanlar.html">Ünvanlar</a></li>
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="ilanlar.html" aria-current="page">Aktif İlanlar</a></li>
+                    <li><a href="kurumlar.html">Kurumlar</a></li>
+                    <li><a href="unvanlar.html">Ünvanlar</a></li>
+                    <li><a href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
                 </ul>
             </nav>
         </div>
@@ -29,6 +30,7 @@
 
     <main>
         <div class="wrap">
+            <div class="alarm-banner" id="alarm-banner" role="status" hidden></div>
             <section class="page-head">
                 <p class="eyebrow">Aktif ilanlar</p>
                 <h1 id="ilanlar-heading">Tüm aktif ilanlar</h1>
@@ -48,9 +50,12 @@
                 <button type="button" class="btn-reset" id="reset" hidden>Filtreleri temizle</button>
             </form>
 
-            <p class="result-count" id="result-count" aria-live="polite"></p>
+            <div class="result-bar">
+                <p class="result-count" id="result-count" aria-live="polite"></p>
+                <a class="alarm-link" id="alarm-kur-link" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="alarm-kur-metin">İlan alarmı kur</span></a>
+            </div>
             <ul class="rows" id="ilan-list"></ul>
-            <p class="empty" id="empty" hidden>Bu filtrelere uyan ilan yok. İl seçimini veya arama metnini değiştirin.</p>
+            <p class="empty" id="empty" hidden>Bu filtrelere uyan ilan yok. İl seçimini veya arama metnini değiştirin ya da bu arama için alarm kurun.</p>
 
             <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
         </div>
