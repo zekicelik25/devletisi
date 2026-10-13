@@ -20,12 +20,12 @@ Kullanıcı Türkçe yazıyor; yanıtlar Türkçe, kısa ve teknik olmayan bir d
 ### Harita
 - Gerçek il sınırlarıyla SVG harita, dış bağımlılık yok. Leaflet (tile sunucusu) veya D3 kullanılmaz; önizleme ortamı dış istekleri engelliyor.
 - claude.ai sohbetindeki Leaflet ve D3 haritalı JSX/HTML denemeleri bu repoya alınmadı; esas olan bu repo.
-- İller yalnız ince konturla çizilir, pozisyon sayısına göre gri tonda (1 / 2–4 / 5–9 / 10+); üzerine gelinen il kırmızı.
 
 ### İlanlar sayfası
-- Filtreler: il, kurum türü, çalışma statüsü, meslek grubu, eğitim düzeyi ve arama. Seçeneklerde yalnız sitede karşılığı olan değerler, sayılarıyla görünür; hiç verisi olmayan filtre (şu an eğitim düzeyi) gizlenir.
+- Arama: "Ne" (ünvan, kurum, alan) ve "Nerede" (il adı veya plaka; listeden seçilince hemen uygulanır). Ana sayfadaki arama ilanlar sayfasına `sessionStorage` (`kamuilan.arama`) ile taşınır.
+- Filtreler: kurum türü, çalışma statüsü, meslek grubu, eğitim düzeyi. Seçeneklerde yalnız sitede karşılığı olan değerler, sayılarıyla görünür; hiç verisi olmayan filtre (şu an eğitim düzeyi) gizlenir.
 - Kurum türü ve statüde bir grubun tamamı ("tümü", değer `grup:<id>`) veya tek öğe seçilebilir.
-- Bağlantıyla filtre: `ilanlar.html#70` (il), `#tur-…`, `#statu-…`, `#statu-grup-…`, `#meslek-…`, `#egitim-…`, `#kurum-…`, `#unvan-…`.
+- Bağlantıyla filtre: `ilanlar.html#70` (il), `#tur-…`, `#statu-…`, `#statu-grup-…`, `#meslek-…`, `#egitim-…`, `#kurum-…`, `#unvan-…`, `#poz-…` (pozisyonu ayrıntısıyla açar).
 - Arama ve alarm eşleştirmesi Türkçe karakter farkını yok sayar ve ünvanların eş yazılışlarını da tarar ("Öğr. Gör.", "itfaiyeci").
 
 ### İlan alarmı
@@ -33,12 +33,14 @@ Kullanıcı Türkçe yazıyor; yanıtlar Türkçe, kısa ve teknik olmayan bir d
 - İlk sürümün alarmları (`kamuilan.alarmlar.v1`) açılışta aktarılır: Üniversite → Devlet üniversitesi, Belediye → üç belediye türü, Bakanlık → Bakanlık, Hastane → Sağlık meslek grubu.
 - Uyan yeni pozisyon, siteye girişte menüdeki sayaç ve sayfa üstü uyarıyla, izin varsa site açıkken tarayıcı bildirimiyle haber verilir. E-posta veya telefon bildirimi için sunucu gerekir; henüz yok.
 
-### Tasarım: "gov-tech" (uygulandı)
-Resmi ama çağdaş, devlet sitelerinin modern hâli:
-- Renk: zemin kireç beyazı `#FAFAF8`, metin antrasit `#1A1D1F`. Tek vurgu rengi kırmızı `#D7263D`, yalnız aksiyonlarda (düğme, bağlantı, üzerine gelinen il). Zeytin yeşili `#3D5A3D` yalnız "yeni" durumlarında (alarm sayacı, uyarı, Yeni etiketi).
-- Tipografi: Public Sans; başlıklarda sıkı harf aralığı. Etiketler küçük, büyük harf ve harf aralıklı. Sayılar ve plaka kodları IBM Plex Mono.
-- Yapı: gölge yok, 1px ince çizgiler, 4–6px köşe; sayfa üstünde 4px koyu şerit, bölümler arasında ince ayırıcı çizgiler.
-- Düğmeler: dolgu yerine kırmızı çerçeve ve küçük, büyük harfli yazı.
+### Tasarım: iş ilanı sitesi düzeni (Indeed benzeri)
+Kullanıcı Indeed'e benzer bir düzen istedi (önceki "gov-tech" yönünün yerini aldı). Indeed'in adı, logosu ve marka öğeleri kullanılmaz; site kendi adıyla kalır.
+- Renk: beyaz zemin, sıcak gri çizgiler (`#E4E2E0`, `#D4D2D0`), metin `#2D2D2D`. Tek vurgu rengi mavi `#1F5BB5` (düğme, bağlantı, seçili kart, haritadaki iller). Yeşil `#1B7F4C` yalnız "yeni" durumlarında.
+- Tipografi: Noto Sans; büyük harf etiket kullanılmaz, hiyerarşi kalınlıkla kurulur.
+- Yapı: 8px köşeli kartlar, ince çerçeve, üzerine gelince hafif gölge; filtreler yuvarlak hap düğmeler.
+- Ana sayfa: ortada "Ne / Nerede" arama çubuğu ve sık aranan kategoriler; harita, kategoriye göre göz atma, son eklenen pozisyon kartları, alarm çağrısı.
+- İlanlar: üstte arama ve filtreler; geniş ekranda solda ilan kartları, sağda seçili pozisyonun ayrıntısı (yapışkan panel). Telefonda karta dokununca ayrıntı listenin yerine açılır, "Sonuçlara dön" ile geri gelinir.
+- Harita: iller pozisyon sayısına göre açık maviden koyu maviye (1 / 2–4 / 5–9 / 10+).
 
 ### Sınıflandırma (ayrıntı: `docs/siniflandirma.md`)
 - En küçük birim pozisyondur: Kurum → İlan → Pozisyon.

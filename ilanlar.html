@@ -3,88 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Aktif İlanlar · Kamu İlan</title>
+    <title>İlanlar · Kamu İlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="ilanlar">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-mark" aria-hidden="true">Kİ</span>
                 <span class="brand-name">Kamu İlan</span>
-                <span class="brand-tag">Personel alım ilanları</span>
             </a>
-            <nav aria-label="Ana menü">
+            <nav class="site-nav" aria-label="Ana menü">
                 <ul class="nav">
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="ilanlar.html" aria-current="page">Aktif İlanlar</a></li>
-                    <li><a href="kurumlar.html">Kurumlar</a></li>
-                    <li><a href="unvanlar.html">Ünvanlar</a></li>
-                    <li><a href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
+                        <li><a href="index.html">Ana sayfa</a></li>
+                        <li><a href="ilanlar.html" aria-current="page">İlanlar</a></li>
+                        <li><a href="kurumlar.html">Kurumlar</a></li>
+                        <li><a href="unvanlar.html">Ünvanlar</a></li>
                 </ul>
             </nav>
+            <a class="header-alarm" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a>
         </div>
     </header>
 
     <main>
         <div class="wrap">
             <div class="alarm-banner" id="alarm-banner" role="status" hidden></div>
-            <section class="page-head">
-                <p class="eyebrow">Aktif ilanlar</p>
-                <h1 id="ilanlar-heading">Tüm aktif ilanlar</h1>
+            <section class="search-band" aria-label="Arama ve filtreler">
+                <form class="search" id="arama-form" role="search">
+                    <div class="search-field">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <label class="sr-only" for="ara-ne">Ne arıyorsunuz?</label>
+                        <input id="ara-ne" type="search" placeholder="Ünvan, kurum veya alan" autocomplete="off">
+                    </div>
+                    <div class="search-field">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                        <label class="sr-only" for="ara-nerede">Hangi ilde?</label>
+                        <input id="ara-nerede" type="text" list="il-listesi" placeholder="İl" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn-primary">İlan bul</button>
+                </form>
+                <datalist id="il-listesi"></datalist>
+                <p class="search-error" id="arama-hata" role="alert" hidden></p>
+                <div class="filter-bar">
+                    <span class="pill-select"><select id="f-tur" aria-label="Kurum türü"><option value="">Kurum türü</option></select></span>
+                    <span class="pill-select"><select id="f-statu" aria-label="Çalışma statüsü"><option value="">Çalışma statüsü</option></select></span>
+                    <span class="pill-select"><select id="f-meslek" aria-label="Meslek grubu"><option value="">Meslek grubu</option></select></span>
+                    <span class="pill-select"><select id="f-egitim" aria-label="Eğitim düzeyi"><option value="">Eğitim düzeyi</option></select></span>
+                    <button type="button" class="btn-text" id="reset" hidden>Filtreleri temizle</button>
+                </div>
+                <ul class="chips active-filters" id="aktif-filtreler" aria-label="Bağlantıyla gelen filtreler" hidden></ul>
             </section>
 
-            <form class="filters" role="search" onsubmit="return false">
-                <div class="field">
-                    <label for="f-il">İl</label>
-                    <select id="f-il">
-                        <option value="">Tüm iller</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="f-tur">Kurum türü</label>
-                    <select id="f-tur">
-                        <option value="">Tüm kurum türleri</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="f-statu">Çalışma statüsü</label>
-                    <select id="f-statu">
-                        <option value="">Tüm statüler</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="f-meslek">Meslek grubu</label>
-                    <select id="f-meslek">
-                        <option value="">Tüm meslek grupları</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <label for="f-egitim">Eğitim düzeyi</label>
-                    <select id="f-egitim">
-                        <option value="">Tüm düzeyler</option>
-                    </select>
-                </div>
-                <div class="field field-wide">
-                    <label for="f-ara">Kurum, ünvan veya alan ara</label>
-                    <input id="f-ara" type="search" placeholder="Örn. öğretim görevlisi, optisyenlik" autocomplete="off">
-                </div>
-            </form>
-
-            <ul class="chips active-filters" id="aktif-filtreler" aria-label="Bağlantıyla gelen filtreler" hidden></ul>
-
-            <div class="result-bar">
+            <div class="results-head">
+                <h1 id="ilanlar-heading">Tüm aktif ilanlar</h1>
                 <p class="result-count" id="result-count" aria-live="polite"></p>
-                <div class="result-actions">
-                    <button type="button" class="btn-text" id="reset" hidden>Filtreleri temizle</button>
-                    <a class="alarm-link" id="alarm-kur-link" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="alarm-kur-metin">İlan alarmı kur</span></a>
-                </div>
+                <a class="alarm-link" id="alarm-kur-link" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="alarm-kur-metin">İlan alarmı kur</span></a>
             </div>
-            <ul class="rows" id="ilan-list"></ul>
-            <p class="empty" id="empty" hidden>Bu filtrelere uyan pozisyon yok. Filtreleri değiştirin ya da bu arama için alarm kurun; uyan bir ilan eklendiğinde haber verelim.</p>
+
+            <div class="results" id="sonuclar">
+                <div class="result-col">
+                    <ul class="job-list" id="ilan-list" aria-label="Pozisyonlar"></ul>
+                    <p class="empty" id="empty" hidden>Bu aramaya uyan pozisyon yok. Filtreleri değiştirin ya da bu arama için alarm kurun; uyan bir ilan eklendiğinde haber verelim.</p>
+                </div>
+                <aside class="detail-pane" id="detay" aria-labelledby="detay-baslik" hidden></aside>
+            </div>
 
             <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı, çalışma statüsü ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
         </div>

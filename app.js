@@ -7,7 +7,9 @@
     const ALARM_KEY = 'kamuilan.alarmlar.v2';
     const ESKI_ALARM_KEY = 'kamuilan.alarmlar.v1';
     const TASLAK_KEY = 'kamuilan.alarm-taslak';
+    const ARAMA_KEY = 'kamuilan.arama';
     const ZIL = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>';
+    const KONUM = '<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>';
 
     function esc(s) {
         return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -16,7 +18,7 @@
     // Büyük/küçük harf ve Türkçe karakter farkını yok sayar: "Öğretim" ile "ogretim" eşleşir.
     function norm(s) {
         return String(s).toLocaleLowerCase('tr').replace(/ı/g, 'i')
-            .normalize('NFD').replace(/[̀-ͯ]/g, '')
+            .normalize('NFD').replace(/\p{M}/gu, '')
             .replace(/\s+/g, ' ').trim();
     }
 
@@ -116,7 +118,9 @@
                     yontem: YONTEM.has(poz.yontem) ? poz.yontem : null,
                     plaka,
                     il: IL.get(plaka) || plaka,
+                    yayinTarihi: ilan.yayinTarihi || null,
                     sonBasvuru: ilan.sonBasvuru || null,
+                    kaynak: KAYNAK.has(ilan.kaynak) ? ilan.kaynak : null,
                     link: typeof ilan.link === 'string' && /^https?:\/\//i.test(ilan.link) ? ilan.link : null
                 };
                 p.arama = norm([p.unvan, ...p.unvanEs, p.alan, p.kurum, p.il].join(' '));
@@ -136,6 +140,26 @@
 
     function ilEtiket(plaka) {
         return IL.get(plaka) || plaka;
+    }
+
+    // "Nerede" kutusuna yazılan il adını ya da plaka kodunu plakaya çevirir; bulunamazsa ''.
+    function ilBul(metin) {
+        const n = norm(metin);
+        if (/^\d{1,2}$/.test(n)) {
+            const plaka = n.padStart(2, '0');
+            return IL.has(plaka) ? plaka : '';
+        }
+        for (const [plaka, ad] of IL) if (norm(ad) === n) return plaka;
+        return '';
+    }
+
+    function ilListesiDoldur(datalist) {
+        if (!datalist) return;
+        [...IL.values()].sort(collator.compare).forEach(ad => {
+            const o = document.createElement('option');
+            o.value = ad;
+            datalist.appendChild(o);
+        });
     }
 
     function turEtiket(v) {
@@ -171,25 +195,25 @@
         return p.alan ? `${p.unvan} · ${p.alan}` : p.unvan;
     }
 
-    function pozisyonRow(p, yeni) {
-        const ek = [];
-        if (p.adet) ek.push(`${p.adet} kadro`);
-        if (p.egitim) ek.push(EGITIM.get(p.egitim).ad);
-        if (p.sonBasvuru) ek.push(`son başvuru ${tarihYaz(p.sonBasvuru)}`);
-        const link = p.link ? ` · <a class="row-link" href="${esc(p.link)}" target="_blank" rel="noopener">İlan metni</a>` : '';
-        return `<li class="row">
-            ${plakaBadge(p.plaka)}
-            <div class="row-main">
-                <p class="row-title">${esc(pozisyonBasligi(p))}</p>
-                <p class="row-sub">${esc([p.kurum, ...ek].join(' · '))}${link}</p>
-            </div>
-            <div class="row-meta">
-                ${yeni ? '<span class="tag new">Yeni</span>' : ''}
-                ${p.statuAd ? `<span class="tag statu">${esc(p.statuAd)}</span>` : ''}
-                <span class="tag">${esc(p.kurumTurAd)}</span>
-                <span class="tag plain">${esc(p.il)}</span>
-            </div>
-        </li>`;
+    // İlan kartının içi: ünvan, kurum, il, statü ve öne çıkan bilgiler.
+    function kartIcerik(p, yeni) {
+        const etiketler = [];
+        if (yeni) etiketler.push('<span class="chip-sm new">Yeni</span>');
+        if (p.statuAd) etiketler.push(`<span class="chip-sm">${esc(p.statuAd)}</span>`);
+        if (p.adet) etiketler.push(`<span class="chip-sm">${p.adet} kadro</span>`);
+        if (p.egitim) etiketler.push(`<span class="chip-sm">${esc(EGITIM.get(p.egitim).ad)}</span>`);
+        const alt = [p.kurumTurAd];
+        if (p.sonBasvuru) alt.push(`Son başvuru ${tarihYaz(p.sonBasvuru)}`);
+        return `<span class="job-title">${esc(pozisyonBasligi(p))}</span>
+            <span class="job-company">${esc(p.kurum)}</span>
+            <span class="job-location">${KONUM}${esc(p.il)}</span>
+            ${etiketler.length ? `<span class="job-tags">${etiketler.join('')}</span>` : ''}
+            <span class="job-foot">${esc(alt.join(' · '))}</span>`;
+    }
+
+    // Başka sayfalardan, pozisyonu ilanlar sayfasında ayrıntısıyla açan kart.
+    function kartLink(p, yeni) {
+        return `<li><a class="job-card" href="ilanlar.html#poz-${p.id}">${kartIcerik(p, yeni)}</a></li>`;
     }
 
     function secenek(deger, metin) {
@@ -421,18 +445,48 @@
 
     // ---------- Ana sayfa ----------
     function initIndex() {
+        const $ = id => document.getElementById(id);
         const ilSayilari = say(pozisyonlar, 'plaka');
+        const statuSay = say(pozisyonlar, 'statuGrup');
+        const turSay = say(pozisyonlar, 'kurumTur');
+        const meslekSay = say(pozisyonlar, 'meslek');
 
-        document.getElementById('stats').innerHTML = [
+        // Arama: "Ne" ve "Nerede" ilanlar sayfasına taşınır.
+        const form = $('ana-arama');
+        const ne = $('ana-ne');
+        const nerede = $('ana-nerede');
+        const hata = $('ana-hata');
+        ilListesiDoldur($('il-listesi'));
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            const yer = nerede.value.trim();
+            const plaka = yer ? ilBul(yer) : '';
+            if (yer && !plaka) {
+                hata.textContent = `"${yer}" adında bir il bulunamadı. Listeden bir il seçin.`;
+                hata.hidden = false;
+                nerede.focus();
+                return;
+            }
+            depoYaz('sessionStorage', ARAMA_KEY, { q: ne.value.trim(), il: plaka });
+            window.location.href = plaka ? `ilanlar.html#${plaka}` : 'ilanlar.html';
+        });
+        nerede.addEventListener('input', () => { hata.hidden = true; });
+
+        $('populer').innerHTML = [
+            ...S.STATU_GRUPLARI.filter(g => statuSay.get(g.id)).map(g => [`statu-grup-${g.id}`, g.ad]),
+            ...S.KURUM_TURLERI.filter(t => turSay.get(t.id)).map(t => [`tur-${t.id}`, t.ad])
+        ].slice(0, 6).map(([h, ad]) => `<li><a class="chip" href="ilanlar.html#${esc(h)}">${esc(ad)}</a></li>`).join('');
+
+        $('stats').innerHTML = [
             [new Set(pozisyonlar.map(p => p.ilanId)).size, 'aktif ilan'],
             [pozisyonlar.length, 'pozisyon'],
             [new Set(pozisyonlar.map(p => p.kurumId)).size, 'kurum'],
             [ilSayilari.size, 'il']
-        ].map(([n, ad]) => `<li><strong>${n}</strong><span>${ad}</span></li>`).join('');
+        ].map(([n, ad]) => `<li><strong>${n}</strong> ${ad}</li>`).join('');
 
-        // Harita: ilan sayısına göre gri tonlar, üzerine gelinen il kırmızı.
+        // Harita: pozisyon sayısına göre mavi tonlar.
         const seviye = n => (n >= 10 ? 4 : n >= 5 ? 3 : n >= 2 ? 2 : 1);
-        const readout = document.getElementById('map-readout');
+        const readout = $('map-readout');
         const defaultReadout = readout.innerHTML;
         document.querySelectorAll('#turkey-map path').forEach(path => {
             const plaka = path.dataset.plaka;
@@ -441,8 +495,8 @@
 
             const show = () => {
                 readout.innerHTML = n
-                    ? `<b>${esc(plaka)} · ${esc(il)}</b> — ${n} pozisyon, görmek için tıklayın`
-                    : `<b>${esc(plaka)} · ${esc(il)}</b> — şu an ilan yok`;
+                    ? `<b>${esc(il)} (${esc(plaka)})</b> · ${n} pozisyon, görmek için tıklayın`
+                    : `<b>${esc(il)} (${esc(plaka)})</b> · şu an ilan yok`;
             };
             const hide = () => { readout.innerHTML = defaultReadout; };
             path.addEventListener('mouseenter', show);
@@ -462,7 +516,7 @@
             path.addEventListener('blur', hide);
         });
 
-        document.getElementById('il-chips').innerHTML = [...ilSayilari.keys()]
+        $('il-chips').innerHTML = [...ilSayilari.keys()]
             .sort((a, b) => collator.compare(ilEtiket(a), ilEtiket(b)))
             .map(p => `<li><a class="chip" href="ilanlar.html#${esc(p)}">
                 ${plakaBadge(p)} ${esc(ilEtiket(p))} <span class="count">${ilSayilari.get(p)}</span>
@@ -471,10 +525,7 @@
         // Sınıflandırmaya göre göz at: her satır ilanlar sayfasını o filtreyle açar.
         const satir = (href, ad, n) => `<li><a href="ilanlar.html#${esc(href)}"><span>${esc(ad)}</span><span class="browse-count">${n}</span></a></li>`;
         const kolon = (baslik, satirlar) => (satirlar ? `<div class="browse-col"><h3>${baslik}</h3><ul class="browse-list">${satirlar}</ul></div>` : '');
-        const statuSay = say(pozisyonlar, 'statuGrup');
-        const turSay = say(pozisyonlar, 'kurumTur');
-        const meslekSay = say(pozisyonlar, 'meslek');
-        document.getElementById('browse').innerHTML = [
+        $('browse').innerHTML = [
             kolon('Çalışma statüsü', S.STATU_GRUPLARI.filter(g => statuSay.get(g.id))
                 .map(g => satir(`statu-grup-${g.id}`, g.ad, statuSay.get(g.id))).join('')),
             kolon('Kurum türü', S.KURUM_TURLERI.filter(t => turSay.get(t.id))
@@ -483,15 +534,18 @@
                 .map(m => satir(`meslek-${m.id}`, m.ad, meslekSay.get(m.id))).join(''))
         ].join('');
 
-        document.getElementById('recent').innerHTML = pozisyonlar.slice(0, 4).map(p => pozisyonRow(p)).join('');
+        $('recent').innerHTML = pozisyonlar.slice(0, 4).map(p => kartLink(p)).join('');
     }
 
-    // ---------- İlanlar ----------
+    // ---------- İlanlar: solda kartlar, sağda seçili pozisyonun ayrıntısı ----------
     function initIlanlar() {
         const $ = id => document.getElementById(id);
-        const f = { il: $('f-il'), tur: $('f-tur'), statu: $('f-statu'), meslek: $('f-meslek'), egitim: $('f-egitim') };
-        const ara = $('f-ara');
-        const list = $('ilan-list');
+        const aramaForm = $('arama-form');
+        const ne = $('ara-ne');
+        const nerede = $('ara-nerede');
+        const aramaHata = $('arama-hata');
+        const f = { tur: $('f-tur'), statu: $('f-statu'), meslek: $('f-meslek'), egitim: $('f-egitim') };
+        const liste = $('ilan-list');
         const count = $('result-count');
         const empty = $('empty');
         const heading = $('ilanlar-heading');
@@ -499,12 +553,18 @@
         const chips = $('aktif-filtreler');
         const alarmLink = $('alarm-kur-link');
         const alarmMetin = $('alarm-kur-metin');
-        let ekFiltre = { kurum: null, unvan: null }; // yalnızca bağlantıyla gelen filtreler
+        const sonuclar = $('sonuclar');
+        const detay = $('detay');
+        const dar = window.matchMedia('(max-width: 63.99rem)');
 
-        // Seçenekler: yalnızca sitede pozisyonu olan değerler, sayılarıyla.
-        const ilSay = say(pozisyonlar, 'plaka');
-        [...ilSay.keys()].sort((a, b) => collator.compare(ilEtiket(a), ilEtiket(b)))
-            .forEach(p => f.il.appendChild(secenek(p, `${ilEtiket(p)} (${p}) · ${ilSay.get(p)}`)));
+        let ilSecili = '';
+        let ekFiltre = { kurum: null, unvan: null }; // yalnızca bağlantıyla gelen filtreler
+        let seciliPoz = null;
+        let mobilDetay = false; // dar ekranda ayrıntı listenin yerine açılır
+
+        ilListesiDoldur($('il-listesi'));
+
+        // Filtre seçenekleri: yalnızca sitede pozisyonu olan değerler, sayılarıyla.
         grupluDoldur(f.tur, S.KURUM_GRUPLARI, S.KURUM_TURLERI, say(pozisyonlar, 'kurumTur'));
         grupluDoldur(f.statu, S.STATU_GRUPLARI, S.STATULER, say(pozisyonlar, 'statu'));
         const meslekSay = say(pozisyonlar, 'meslek');
@@ -516,27 +576,54 @@
             if (egitimSay.get(e.id)) f.egitim.appendChild(secenek(e.id, `${e.ad} (${egitimSay.get(e.id)})`));
         });
         // Henüz verisi olmayan filtre gizlenir; ilanlara bilgi eklendikçe kendiliğinden görünür.
-        Object.values(f).forEach(sel => { sel.closest('.field').hidden = sel.options.length <= 1; });
+        Object.values(f).forEach(sel => { sel.closest('.pill-select').hidden = sel.options.length <= 1; });
+
+        function ilAyarla(plaka) {
+            ilSecili = plaka;
+            nerede.value = plaka ? ilEtiket(plaka) : '';
+            aramaHata.hidden = true;
+        }
+
+        // "Nerede" kutusundaki metni il olarak uygular; il bulunamazsa uyarır.
+        function ilCoz() {
+            const metin = nerede.value.trim();
+            if (!metin) {
+                ilAyarla('');
+                return true;
+            }
+            const plaka = ilBul(metin);
+            if (!plaka) {
+                aramaHata.textContent = `"${metin}" adında bir il bulunamadı. Listeden bir il seçin.`;
+                aramaHata.hidden = false;
+                return false;
+            }
+            ilAyarla(plaka);
+            return true;
+        }
 
         function secenekVar(sel, deger) {
             return [...sel.options].some(o => o.value === deger);
         }
 
-        // Bağlantıyla gelen filtre: #70 (il), #tur-…, #statu-…, #meslek-…, #egitim-…, #kurum-…, #unvan-…
+        // Bağlantıyla gelen filtre: #70 (il), #tur-…, #statu-…, #meslek-…, #egitim-…, #kurum-…, #unvan-…, #poz-…
         // "grup-" ile başlayan değer bir grubun tamamıdır: #statu-grup-sozlesmeli
         function hashOku() {
             Object.values(f).forEach(sel => { sel.value = ''; });
             ekFiltre = { kurum: null, unvan: null };
+            ilAyarla('');
+            ne.value = '';
+            seciliPoz = null;
             let h = '';
             try { h = decodeURIComponent(window.location.hash.slice(1)); } catch (e) { return; }
             if (/^\d{2}$/.test(h)) {
-                if (secenekVar(f.il, h)) f.il.value = h;
+                if (IL.has(h)) ilAyarla(h);
                 return;
             }
-            const m = h.match(/^(kurum|unvan|tur|statu|meslek|egitim)-(.+)$/);
+            const m = h.match(/^(kurum|unvan|tur|statu|meslek|egitim|poz)-(.+)$/);
             if (!m) return;
             const deger = m[2].startsWith('grup-') ? `grup:${m[2].slice(5)}` : m[2];
-            if (m[1] === 'kurum') ekFiltre.kurum = kurumlar.has(deger) ? deger : null;
+            if (m[1] === 'poz') seciliPoz = pozisyonlar.some(p => p.id === Number(deger)) ? Number(deger) : null;
+            else if (m[1] === 'kurum') ekFiltre.kurum = kurumlar.has(deger) ? deger : null;
             else if (m[1] === 'unvan') ekFiltre.unvan = UNVAN.has(deger) ? deger : null;
             else if (secenekVar(f[m[1]], deger)) f[m[1]].value = deger;
         }
@@ -546,13 +633,13 @@
         }
 
         function filtreVar() {
-            return Object.values(f).some(sel => sel.value) || ara.value.trim() !== '' || !!ekFiltre.kurum || !!ekFiltre.unvan;
+            return Object.values(f).some(sel => sel.value) || !!ilSecili || ne.value.trim() !== '' || !!ekFiltre.kurum || !!ekFiltre.unvan;
         }
 
-        function render() {
-            const q = norm(ara.value);
-            const sonuc = pozisyonlar.filter(p =>
-                (!f.il.value || p.plaka === f.il.value) &&
+        function filtrele() {
+            const q = norm(ne.value);
+            return pozisyonlar.filter(p =>
+                (!ilSecili || p.plaka === ilSecili) &&
                 (!f.tur.value || degerUyar(f.tur.value, p.kurumTur, p.kurumGrup)) &&
                 (!f.statu.value || (p.statu && degerUyar(f.statu.value, p.statu, p.statuGrup))) &&
                 (!f.meslek.value || p.meslek === f.meslek.value) &&
@@ -560,11 +647,79 @@
                 (!ekFiltre.kurum || p.kurumId === ekFiltre.kurum) &&
                 (!ekFiltre.unvan || p.unvanId === ekFiltre.unvan) &&
                 (!q || p.arama.includes(q)));
+        }
+
+        function detayHtml(p) {
+            const statu = p.statu ? STATU.get(p.statu) : null;
+            const grup = KURUM_GRUP.get(p.kurumGrup);
+            const yontem = p.yontem ? YONTEM.get(p.yontem) : null;
+            const bilgiler = [
+                ['Çalışma statüsü', statu ? statu.ad : null, statu ? [statu.dayanak, statu.aciklama].filter(Boolean).join('. ') : ''],
+                ['Kurum türü', p.kurumTurAd, grup ? grup.ad : ''],
+                ['Meslek grubu', meslekEtiket(p.meslek), ''],
+                ['Alan', p.alan || null, ''],
+                ['Kadro sayısı', p.adet ? String(p.adet) : null, ''],
+                ['Eğitim düzeyi', p.egitim ? EGITIM.get(p.egitim).ad : null, ''],
+                ['Alım yöntemi', yontem ? yontem.ad : null, yontem && yontem.aciklama ? yontem.aciklama : ''],
+                ['Yayın tarihi', p.yayinTarihi ? tarihYaz(p.yayinTarihi) : null, ''],
+                ['Son başvuru', p.sonBasvuru ? tarihYaz(p.sonBasvuru) : null, ''],
+                ['İlan kaynağı', p.kaynak ? KAYNAK.get(p.kaynak).ad : null, '']
+            ];
+            const bilinen = bilgiler.filter(b => b[1]);
+            const eksik = bilgiler.filter(b => !b[1] && b[0] !== 'Alan').map(b => b[0].toLocaleLowerCase('tr'));
+            const digerleri = pozisyonlar.filter(x => x.ilanId === p.ilanId && x.id !== p.id).sort((a, b) => a.id - b.id);
+            const ana = p.link ? `<a class="btn-primary" href="${esc(p.link)}" target="_blank" rel="noopener">İlan metnine git</a>` : '';
+
+            return `<div class="detail-head">
+                <button type="button" class="detail-back btn-text" data-geri>← Sonuçlara dön</button>
+                <h2 id="detay-baslik">${esc(pozisyonBasligi(p))}</h2>
+                <button type="button" class="detail-company" data-kurum-filtre="${esc(p.kurumId)}">${esc(p.kurum)}</button>
+                <p class="detail-location">${KONUM}${esc(p.il)} (${esc(p.plaka)})</p>
+                <div class="detail-actions">
+                    ${ana}
+                    <a class="${p.link ? 'btn-secondary' : 'btn-primary'}" href="alarm.html" data-alarm-benzer="${p.id}">${ZIL}Benzer ilanlar için alarm kur</a>
+                </div>
+                ${p.link ? '' : '<p class="detail-note">Bu ilanın resmi bağlantısı henüz eklenmedi.</p>'}
+            </div>
+            <div class="detail-body">
+                <section class="detail-section" aria-labelledby="d-bilgi">
+                    <h3 id="d-bilgi">Pozisyon bilgileri</h3>
+                    <dl class="facts">
+                        ${bilinen.map(([ad, deger, not]) => `<div class="fact"><dt>${esc(ad)}</dt><dd>${esc(deger)}${not ? `<span class="fact-note">${esc(not)}</span>` : ''}</dd></div>`).join('')}
+                    </dl>
+                    ${eksik.length ? `<p class="missing">Henüz eklenmeyen bilgiler: ${esc(eksik.join(', '))}.</p>` : ''}
+                </section>
+                ${digerleri.length ? `<section class="detail-section" aria-labelledby="d-diger">
+                    <h3 id="d-diger">Bu ilandaki diğer pozisyonlar (${digerleri.length})</h3>
+                    <ul class="other-list">${digerleri.map(x => `<li><button type="button" class="link-btn" data-poz-sec="${x.id}">${esc(pozisyonBasligi(x))}</button></li>`).join('')}</ul>
+                </section>` : ''}
+                <p class="detail-disclaimer">Başvurmadan önce ilanın tam metnini kurumun resmi sitesinden okuyun. Çalışma statüsü ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
+            </div>`;
+        }
+
+        function kartlariIsaretle() {
+            liste.querySelectorAll('[data-poz]').forEach(b => {
+                if (Number(b.dataset.poz) === seciliPoz) b.setAttribute('aria-current', 'true');
+                else b.removeAttribute('aria-current');
+            });
+        }
+
+        function detayCiz() {
+            const p = pozisyonlar.find(x => x.id === seciliPoz);
+            detay.hidden = !p;
+            detay.innerHTML = p ? detayHtml(p) : '';
+            detay.scrollTop = 0;
+            sonuclar.classList.toggle('detay-acik', !!p && mobilDetay && dar.matches);
+            kartlariIsaretle();
+        }
+
+        function render() {
+            const sonuc = filtrele();
 
             const kurum = ekFiltre.kurum ? kurumlar.get(ekFiltre.kurum) : null;
             heading.textContent = kurum ? `${kurum.ad} ilanları`
-                : f.il.value ? `${ilEtiket(f.il.value)} ilindeki ilanlar`
-                : filtreVar() ? 'Filtrelenmiş ilanlar' : 'Tüm aktif ilanlar';
+                : ilSecili && !filtreVarIlDisinda() ? `${ilEtiket(ilSecili)} ilindeki ilanlar`
+                : filtreVar() ? 'Arama sonuçları' : 'Tüm aktif ilanlar';
 
             const aktif = [];
             if (kurum) aktif.push(['kurum', `Kurum: ${kurum.ad}`]);
@@ -573,39 +728,109 @@
                 <button type="button" class="chip-x" data-filtre="${k}" aria-label="Kaldır: ${esc(metin)}">×</button></li>`).join('');
             chips.hidden = aktif.length === 0;
 
-            list.innerHTML = sonuc.map(p => pozisyonRow(p)).join('');
-            list.hidden = sonuc.length === 0;
-            empty.hidden = sonuc.length !== 0;
+            Object.values(f).forEach(sel => sel.closest('.pill-select').classList.toggle('is-active', !!sel.value));
             count.textContent = `${sonuc.length} pozisyon · ${new Set(sonuc.map(p => p.ilanId)).size} ilan`;
             reset.hidden = !filtreVar();
             alarmMetin.textContent = filtreVar() ? 'Bu arama için alarm kur' : 'İlan alarmı kur';
+
+            // Geniş ekranda ilk sonuç kendiliğinden açılır; dar ekranda kullanıcı seçer.
+            if (!sonuc.some(p => p.id === seciliPoz)) {
+                seciliPoz = !dar.matches && sonuc.length ? sonuc[0].id : null;
+                mobilDetay = false;
+            }
+            liste.innerHTML = sonuc.map(p => `<li><button type="button" class="job-card" data-poz="${p.id}">${kartIcerik(p)}</button></li>`).join('');
+            liste.hidden = sonuc.length === 0;
+            empty.hidden = sonuc.length !== 0;
+            detayCiz();
         }
 
-        Object.values(f).forEach(sel => sel.addEventListener('change', () => { hashTemizle(); render(); }));
-        ara.addEventListener('input', render);
+        function filtreVarIlDisinda() {
+            return Object.values(f).some(sel => sel.value) || ne.value.trim() !== '' || !!ekFiltre.unvan;
+        }
+
+        function filtreDegisti() {
+            hashTemizle();
+            render();
+        }
+
+        aramaForm.addEventListener('submit', e => {
+            e.preventDefault();
+            if (ilCoz()) filtreDegisti();
+        });
+        ne.addEventListener('input', filtreDegisti);
+        // Listeden seçilen ya da tam yazılan il hemen uygulanır; yarım metin çıkışta denetlenir.
+        nerede.addEventListener('input', () => {
+            aramaHata.hidden = true;
+            const plaka = ilBul(nerede.value);
+            if (plaka && plaka !== ilSecili) {
+                ilAyarla(plaka);
+                filtreDegisti();
+            } else if (!nerede.value.trim() && ilSecili) {
+                ilAyarla('');
+                filtreDegisti();
+            }
+        });
+        nerede.addEventListener('change', () => { if (ilCoz()) filtreDegisti(); });
+        Object.values(f).forEach(sel => sel.addEventListener('change', filtreDegisti));
+
         chips.addEventListener('click', e => {
             const btn = e.target.closest('[data-filtre]');
             if (!btn) return;
             ekFiltre[btn.dataset.filtre] = null;
-            hashTemizle();
-            render();
+            filtreDegisti();
         });
+
         reset.addEventListener('click', () => {
             Object.values(f).forEach(sel => { sel.value = ''; });
-            ara.value = '';
+            ne.value = '';
+            ilAyarla('');
             ekFiltre = { kurum: null, unvan: null };
-            hashTemizle();
-            render();
+            filtreDegisti();
+        });
+
+        liste.addEventListener('click', e => {
+            const kart = e.target.closest('[data-poz]');
+            if (!kart) return;
+            seciliPoz = Number(kart.dataset.poz);
+            history.replaceState(null, '', `#poz-${seciliPoz}`);
+            mobilDetay = dar.matches;
+            detayCiz();
+            if (mobilDetay) sonuclar.scrollIntoView({ block: 'start' });
+        });
+
+        detay.addEventListener('click', e => {
+            const kurumBtn = e.target.closest('[data-kurum-filtre]');
+            const digerBtn = e.target.closest('[data-poz-sec]');
+            const alarmBtn = e.target.closest('[data-alarm-benzer]');
+            if (e.target.closest('[data-geri]')) {
+                mobilDetay = false;
+                detayCiz();
+                const kart = liste.querySelector(`[data-poz="${seciliPoz}"]`);
+                if (kart) kart.focus();
+            } else if (kurumBtn) {
+                ekFiltre.kurum = kurumBtn.dataset.kurumFiltre;
+                filtreDegisti();
+            } else if (digerBtn) {
+                seciliPoz = Number(digerBtn.dataset.pozSec);
+                history.replaceState(null, '', `#poz-${seciliPoz}`);
+                detayCiz();
+            } else if (alarmBtn) {
+                // Benzer ilanlar: aynı il, aynı statü ve aynı ünvan; alarm sayfasında değiştirilebilir.
+                const p = pozisyonlar.find(x => x.id === Number(alarmBtn.dataset.alarmBenzer));
+                if (p) depoYaz('sessionStorage', TASLAK_KEY, {
+                    iller: [p.plaka], turler: [], statuler: p.statu ? [p.statu] : [], meslekler: [], kelimeler: [p.unvan]
+                });
+            }
         });
 
         // Seçili filtreler alarm formuna taşınır; kurum ve ünvan anahtar kelime olarak geçer.
         alarmLink.addEventListener('click', () => {
             const kelimeler = [];
-            if (ara.value.trim()) kelimeler.push(ara.value.trim());
+            if (ne.value.trim()) kelimeler.push(ne.value.trim());
             if (ekFiltre.unvan) kelimeler.push(UNVAN.get(ekFiltre.unvan).ad);
             if (ekFiltre.kurum) kelimeler.push(kurumlar.get(ekFiltre.kurum).ad);
             depoYaz('sessionStorage', TASLAK_KEY, {
-                iller: f.il.value ? [f.il.value] : [],
+                iller: ilSecili ? [ilSecili] : [],
                 turler: f.tur.value ? [f.tur.value] : [],
                 statuler: f.statu.value ? [f.statu.value] : [],
                 meslekler: f.meslek.value ? [f.meslek.value] : [],
@@ -613,28 +838,51 @@
             });
         });
 
-        window.addEventListener('hashchange', () => { hashOku(); render(); });
+        window.addEventListener('hashchange', () => {
+            hashOku();
+            mobilDetay = seciliPoz != null;
+            render();
+        });
+        const ekranDegisti = () => { if (!dar.matches) mobilDetay = false; render(); };
+        if (dar.addEventListener) dar.addEventListener('change', ekranDegisti);
+        else if (dar.addListener) dar.addListener(ekranDegisti);
+
         hashOku();
+        // Ana sayfadaki arama kutusundan gelindiyse aranan kelime ve il uygulanır.
+        const arama = depoOku('sessionStorage', ARAMA_KEY);
+        if (arama && typeof arama === 'object') {
+            depoYaz('sessionStorage', ARAMA_KEY, null);
+            if (typeof arama.q === 'string') ne.value = arama.q;
+            if (typeof arama.il === 'string' && IL.has(arama.il)) ilAyarla(arama.il);
+        }
+        mobilDetay = seciliPoz != null;
         render();
+        const secili = liste.querySelector('[aria-current="true"]');
+        if (secili && seciliPoz != null && window.location.hash.startsWith('#poz-')) secili.scrollIntoView({ block: 'nearest' });
     }
 
     // ---------- Kurumlar ----------
+    function basHarfler(ad) {
+        return ad.split(/\s+/).filter(k => k && !/^(ve|ile)$/i.test(k)).slice(0, 2)
+            .map(k => k.charAt(0).toLocaleUpperCase('tr')).join('');
+    }
+
     function initKurumlar() {
         const kurumPoz = groupBy(pozisyonlar, 'kurumId');
 
-        function kurumRow(k, poz) {
+        function kurumKart(k, poz) {
             const statuler = [...new Set(poz.map(p => p.statuAd).filter(Boolean))];
             const ilanSayisi = new Set(poz.map(p => p.ilanId)).size;
-            return `<li class="row">
-                ${plakaBadge(k.il)}
-                <div class="row-main">
-                    <p class="row-title">${esc(k.ad)}</p>
-                    <p class="row-sub">${esc(ilEtiket(k.il))} · ${ilanSayisi} ilan, ${poz.length} pozisyon</p>
+            return `<li class="company-card">
+                <div class="company-top">
+                    <span class="avatar" aria-hidden="true">${esc(basHarfler(k.ad))}</span>
+                    <div class="company-id">
+                        <p class="company-name">${esc(k.ad)}</p>
+                        <p class="company-meta">${KONUM}${esc(ilEtiket(k.il))} · ${ilanSayisi} ilan</p>
+                    </div>
                 </div>
-                <div class="row-meta">
-                    ${statuler.map(s => `<span class="tag statu">${esc(s)}</span>`).join('')}
-                    <a class="row-action" href="ilanlar.html#kurum-${esc(k.id)}">İlanları gör</a>
-                </div>
+                ${statuler.length ? `<span class="job-tags">${statuler.map(s => `<span class="chip-sm">${esc(s)}</span>`).join('')}</span>` : ''}
+                <a class="company-link" href="ilanlar.html#kurum-${esc(k.id)}">${poz.length} açık pozisyon →</a>
             </li>`;
         }
 
@@ -647,7 +895,7 @@
                 if (!ks.length) return '';
                 return `<div class="sub-group">
                     <h3 class="sub-head">${esc(t.ad)}</h3>
-                    <ul class="rows">${ks.map(k => kurumRow(k, kurumPoz.get(k.id))).join('')}</ul>
+                    <ul class="card-grid">${ks.map(k => kurumKart(k, kurumPoz.get(k.id))).join('')}</ul>
                 </div>`;
             }).join('');
             return bloklar ? `<section class="group"><h2 class="group-head">${esc(g.ad)}</h2>${bloklar}</section>` : '';
@@ -656,24 +904,14 @@
 
     // ---------- Ünvanlar ----------
     function initUnvanlar() {
-        function unvanRow(id, poz) {
+        function unvanSatiri(id, poz) {
             const alanlar = [...new Set(poz.map(p => p.alan).filter(Boolean))];
             const kurumAdlari = [...new Set(poz.map(p => p.kurum))];
-            const statuler = [...new Set(poz.map(p => p.statuAd).filter(Boolean))];
-            const iller = [...new Set(poz.map(p => p.il))];
             const alt = alanlar.length ? `Alanlar: ${alanlar.join(', ')}` : kurumAdlari.join(', ');
-            const link = UNVAN.has(id) ? `<a class="row-action" href="ilanlar.html#unvan-${esc(id)}">İlanları gör</a>` : '';
-            return `<li class="row">
-                <span class="num" title="Pozisyon sayısı">${poz.length}</span>
-                <div class="row-main">
-                    <p class="row-title">${esc(poz[0].unvan)}</p>
-                    <p class="row-sub">${esc(alt)}</p>
-                </div>
-                <div class="row-meta">
-                    ${statuler.map(s => `<span class="tag statu">${esc(s)}</span>`).join('')}
-                    ${iller.map(il => `<span class="tag plain">${esc(il)}</span>`).join('')}
-                    ${link}
-                </div>
+            const ad = `<span class="category-name">${esc(poz[0].unvan)}</span><span class="category-num">${poz.length}</span>`;
+            return `<li>
+                ${UNVAN.has(id) ? `<a href="ilanlar.html#unvan-${esc(id)}">${ad}</a>` : `<span class="category-row">${ad}</span>`}
+                <p class="category-sub">${esc(alt)}</p>
             </li>`;
         }
 
@@ -682,10 +920,11 @@
             if (!poz.length) return '';
             const unvanlar = [...groupBy(poz, 'unvanId').entries()]
                 .sort((a, b) => b[1].length - a[1].length || collator.compare(a[1][0].unvan, b[1][0].unvan));
-            return `<section class="group">
-                <h2 class="group-head">${esc(g.ad)}</h2>
-                <ul class="rows">${unvanlar.map(([id, ps]) => unvanRow(id, ps)).join('')}</ul>
-            </section>`;
+            return `<li class="category-card">
+                <h2 class="category-head">${esc(g.ad)}</h2>
+                <p class="category-total">${poz.length} pozisyon</p>
+                <ul class="category-list">${unvanlar.map(([id, ps]) => unvanSatiri(id, ps)).join('')}</ul>
+            </li>`;
         }).join('');
     }
 
@@ -797,10 +1036,10 @@
                         </div>
                         ${yeni.length ? `<span class="new-pill">${yeni.length} yeni</span>` : ''}
                     </div>
-                    ${yeni.length ? `<ul class="rows compact">${yeni.map(p => pozisyonRow(p, true)).join('')}</ul>` : ''}
+                    ${yeni.length ? `<ul class="job-list compact">${yeni.map(p => kartLink(p, true)).join('')}</ul>` : ''}
                     ${digerleri.length ? `<details>
                         <summary>${yeni.length ? 'Uyan diğer pozisyonlar' : 'Uyan pozisyonlar'} (${digerleri.length})</summary>
-                        <ul class="rows compact">${digerleri.map(p => pozisyonRow(p)).join('')}</ul>
+                        <ul class="job-list compact">${digerleri.map(p => kartLink(p)).join('')}</ul>
                     </details>` : ''}
                     <div class="alarm-actions">${islemler}</div>
                 </li>`;

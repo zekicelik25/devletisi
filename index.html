@@ -6,51 +6,71 @@
     <title>Kamu İlan Platformu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="index">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-mark" aria-hidden="true">Kİ</span>
                 <span class="brand-name">Kamu İlan</span>
-                <span class="brand-tag">Personel alım ilanları</span>
             </a>
-            <nav aria-label="Ana menü">
+            <nav class="site-nav" aria-label="Ana menü">
                 <ul class="nav">
-                    <li><a href="index.html" aria-current="page">Ana Sayfa</a></li>
-                    <li><a href="ilanlar.html">Aktif İlanlar</a></li>
-                    <li><a href="kurumlar.html">Kurumlar</a></li>
-                    <li><a href="unvanlar.html">Ünvanlar</a></li>
-                    <li><a href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
+                        <li><a href="index.html" aria-current="page">Ana sayfa</a></li>
+                        <li><a href="ilanlar.html">İlanlar</a></li>
+                        <li><a href="kurumlar.html">Kurumlar</a></li>
+                        <li><a href="unvanlar.html">Ünvanlar</a></li>
                 </ul>
             </nav>
+            <a class="header-alarm" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a>
         </div>
     </header>
 
     <main>
         <div class="wrap">
             <div class="alarm-banner" id="alarm-banner" role="status" hidden></div>
-            <section class="page-head">
-                <p class="eyebrow">Kamu personel alım ilanları</p>
-                <h1>Kamu kurumlarının açtığı ilanlar, il il.</h1>
-                <p class="lede">Bakanlık, üniversite, belediye ve diğer kamu kurumlarının ilanları; kurum türüne, çalışma statüsüne ve ünvana göre ayrılmış olarak. Haritada bir ile tıklayınca o ildeki pozisyonlar listelenir.</p>
+            <section class="hero" aria-labelledby="hero-title">
+                <h1 id="hero-title">Kamu kurumlarında açık pozisyonlar</h1>
+                <p class="lede">Bakanlık, üniversite ve belediye ilanları; kurum türüne, çalışma statüsüne ve ünvana göre ayrılmış olarak.</p>
+                <form class="search" id="ana-arama" role="search">
+                    <div class="search-field">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+                        <label class="sr-only" for="ana-ne">Ne arıyorsunuz?</label>
+                        <input id="ana-ne" type="search" placeholder="Ünvan, kurum veya anahtar kelime" autocomplete="off">
+                    </div>
+                    <div class="search-field">
+                        <svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+                        <label class="sr-only" for="ana-nerede">Hangi ilde?</label>
+                        <input id="ana-nerede" type="text" list="il-listesi" placeholder="İl" autocomplete="off">
+                    </div>
+                    <button type="submit" class="btn-primary">İlan bul</button>
+                </form>
+                <datalist id="il-listesi"></datalist>
+                <p class="search-error" id="ana-hata" role="alert" hidden></p>
+                <div class="popular">
+                    <span>Sık aranan:</span>
+                    <ul class="chips" id="populer"></ul>
+                </div>
+                <ul class="stats" id="stats" aria-label="Özet"></ul>
             </section>
 
-            <ul class="stats" id="stats" aria-label="Özet"></ul>
-
-            <section class="map-panel" aria-labelledby="map-title">
-                <div class="map-bar">
-                    <p class="map-readout" id="map-readout" aria-live="polite"><b id="map-title">İl seçin</b> — üzerine gelince ilin pozisyon sayısı görünür</p>
-                    <ul class="legend" aria-label="Pozisyon sayısı">
-                        <li><span class="swatch"></span>İlan yok</li>
-                        <li><span class="swatch lvl-1"></span>1</li>
-                        <li><span class="swatch lvl-2"></span>2–4</li>
-                        <li><span class="swatch lvl-3"></span>5–9</li>
-                        <li><span class="swatch lvl-4"></span>10+</li>
-                    </ul>
+            <section class="section" aria-labelledby="map-heading">
+                <div class="section-head">
+                    <h2 id="map-heading">Haritada ilanlar</h2>
                 </div>
+                <div class="map-panel">
+                    <div class="map-bar">
+                        <p class="map-readout" id="map-readout" aria-live="polite"><b>İl seçin</b> · üzerine gelince ilin pozisyon sayısı görünür</p>
+                        <ul class="legend" aria-label="Pozisyon sayısı">
+                            <li><span class="swatch"></span>İlan yok</li>
+                            <li><span class="swatch lvl-1"></span>1</li>
+                            <li><span class="swatch lvl-2"></span>2–4</li>
+                            <li><span class="swatch lvl-3"></span>5–9</li>
+                            <li><span class="swatch lvl-4"></span>10+</li>
+                        </ul>
+                    </div>
 <svg id="turkey-map" viewBox="0 0 792.6 334.6" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Türkiye il haritası">
 <path d="m 445.35477,207.27265 -1,1.29 -1.19,5.33 -0.91,2.23 -0.88,1.49 -1.5,1.21 -0.55,0.81 0.2,0.53 2.09,0.32 0.95,0.81 -0.24,1 -1.76,1.56 -0.8,1.41 0.26,1.03 1.8,2.29 0.43,2.09 -0.18,1.5 -0.98,2.1 -2.89,2.9 0,0 -1.31,0.3 -4.18,2.51 -2.15,3.22 -1.29,4.13 -0.47,4.38 0.44,3.09 1.52,4.45 0.38,3.03 -1.24,9.1 0,0 -1.39,1.2 -0.84,1.44 -0.18,1.19 0.43,1.39 0,0 -2.15,2.17 -1.38,0.85 -1.01,1.84 -1.87,1.45 -0.3,0.75 -2.27,1.53 -1.47,-0.19 -1.72,0.58 -0.59,-0.45 -1.21,0.01 -1.64,1.05 -0.84,1.74 0.91,-0.42 -0.22,0.47 0.23,0.71 0.52,-1.15 0,-0.31 -0.48,-0.03 0.23,-0.38 0.78,-0.18 0.03,0.51 0.25,0.14 -0.16,0.87 1.81,-0.22 0.2,-0.21 -0.42,-0.16 0,-0.37 1.08,0.75 -3.2,2.23 -0.46,0.78 -0.31,2.37 -0.69,0.64 -1.37,0.56 -0.48,0.77 -0.42,0.14 -0.5,-0.44 -1.84,-0.49 -2.79,-0.34 -1.03,0.32 0,0.63 -2.8,1.72 -0.22,-0.62 -1.08,-0.7 -12.54,-7.43 -1.87,-0.65 -2.25,0.03 0,0 1,-0.91 0,0 -0.02,-0.25 0.27,0.21 0,0 0.41,-0.32 0.13,0.32 0.35,-0.1 0.16,-0.96 0.2,0.42 0.81,-0.44 0.49,0.03 0.53,0.47 -0.28,-0.69 0.19,-0.13 0.8,0.57 0.02,-1.1 0.31,0.02 0.38,0.66 1.29,-1.71 0.82,0.75 1.27,-0.45 0.29,0.06 0.17,0.51 0.29,-0.13 -0.21,-0.27 0.79,-0.46 0.23,-0.82 -0.67,-3.38 -0.01,-3.39 -0.88,-3.1 0.1,-2.1 -0.57,-0.79 -0.6,-0.57 -2.41,-1.2 -1.69,-0.01 -0.29,-1.3 -0.63,-1.02 -0.99,-0.63 -0.86,-0.14 -0.34,-0.5 0.02,-1.54 0.53,-0.84 1.49,-1.05 -0.08,-1.23 -1.15,-1.89 -1.6,-1.36 0.2,-0.51 -1.31,-0.29 -2.23,-3.07 0.14,-2.21 -0.84,-1.45 0,0 0.05,-0.49 2.58,-1.6 -0.76,-1.45 1,-1.36 0.77,-3.56 0.04,-2.24 0.75,-1.26 1.5,-0.35 2.29,1.04 1.27,-0.08 0.83,-0.71 2.45,-4.29 1.31,-1.13 3.23,-1.58 0,0 4.93,1.27 0.51,0.63 1.32,-0.34 0.48,0.27 0.43,1.17 0.36,0.24 1.1,-0.25 4.33,0.72 1.71,-0.04 1.23,-2.07 -0.22,-1.66 0.67,-2.1 0.84,-5.59 0.67,-0.42 1.5,-0.26 1.1,-0.74 0.89,-0.85 1.19,-1.89 1.13,-0.44 1.15,-1.51 5.24,-1.63 1.34,-0.85 1.37,-2.25 1.15,-4.28 2,-1.95 1.65,-3.03 3.83,-1.42 1.29,-0.08 2.7,2.06 1.68,2.64 2.07,1.8 z" id="TR-01" data-plaka="01" data-il="Adana"><title>Adana</title></path>
 <path d="m 557.62477,211.54265 0.78,0.14 1.37,-1.22 1.16,-0.01 0.43,0.77 0.95,0.74 0.25,1.39 -0.17,0.69 -0.9,0.94 -0.7,2.75 -0.79,0.31 -0.23,0.67 -1.32,1.51 0,0 -0.63,0.24 -1.06,-0.18 -1.35,0.55 -0.24,0.49 -1.04,0.64 -0.27,1.59 -1.05,2.05 -1.1,0.18 -1.12,0.77 0.76,0.7 -0.15,0.8 -0.59,0.58 0.17,1.69 -2.13,-0.03 -0.93,0.61 -0.31,0.6 0.15,0.42 1.67,-0.6 0.68,0.13 0.05,2.59 -1.7,0.54 -0.28,0.41 0.06,1.02 -1.25,0.84 -1.39,0.5 -0.89,-0.3 -0.39,0.33 0.16,1.14 0.82,0.2 0.56,0.45 -0.12,0.24 -3.98,1.2 -4.3,0.49 -3.41,2.7 -3.3,3.16 -2.07,1.08 -4.82,0.21 -0.67,0.51 -1.37,-0.2 -1.09,1.72 -1.27,-0.49 -0.7,0.15 -0.38,0.79 0.04,0.88 -0.52,0.42 -0.29,-0.02 -0.09,-0.55 -1.1,0.05 -2.33,-1.54 0,0 -1.73,-1.1 -3.9,-1.29 -3.81,-0.35 -2.85,0.37 -0.93,-0.28 -1.69,-1.85 -1.99,0.27 -2.34,1.08 -0.7,-0.09 -1.09,-0.75 0,0 -1.09,-1.96 -0.33,-1.71 -1.49,0.04 -1.34,-0.5 -1.09,0.04 -0.12,-1.07 -0.56,-0.89 0.79,-0.72 -0.03,-0.56 0.58,-0.69 -0.17,-1.48 0.44,-1.65 0.86,-1.21 1.7,-1.46 0.25,-3.35 -0.4,-1.23 1.07,-0.83 1.54,-0.47 0.67,-0.57 1.46,-2.63 0,0 0.69,0.43 0.17,0.5 -0.44,1.82 3.16,-0.72 0.37,0.37 0.24,1.63 0.43,0.49 0.65,0.05 0.85,-1.03 0.54,-0.15 2.04,0.63 2.35,0.31 2.41,-0.69 2.27,-0.21 1.45,-2.03 1.99,-0.46 0.57,-1.24 -0.76,-2.12 0.05,-1.19 -1.35,-1.83 0.39,-1.09 2.31,-1.26 4.89,-1.48 0.91,-0.92 0.73,-1.36 1.42,-0.54 4.09,-0.27 1.15,0.83 2.17,0.86 1.22,0.96 1.35,0.23 0.71,1.13 2.05,0.39 1.51,1.71 1.57,0.29 2.22,2.25 1.62,0.5 4.56,-1.77 1.3,-0.89 2.6,-0.73 0.45,-1.38 2.67,-1.35 z" id="TR-02" data-plaka="02" data-il="Adıyaman"><title>Adıyaman</title></path>
@@ -134,23 +154,16 @@
 <path d="m 405.34477,100.78265 0.01,1.8 0.45,1.34 1.71,1.09 1.03,1.18 -0.35,2.33 0.49,0.78 4.52,0.59 1.5,1.02 1.99,-0.12 2.41,-0.83 3.28,0.37 3.34,-0.39 1,0.3 0.72,1.87 0.07,4.45 0.65,1.16 0.89,0.32 0,0 -0.24,2.15 0.43,1.01 0.82,0.69 2.23,0.38 0.41,0.3 -0.57,2.62 -0.05,2 1.54,2.43 1.53,1.06 0.43,0.68 0.11,2.52 0.72,2.34 -0.06,0.63 -0.39,0.78 -3.9,3.6 -1.97,0.34 -2.51,-1.18 -3.2,1.25 -0.72,1.4 -0.07,5.34 -3.06,3.58 -0.49,1.4 0,0 -2.11,3.06 -2.06,1.06 -2.66,0.67 -6.32,0.18 -1.3,0.53 -0.95,0.88 -0.14,0.79 1.46,2.99 -0.05,0.69 -1.42,0.93 -1.84,1.92 -2.51,1.32 -2.07,0.34 -3.22,1.72 -0.82,-0.58 0.09,-2.74 -0.37,-0.77 -1.19,-0.02 -2.96,1.69 0,0 -0.39,-1.47 -1.55,-2.05 0.07,-3.39 -0.88,-2.83 -0.79,-0.83 0.71,-2.09 -0.31,-1.72 -0.4,-0.65 -2.02,-2.16 -1.75,-0.89 -2.76,-0.64 -2.6,-0.19 -3.19,-1.43 -0.48,-0.52 -0.1,-1.13 0,0 -0.2,-1.2 -1.39,-1.62 -0.86,-0.61 -2.77,-0.93 -0.61,-0.66 -0.04,-0.7 2.31,-2.1 0.01,-0.33 -0.73,-0.04 0.03,-0.65 -5.03,-0.91 -0.81,-2.43 -0.87,-0.81 -2.3,-1.16 -2.08,-0.57 -3.03,-2.09 -0.44,-0.64 -0.52,-2.33 -0.71,-0.84 -0.86,-0.17 -0.4,0.42 -1.23,0.01 -0.49,-0.26 0,0 0.27,-1.55 -0.69,-1.3 -0.29,-1.64 -1.52,-1.08 -0.15,-1.03 0.97,-0.78 2.43,-0.54 0,0 -0.1,1.2 0.5,0.6 3.59,-1.08 3.67,0.71 1.3,-0.09 0.91,-0.53 -0.04,-1.1 0.27,-0.26 2.37,-2.06 1.48,-0.68 1.71,0.4 1.73,1.78 2.65,0.58 2.75,-1.21 5.22,-0.3 0.9,-0.85 1.51,-2.36 1.19,-0.61 0.85,0.54 0.05,2 0.26,0.33 4.28,-0.09 2.65,-0.78 3.71,0.08 0.67,-0.65 0.22,-0.81 -1.69,-2.17 -0.33,-1.37 0.46,-0.81 1.34,-0.49 0.26,-0.46 -0.21,-0.54 -1.94,-1.97 -0.02,-0.98 0.61,-0.45 0.57,0.04 1.46,1.64 0.97,0.25 2.14,-2.6 1.33,-0.69 2.21,-0.38 0,0 1.17,0.03 z" id="TR-66" data-plaka="66" data-il="Yozgat"><title>Yozgat</title></path>
 <path d="m 267.67477,28.372652 0.57,1.39 1.84,2.51 2.82,0.44 -0.02,2.88 0.36,0.81 1.54,1.42 -0.46,1.14 0.46,1.23 -1.56,3.31 0,0 -1.31,0.8 -0.72,0.99 -0.41,0.83 -0.45,3.48 -0.84,1.49 0.12,1.48 1.59,3.3 0,0 -3.79,0.73 -4.15,1.45 -4,0.52 -3.64,1.31 -1.32,-0.11 -1.92,-1.42 -4.98,0.39 -2.66,-0.35 -2.85,0.78 -1.86,1.02 0,0 -2.24,0.69 -2.52,-0.5 -0.69,-1.1 0,-3.03 -0.99,-1.73 0,0 1.39,-0.95 0.16,-0.85 1.6,-1.41 0.06,-0.59 0.94,-1.12 -0.13,-1.78 0.68,-1.77 -0.44,-0.65 -0.55,-0.01 -0.18,-0.29 0.26,-1.25 0.86,0 0.47,-0.56 1.01,-0.2 1.91,-1.36 2.4,-0.92 2.19,-0.44 5.68,-3.42 0.35,-0.7 2.72,-1.42 1.85,-1.6 5.6,-2.24 1.82,-1.71 z" id="TR-67" data-plaka="67" data-il="Zonguldak"><title>Zonguldak</title></path>
 </svg>
-                <ul class="chips" id="il-chips" aria-label="İlanı olan iller"></ul>
+                    <ul class="chips" id="il-chips" aria-label="İlanı olan iller"></ul>
+                </div>
             </section>
 
             <section class="section" aria-labelledby="browse-title">
                 <div class="section-head">
-                    <h2 id="browse-title">Sınıflandırmaya göre göz atın</h2>
+                    <h2 id="browse-title">Kategoriye göre göz atın</h2>
                     <a href="ilanlar.html">Tüm pozisyonlar →</a>
                 </div>
                 <div class="browse" id="browse"></div>
-            </section>
-
-            <section class="section cta" aria-labelledby="cta-title">
-                <div>
-                    <h2 id="cta-title">Aradığınız ilan henüz yok mu?</h2>
-                    <p>İl, kurum türü, çalışma statüsü ve meslek seçerek alarm kurun. Uygun bir pozisyon eklendiğinde sitede size haber verelim.</p>
-                </div>
-                <a class="btn-primary" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı kur</a>
             </section>
 
             <section class="section" aria-labelledby="recent-title">
@@ -158,7 +171,15 @@
                     <h2 id="recent-title">Son eklenen pozisyonlar</h2>
                     <a href="ilanlar.html">Tüm pozisyonlar →</a>
                 </div>
-                <ul class="rows" id="recent"></ul>
+                <ul class="job-grid" id="recent"></ul>
+            </section>
+
+            <section class="section cta" aria-labelledby="cta-title">
+                <div>
+                    <h2 id="cta-title">Yeni ilanlardan ilk siz haberdar olun</h2>
+                    <p>İl, kurum türü, çalışma statüsü ve meslek seçerek alarm kurun. Uygun bir pozisyon eklendiğinde sitede size haber verelim.</p>
+                </div>
+                <a class="btn-primary" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı kur</a>
             </section>
 
             <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı, çalışma statüsü ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>

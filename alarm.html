@@ -6,35 +6,33 @@
     <title>İlan Alarmı · Kamu İlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="alarm">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-mark" aria-hidden="true">Kİ</span>
                 <span class="brand-name">Kamu İlan</span>
-                <span class="brand-tag">Personel alım ilanları</span>
             </a>
-            <nav aria-label="Ana menü">
+            <nav class="site-nav" aria-label="Ana menü">
                 <ul class="nav">
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="ilanlar.html">Aktif İlanlar</a></li>
-                    <li><a href="kurumlar.html">Kurumlar</a></li>
-                    <li><a href="unvanlar.html">Ünvanlar</a></li>
-                    <li><a href="alarm.html" aria-current="page"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
+                        <li><a href="index.html">Ana sayfa</a></li>
+                        <li><a href="ilanlar.html">İlanlar</a></li>
+                        <li><a href="kurumlar.html">Kurumlar</a></li>
+                        <li><a href="unvanlar.html">Ünvanlar</a></li>
                 </ul>
             </nav>
+            <a class="header-alarm" href="alarm.html" aria-current="page"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a>
         </div>
     </header>
 
     <main>
         <div class="wrap">
             <section class="page-head">
-                <p class="eyebrow">İlan alarmı</p>
-                <h1>Uygun ilan çıkınca haber alın</h1>
-                <p class="lede">İl, kurum türü, çalışma statüsü ve meslek seçerek alarm kurun. Bu kriterlere uyan yeni bir pozisyon eklendiğinde menüdeki İlan Alarmı bağlantısında ve sayfaların üstünde gösterilir.</p>
+                <h1>İlan alarmı</h1>
+                <p class="lede">İl, kurum türü, çalışma statüsü ve meslek seçerek alarm kurun. Bu kriterlere uyan yeni bir pozisyon eklendiğinde menüdeki İlan alarmı bağlantısında ve sayfaların üstünde gösterilir.</p>
             </section>
 
             <p class="notice" id="depo-uyari" hidden>Tarayıcınız bu sitede veri saklamaya izin vermiyor. Kurduğunuz alarmlar sayfayı kapattığınızda silinir.</p>
@@ -90,19 +88,19 @@
                     <p class="match-preview" id="alarm-onizleme" aria-live="polite"></p>
 
                     <div class="form-foot">
-                        <button type="submit" class="btn-primary">Alarmı kur</button>
+                        <button type="submit" class="btn-primary">Alarmı oluştur</button>
                         <p class="form-msg" id="alarm-mesaj" role="status"></p>
                     </div>
                 </form>
 
                 <section class="alarm-list-section" aria-labelledby="alarmlarim">
                     <h2 id="alarmlarim" tabindex="-1">Alarmlarım</h2>
-                    <p class="empty" id="alarm-bos">Henüz alarm kurmadınız. Formdan kriterlerinizi seçip ilk alarmınızı kurun.</p>
+                    <p class="empty" id="alarm-bos">Henüz alarm kurmadınız. Formdan kriterlerinizi seçip ilk alarmınızı oluşturun.</p>
                     <ul class="alarm-list" id="alarm-list"></ul>
                 </section>
             </div>
 
-            <p class="note"><b>Bildirimler nasıl çalışır?</b> Alarmlarınız bu tarayıcıda saklanır, üyelik gerekmez. Siteye her girdiğinizde pozisyonlar alarmlarınızla karşılaştırılır. Uyan yeni pozisyon varsa menüdeki İlan Alarmı yanında sayı ve sayfanın üstünde bir uyarı görürsünüz. Tarayıcı bildirimine izin verdiyseniz site açıkken bildirim de gelir. Başka bir tarayıcıdan veya cihazdan girdiğinizde alarmlarınız orada görünmez.</p>
+            <p class="note"><b>Bildirimler nasıl çalışır?</b> Alarmlarınız bu tarayıcıda saklanır, üyelik gerekmez. Siteye her girdiğinizde pozisyonlar alarmlarınızla karşılaştırılır. Uyan yeni pozisyon varsa menüdeki İlan alarmı yanında sayı ve sayfanın üstünde bir uyarı görürsünüz. Tarayıcı bildirimine izin verdiyseniz site açıkken bildirim de gelir. Başka bir tarayıcıdan veya cihazdan girdiğinizde alarmlarınız orada görünmez.</p>
         </div>
     </main>
 

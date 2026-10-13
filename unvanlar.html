@@ -6,26 +6,25 @@
     <title>Ünvanlar · Kamu İlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="unvanlar">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-mark" aria-hidden="true">Kİ</span>
                 <span class="brand-name">Kamu İlan</span>
-                <span class="brand-tag">Personel alım ilanları</span>
             </a>
-            <nav aria-label="Ana menü">
+            <nav class="site-nav" aria-label="Ana menü">
                 <ul class="nav">
-                    <li><a href="index.html">Ana Sayfa</a></li>
-                    <li><a href="ilanlar.html">Aktif İlanlar</a></li>
-                    <li><a href="kurumlar.html">Kurumlar</a></li>
-                    <li><a href="unvanlar.html" aria-current="page">Ünvanlar</a></li>
-                    <li><a href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan Alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a></li>
+                        <li><a href="index.html">Ana sayfa</a></li>
+                        <li><a href="ilanlar.html">İlanlar</a></li>
+                        <li><a href="kurumlar.html">Kurumlar</a></li>
+                        <li><a href="unvanlar.html" aria-current="page">Ünvanlar</a></li>
                 </ul>
             </nav>
+            <a class="header-alarm" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı<span class="nav-badge" id="alarm-badge" hidden></span></a>
         </div>
     </header>
 
@@ -33,11 +32,10 @@
         <div class="wrap">
             <div class="alarm-banner" id="alarm-banner" role="status" hidden></div>
             <section class="page-head">
-                <p class="eyebrow">Ünvanlar</p>
-                <h1>Açık ünvanlar</h1>
-                <p class="lede">Sitedeki pozisyonlarda geçen ünvanlar, meslek gruplarına göre. Soldaki sayı o ünvandaki pozisyon adedidir.</p>
+                <h1>Ünvanlara göre ilanlar</h1>
+                <p class="lede">Sitedeki pozisyonlarda geçen ünvanlar, meslek gruplarına göre. Bir ünvana tıklayınca o ünvandaki pozisyonlar açılır.</p>
             </section>
-            <div class="groups" id="unvan-gruplari"></div>
+            <ul class="category-grid" id="unvan-gruplari"></ul>
         </div>
     </main>
 
