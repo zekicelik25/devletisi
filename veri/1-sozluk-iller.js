@@ -1,4 +1,4 @@
-// iller.js
+// 1. katman: sözlük (iller)
 // Türkiye'nin 81 ili, plaka koduna göre sıralı. İlan alarmı formundaki il listesi buradan gelir.
 window.ILLER = [
     { plaka: "01", il: "Adana" },

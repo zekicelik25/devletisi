@@ -1,21 +1,9 @@
-// siniflandirma.js
-// İlanların sınıflandırma sözlüğü: kurum türleri, istihdam statüleri, ünvanlar ve ek boyutlar.
-// Gerekçeler ve açıklamalar: docs/siniflandirma.md
+// 1. katman: sözlük (sınıflandırma)
+// Kurum türleri, istihdam statüleri, ünvanlar, sınav ve şart türleri gibi değişmeyen listeler.
+// Gerekçeler: docs/siniflandirma.md · Veri modeli: docs/veri-modeli.md
 //
-// Tüm sayfalar bu sözlüğü kullanır; data.js kayıtları buradaki kimliklere (id) başvurur.
-// Bir kimliği değiştirmeden önce data.js'te ve kayıtlı ilan alarmlarında kullanıldığını unutmayın.
-//
-// Veri modeli (en küçük birim = pozisyon):
-//   Kurum    { id, ad, tur, il }
-//            tur: KURUM_TURLERI id'si, il: plaka kodu
-//   İlan     { id, kurum, yayinTarihi, sonBasvuru, kaynak, link, pozisyonlar: [Pozisyon] }
-//            kurum: Kurum id'si, kaynak: KAYNAKLAR id'si, tarihler: "YYYY-AA-GG"
-//   Pozisyon { id, unvan, alan, statu, adet, il, egitim, yontem }
-//            id: sitedeki tüm pozisyonlarda benzersiz sayı (ilan alarmı bununla çalışır)
-//            unvan: UNVANLAR id'si, alan: branş / bölüm (serbest metin)
-//            statu: STATULER id'si, adet: kadro sayısı
-//            il: plaka kodu (kurumun ilinden farklı olabilir: bakanlıkların il il kadroları gibi)
-//            egitim: EGITIM_DUZEYLERI id'si, yontem: ALIM_YONTEMLERI id'si
+// Üst katmanlar (kalıplar, kurumlar, ilanlar) buradaki kimliklere (id) başvurur.
+// Bir kimliği değiştirmeden önce üst katmanlarda ve kayıtlı ilan alarmlarında kullanıldığını unutmayın.
 window.SINIFLANDIRMA = (function () {
     const KURUM_GRUPLARI = [
         { id: 'merkezi', ad: 'Merkezi yönetim' },
@@ -100,11 +88,11 @@ window.SINIFLANDIRMA = (function () {
         // Düzenleyici, sosyal güvenlik ve özel statülü kurumlar
         {
             id: 'duzenleyici', grup: 'ozerk', ad: 'Düzenleyici ve denetleyici kurum',
-            aciklama: '5018 sayılı Kanun\'un (III) sayılı cetvelindeki bağımsız kurumlar.',
-            ornek: ['BDDK', 'SPK', 'EPDK', 'RTÜK', 'BTK', 'Rekabet Kurumu', 'Kamu İhale Kurumu', 'KVKK']
+            aciklama: 'Bağımsız düzenleyici ve denetleyici kurumlar. TMSF şimdilik bu türde; netleştirilecek.',
+            ornek: ['BDDK', 'SPK', 'EPDK', 'RTÜK', 'BTK', 'Rekabet Kurumu', 'Kamu İhale Kurumu', 'KVKK', 'TMSF']
         },
         { id: 'sosyal-guvenlik', grup: 'ozerk', ad: 'Sosyal güvenlik kurumu', aciklama: '5018 sayılı Kanun\'un (IV) sayılı cetveli.', ornek: ['SGK', 'İŞKUR'] },
-        { id: 'kalkinma-ajansi', grup: 'ozerk', ad: 'Kalkınma ajansı', aciklama: '5449 sayılı Kanun ile kurulan bölgesel ajanslar.', ornek: ['İzmir Kalkınma Ajansı', 'Mevlana Kalkınma Ajansı'] },
+        { id: 'kalkinma-ajansi', grup: 'ozerk', ad: 'Kalkınma ajansı', aciklama: 'Bölgesel ajanslar; personel alımı 4 sayılı Cumhurbaşkanlığı Kararnamesi md. 200 ve Kalkınma Ajansları Personel Yönetmeliğine göre yapılır.', ornek: ['İstanbul Kalkınma Ajansı', 'Mevlana Kalkınma Ajansı'] },
         { id: 'ozel-statulu', grup: 'ozerk', ad: 'Özel kanunla kurulan kurum', ornek: ['TÜBİTAK', 'TRT', 'Türk Standardları Enstitüsü'] },
         // Diğer
         { id: 'diger-kurum', grup: 'diger', ad: 'Diğer kamu kurumu' }
@@ -252,7 +240,15 @@ window.SINIFLANDIRMA = (function () {
         { id: 'peyzaj-mimari', grup: 'teknik', ad: 'Peyzaj Mimarı' },
         { id: 'tekniker', grup: 'teknik', ad: 'Tekniker' },
         { id: 'teknisyen', grup: 'teknik', ad: 'Teknisyen' },
-        { id: 'bilisim-personeli', grup: 'teknik', ad: 'Bilişim Personeli', es: ['Yazılım Geliştirici', 'Sistem Uzmanı', 'Ağ Uzmanı'] },
+        { id: 'bilisim-personeli', grup: 'teknik', ad: 'Bilişim Personeli', es: ['Sözleşmeli Bilişim Personeli'] },
+        { id: 'yazilim-takim-lideri', grup: 'teknik', ad: 'Yazılım Takım Lideri', es: ['CBS Yazılım Takım Lideri', 'Takım Lideri'] },
+        { id: 'yazilim-gelistirme-uzmani', grup: 'teknik', ad: 'Yazılım Geliştirme Uzmanı', es: ['Kıdemli Yazılım Geliştirme Uzmanı', 'Mobil Yazılım Geliştirme Uzmanı', 'Yazılımcı'] },
+        { id: 'siber-guvenlik-uzmani', grup: 'teknik', ad: 'Siber Güvenlik Uzmanı', es: ['Kıdemli Siber Güvenlik Uzmanı', 'Ağ Güvenlik Uzmanı', 'Bilgi Güvenliği Uzmanı'] },
+        { id: 'sistem-uzmani', grup: 'teknik', ad: 'Sistem Uzmanı', es: ['Kıdemli Sistem Uzmanı'] },
+        { id: 'ag-uzmani', grup: 'teknik', ad: 'Ağ Uzmanı', es: ['Network Uzmanı'] },
+        { id: 'veritabani-uzmani', grup: 'teknik', ad: 'Veritabanı Uzmanı', es: ['Kıdemli Veritabanı Uzmanı', 'DBA'] },
+        { id: 'devops-uzmani', grup: 'teknik', ad: 'DevOps Uzmanı', es: ['Kıdemli DevOps Uzmanı'] },
+        { id: 'yapay-zeka-uzmani', grup: 'teknik', ad: 'Yapay Zekâ Geliştirme Uzmanı', es: ['Yapay Zeka Uzmanı'] },
         { id: 'programci', grup: 'teknik', ad: 'Programcı' },
         { id: 'istatistikci', grup: 'teknik', ad: 'İstatistikçi' },
         { id: 'kimyager', grup: 'teknik', ad: 'Kimyager' },
@@ -289,6 +285,7 @@ window.SINIFLANDIRMA = (function () {
         { id: 'zabit-katibi', grup: 'hukuk', ad: 'Zabıt Kâtibi', es: ['Zabıt Katibi'] },
         { id: 'icra-katibi', grup: 'hukuk', ad: 'İcra Kâtibi', es: ['İcra Katibi'] },
         { id: 'mubasir', grup: 'hukuk', ad: 'Mübaşir' },
+        { id: 'icra-muduru', grup: 'hukuk', ad: 'İcra Müdürü', es: ['İcra Müdür Yardımcısı', 'İcra Müdürü ve İcra Müdür Yardımcısı'] },
         // Güvenlik, kolluk ve acil durum
         { id: 'polis-memuru', grup: 'guvenlik', ad: 'Polis Memuru', es: ['Polis'] },
         { id: 'bekci', grup: 'guvenlik', ad: 'Çarşı ve Mahalle Bekçisi', es: ['Bekçi'] },
@@ -329,12 +326,16 @@ window.SINIFLANDIRMA = (function () {
     const ALIM_YONTEMLERI = [
         { id: 'kpss-merkezi', ad: 'KPSS ile merkezi yerleştirme', aciklama: 'ÖSYM tercih kılavuzuyla yapılan yerleştirme.' },
         { id: 'kpss-kurum', ad: 'KPSS puanıyla kurum alımı', aciklama: 'Kurum, KPSS puan sırasına göre kendisi alır; sözlü sınav da olabilir.' },
-        { id: 'kurum-sinavi', ad: 'Kurum sınavı', aciklama: 'Yazılı ve/veya sözlü giriş sınavı: uzman, müfettiş, denetçi yardımcılığı gibi.' },
-        { id: 'sozlu-sinav', ad: 'Sözlü sınav veya mülakat', aciklama: 'KPSS şartı aranmayan alımlar.' },
+        { id: 'kurum-sinavi', ad: 'Kurum sınavı', aciklama: 'Yazılı ve/veya sözlü giriş sınavı: uzman, müfettiş, denetçi yardımcılığı gibi. Yazılı kısmı ÖSYM de yapabilir.' },
+        { id: 'sozlu-sinav', ad: 'Sözlü sınav veya mülakat', aciklama: 'Yazılı sınav yapılmaz; şartları sağlayanlar (gerekirse puan sırasına göre) sözlü sınava ya da mülakata çağrılır. KPSS şart olmayabilir.' },
         { id: 'kura', ad: 'Noter kurası', aciklama: 'İŞKUR üzerinden yapılan işçi alımlarında başvuranlar arasından kura.' },
         {
             id: 'akademik-degerlendirme', ad: 'Akademik değerlendirme',
             aciklama: 'Öğretim görevlisi ve araştırma görevlisinde ALES, yabancı dil puanı ve giriş sınavı; öğretim üyesinde bilimsel değerlendirme.'
+        },
+        {
+            id: 'askeri-secim', ad: 'Askerî seçim aşamaları',
+            aciklama: 'Ön sıralama sonrası fiziki yeterlilik testi, mülakat, sağlık kurulu raporu ve güvenlik soruşturması.'
         },
         { id: 'diger-yontem', ad: 'Diğer' }
     ];
@@ -347,10 +348,50 @@ window.SINIFLANDIRMA = (function () {
         { id: 'kurum-sitesi', ad: 'Kurumun resmi sitesi' }
     ];
 
+    // Şartlarda geçen merkezi sınavlar.
+    const SINAVLAR = [
+        { id: 'kpss', ad: 'KPSS', aciklama: 'Kamu Personel Seçme Sınavı. B grubu puan türleri: KPSSP3 (lisans), KPSSP93 (önlisans), KPSSP94 (ortaöğretim); A grubu: KPSSP1–P48.' },
+        { id: 'ales', ad: 'ALES', aciklama: 'Akademik Personel ve Lisansüstü Eğitimi Giriş Sınavı. Puan türleri: sayısal (SAY), sözel (SÖZ), eşit ağırlık (EA).' },
+        { id: 'yds', ad: 'YDS / e-YDS / YÖKDİL', aciklama: 'Yabancı dil sınavları ve ÖSYM\'nin eşdeğer saydığı sınavlar. (C) düzeyi 70–79 puandır.' }
+    ];
+
+    // Başvuru şartı türleri. "denetlenebilir" olanlar ileride "Bana uygun ilanlar" eşleştirmesinde
+    // otomatik kontrol edilebilir; diğerlerini kullanıcı kendisi değerlendirir.
+    const SART_TURLERI = [
+        { id: 'egitim', ad: 'Eğitim', denetlenebilir: true, alanlar: 'duzey[], bolumler[], durum (mezun | devam), metin' },
+        { id: 'sinav', ad: 'Sınav puanı', denetlenebilir: true, alanlar: 'sinav, puanTurleri[] (biri yeterli), enAz, yillar[] veya gecerlilik, dil[], metin' },
+        { id: 'yas', ad: 'Yaş', denetlenebilir: true, alanlar: 'enFazla (ilandaki yaş sınırı: "35 yaşını doldurmamış" → 35), tarih (hangi güne göre), dogumEnErken (ilanda yazıyorsa doğum tarihi sınırı), istisna (yalnız bazı adaylara uygulanan ek sınır), metin' },
+        { id: 'deneyim', ad: 'Mesleki deneyim', denetlenebilir: true, alanlar: 'yil, metin' },
+        { id: 'belge', ad: 'Belge veya sertifika', denetlenebilir: true, alanlar: 'ad' },
+        { id: 'fiziksel', ad: 'Fiziksel ve sağlık', denetlenebilir: false, alanlar: 'metin' },
+        { id: 'akademik', ad: 'Akademik alan ve çalışmalar', denetlenebilir: false, alanlar: 'metin' },
+        { id: 'engel', ad: 'Başvuramayacaklar', denetlenebilir: false, alanlar: 'metin' },
+        { id: 'tercih', ad: 'Tercih sebebi', denetlenebilir: false, alanlar: 'metin' },
+        { id: 'teknik', ad: 'Teknik yeterlilik', denetlenebilir: false, alanlar: 'maddeler[]' },
+        { id: 'diger', ad: 'Diğer', denetlenebilir: false, alanlar: 'metin' }
+    ];
+
+    const BASVURU_KANALLARI = [
+        { id: 'kariyer-kapisi', ad: 'Kariyer Kapısı (e-Devlet)' },
+        { id: 'kurum-sistemi', ad: 'Kurumun çevrim içi başvuru sistemi' },
+        { id: 'osym', ad: 'ÖSYM başvuru sistemi' },
+        { id: 'personel-temin', ad: 'Personel temin sistemi (MSB, Jandarma)' },
+        { id: 'sahsen', ad: 'Şahsen' },
+        { id: 'posta', ad: 'Posta' },
+        { id: 'e-posta', ad: 'E-posta' }
+    ];
+
+    const KONTENJAN_TURLERI = [
+        { id: 'genel', ad: 'Genel' },
+        { id: 'sehit-gazi-yakini', ad: 'Şehit, gazi ve vazife malulü yakını' },
+        { id: 'engelli', ad: 'Engelli' }
+    ];
+
     return {
         KURUM_GRUPLARI, KURUM_TURLERI,
         STATU_GRUPLARI, STATULER,
         MESLEK_GRUPLARI, UNVANLAR,
-        EGITIM_DUZEYLERI, ALIM_YONTEMLERI, KAYNAKLAR
+        EGITIM_DUZEYLERI, ALIM_YONTEMLERI, KAYNAKLAR,
+        SINAVLAR, SART_TURLERI, BASVURU_KANALLARI, KONTENJAN_TURLERI
     };
 })();

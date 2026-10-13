@@ -1,20 +1,20 @@
 # İlan sınıflandırması
 
-Bu belge sitedeki ilanların hangi boyutlara ayrıldığını ve neden böyle ayrıldığını anlatır. Sözlüğün kendisi `siniflandirma.js` dosyasındadır; aşağıdaki tablolar o dosyadan üretildi. Sitenin nasıl kullandığı 6. bölümde.
+Bu belge sitedeki ilanların hangi boyutlara ayrıldığını ve neden böyle ayrıldığını anlatır. Sözlüğün kendisi `veri/1-sozluk-siniflandirma.js` dosyasındadır; aşağıdaki tablolar o dosyadan üretildi. Verinin katmanlı yapısı ve şart modeli `docs/veri-modeli.md`'dedir. Sitenin nasıl kullandığı 6. bölümde.
 
 ## Özet
 
 - En küçük birim **pozisyon**dur. Bir ilan birden çok pozisyon içerebilir; her pozisyonun kendi ünvanı, statüsü, kadro sayısı ve ili vardır.
 - Pozisyonlar beş boyutta sınıflandırılır: **kurum türü**, **istihdam statüsü**, **ünvan**, **eğitim düzeyi** ve **alım yöntemi**. İlanın kaynağı da ayrıca tutulur.
-- Kapsam: 8 grupta 26 kurum türü, 6 grupta 19 istihdam statüsü, 13 meslek grubunda 71 ünvan.
+- Kapsam: 8 grupta 26 kurum türü, 6 grupta 19 istihdam statüsü, 13 meslek grubunda 80 ünvan.
 
 ## Veri modeli: kurum → ilan → pozisyon
 
 ```
-Kurum     Karamanoğlu Mehmetbey Üniversitesi   tür: Devlet üniversitesi · il: 70
-└─ İlan   Öğretim elemanı alım ilanı           kaynak, yayın ve son başvuru tarihi, bağlantı
-   ├─ Pozisyon   Öğretim Görevlisi · İlk ve Acil Yardım   statü: Akademik kadro · adet
-   ├─ Pozisyon   Öğretim Görevlisi · Optisyenlik
+Kurum     Sakarya Uygulamalı Bilimler Üniversitesi   tür: Devlet üniversitesi · il: 54
+└─ İlan   Öğretim üyesi alım ilanı                   kalıp: öğretim üyesi · başvuru tarihleri, yolu, belgeler
+   ├─ Pozisyon   ÖÜ-2026.26 Profesör · Elektrik      statü: Akademik kadro · 1 kadro · 1. derece · şartlar
+   ├─ Pozisyon   ÖÜ-2026.27 Doçent · Mühendislik Temel Bilimleri (Matematik)
    └─ …
 ```
 
@@ -95,12 +95,12 @@ Her ünvanın tek bir standart adı vardır; ilanlarda geçen diğer yazılışl
 |---|---|
 | **Büro ve idari hizmetler** | Memur, Büro Personeli, Veri Hazırlama ve Kontrol İşletmeni (VHKİ), Şef, Sekreter, Tahsildar |
 | **Uzman ve denetim meslek personeli** | Uzman Yardımcısı, Müfettiş Yardımcısı, Denetçi Yardımcısı, Kontrolör Yardımcısı, Kaymakam Adayı, Uzman |
-| **Teknik ve bilişim** | Mühendis, Mimar, Şehir Plancısı, Peyzaj Mimarı, Tekniker, Teknisyen, Bilişim Personeli (Yazılım Geliştirici, Sistem Uzmanı, Ağ Uzmanı), Programcı, İstatistikçi, Kimyager |
+| **Teknik ve bilişim** | Mühendis, Mimar, Şehir Plancısı, Peyzaj Mimarı, Tekniker, Teknisyen, Bilişim Personeli (Sözleşmeli Bilişim Personeli), Yazılım Takım Lideri (CBS Yazılım Takım Lideri), Yazılım Geliştirme Uzmanı (Mobil Yazılım Geliştirme Uzmanı, Yazılımcı), Siber Güvenlik Uzmanı (Ağ Güvenlik Uzmanı, Bilgi Güvenliği Uzmanı), Sistem Uzmanı, Ağ Uzmanı (Network Uzmanı), Veritabanı Uzmanı (DBA), DevOps Uzmanı, Yapay Zekâ Geliştirme Uzmanı, Programcı, İstatistikçi, Kimyager |
 | **Sağlık** | Tabip (Hekim, Doktor, Pratisyen Hekim), Uzman Tabip (Uzman Hekim, Uzman Doktor), Diş Tabibi (Diş Hekimi), Eczacı, Hemşire, Ebe, Sağlık Teknikeri, Sağlık Teknisyeni, Fizyoterapist, Diyetisyen, Biyolog, Veteriner Hekim (Veteriner) |
 | **Sosyal hizmet ve psikoloji** | Sosyal Çalışmacı, Psikolog, Çocuk Gelişimci, Sosyolog |
 | **Eğitim** | Öğretmen, Usta Öğretici |
 | **Akademik** | Profesör (Prof. Dr.), Doçent (Doç. Dr.), Doktor Öğretim Üyesi (Dr. Öğr. Üyesi, Yardımcı Doçent, Yrd. Doç.), Öğretim Görevlisi (Öğr. Gör.), Araştırma Görevlisi (Arş. Gör.) |
-| **Hukuk ve adalet** | Avukat, Hâkim ve Savcı Adayı (Hakim Adayı, Savcı Adayı), Zabıt Kâtibi (Zabıt Katibi), İcra Kâtibi (İcra Katibi), Mübaşir |
+| **Hukuk ve adalet** | Avukat, Hâkim ve Savcı Adayı (Hakim Adayı, Savcı Adayı), Zabıt Kâtibi (Zabıt Katibi), İcra Kâtibi (İcra Katibi), Mübaşir, İcra Müdürü (İcra Müdür Yardımcısı) |
 | **Güvenlik, kolluk ve acil durum** | Polis Memuru (Polis), Çarşı ve Mahalle Bekçisi (Bekçi), İnfaz ve Koruma Memuru (Gardiyan), Koruma ve Güvenlik Görevlisi (Güvenlik Görevlisi), İtfaiye Eri (İtfaiyeci), Zabıta Memuru (Zabıta), Gümrük Muhafaza Memuru |
 | **Askerî** | Subay, Astsubay, Uzman Erbaş (Uzman Çavuş), Sözleşmeli Er |
 | **Din hizmetleri** | İmam-Hatip, Müezzin-Kayyım, Kur'an Kursu Öğreticisi, Vaiz |
@@ -125,35 +125,48 @@ Her ünvanın tek bir standart adı vardır; ilanlarda geçen diğer yazılışl
 |---|---|
 | KPSS ile merkezi yerleştirme | ÖSYM tercih kılavuzuyla yapılan yerleştirme. |
 | KPSS puanıyla kurum alımı | Kurum, KPSS puan sırasına göre kendisi alır; sözlü sınav da olabilir. |
-| Kurum sınavı | Yazılı ve/veya sözlü giriş sınavı: uzman, müfettiş, denetçi yardımcılığı gibi. |
-| Sözlü sınav veya mülakat | KPSS şartı aranmayan alımlar. |
+| Kurum sınavı | Yazılı ve/veya sözlü giriş sınavı: uzman, müfettiş, denetçi yardımcılığı gibi. Yazılı kısmı ÖSYM de yapabilir. |
+| Sözlü sınav veya mülakat | Yazılı sınav yapılmaz; şartları sağlayanlar (gerekirse puan sırasına göre) sözlü sınava ya da mülakata çağrılır. KPSS şart olmayabilir. |
 | Noter kurası | İŞKUR üzerinden yapılan işçi alımlarında başvuranlar arasından kura. |
 | Akademik değerlendirme | Öğretim görevlisi ve araştırma görevlisinde ALES, yabancı dil puanı ve giriş sınavı; öğretim üyesinde bilimsel değerlendirme. |
+| Askerî seçim aşamaları | Ön sıralama sonrası fiziki yeterlilik testi, mülakat, sağlık kurulu raporu ve güvenlik soruşturması. |
 | Diğer |  |
+
+**Kıdem.** "Kıdemli Yazılım Geliştirme Uzmanı" ayrı bir ünvan değildir; ünvan Yazılım Geliştirme Uzmanı, kıdem pozisyonun `kidem` bilgisidir. İlandaki ad da pozisyonda ayrıca tutulur.
+
+**Başvuru şartları, kanallar, sınavlar ve kontenjan türleri** sözlükte ayrı listelerdir (`SART_TURLERI`, `BASVURU_KANALLARI`, `SINAVLAR`, `KONTENJAN_TURLERI`); nasıl kullanıldıkları `docs/veri-modeli.md`'de.
 
 **İlan kaynağı:** Kariyer Kapısı, Resmî Gazete, İŞKUR, ÖSYM tercih kılavuzu, kurumun resmi sitesi.
 
 ## 5. Sitedeki ilanların sınıflandırılması
 
-| Kurum | Kurum türü | Ünvan (meslek grubu) | Alan | Statü | Not |
-|---|---|---|---|---|---|
-| Malatya Turgut Özal Üniversitesi | Devlet üniversitesi | Büro Personeli (Büro ve idari) | — | Sözleşmeli personel (657/4-B) | "Büro personeli" bir sözleşmeli personel ünvanıdır; ilan metninden doğrulanmalı. Eski sitedeki iki ayrı satır, şimdilik tek ilanın iki pozisyonu olarak girildi. |
-| Mersin Büyükşehir Belediyesi | Büyükşehir belediyesi | İtfaiye Eri (Güvenlik) | — | Kadrolu memur (657/4-A) | İtfaiye eri memur kadrosudur; ilan metninden doğrulanmalı. |
-| Karamanoğlu Mehmetbey Üniversitesi | Devlet üniversitesi | Öğretim Görevlisi (Akademik) | İlk ve Acil Yardım, Optisyenlik, Tıbbi Görüntüleme, Elektrik, Bilgi İşlem | Akademik kadro (2547) | Tek ilanın beş pozisyonu olarak modellenir. |
+Sitedeki ilk 8 örnek pozisyon (Malatya Turgut Özal, Mersin Büyükşehir, Karamanoğlu Mehmetbey) Ekim 2026'da kaldırıldı; yerine 17 gerçek ilan girildi. İlanların özeti ve sözlüğe uyumu `docs/ilan-analizi.md`'de.
 
-Statüler ünvandan çıkarıldı; resmi ilan metinleri elimizde olmadığı için kesinleşmiş sayılmamalı. Kadro sayısı, eğitim düzeyi, alım yöntemi ve tarihler de ilan metinlerinden doldurulacak.
+| Kurum türü | İlanlar | Statü |
+|---|---|---|
+| Devlet üniversitesi | Hacı Bayram Veli, Ahi Evran, Alanya Alaaddin Keykubat, Sakarya Uygulamalı Bilimler, Ondokuz Mayıs (öğretim üyesi); İTÜ (destek, güvenlik, teknisyen) | Akademik kadro; İTÜ'de 657/4-B |
+| Bakanlıklara bağlı kuruluşlar | Tapu ve Kadastro (bilişim), Vakıflar (uzman yardımcısı) | 375 bilişim; 657/4-A |
+| Düzenleyici kurum | BDDK (bilişim), TMSF (denetçi ve uzman yardımcısı, avukat) | 375 bilişim; özel kanunlu kadro |
+| Bakanlık | Adalet Bakanlığı (icra müdürü ve yardımcısı) | 657/4-A |
+| TBMM ve yüksek yargı | Yargıtay (bilişim) | 375 bilişim |
+| Kalkınma ajansı | İstanbul, Mevlana (uzman) | Kurum kanununa tabi sözleşmeli |
+| İlçe belediyesi | Keşan (mühendis) | 657/4-A |
+| TSK ve MSB; Jandarma ve Sahil Güvenlik | Millî Savunma Üniversitesi, Jandarma Genel Komutanlığı (muvazzaf subay) | Subay / astsubay |
+
+TMSF'nin kurum türü (düzenleyici kurum mu, özel statülü kurum mu) henüz kesinleşmedi.
 
 ## 6. Sitede nasıl kullanılıyor
 
-- `data.js` kurum → ilan → pozisyon modelinde. Eski pozisyon numaraları (1–8) korundu; kurulmuş ilan alarmları bozulmadı.
-- İlanlar sayfasında kurum türü, çalışma statüsü, meslek grubu ve eğitim düzeyi filtreleri var. Seçeneklerde yalnız sitede karşılığı olan değerler görünür; eğitim düzeyi filtresi, ilanlara bu bilgi girilince kendiliğinden açılır.
+- Veri `veri/` klasöründe dört katmandır: sözlük, ilan kalıpları, kurumlar, ilanlar. Eski örnek pozisyonların numaraları (1–8) tekrar kullanılmadı; yeni pozisyonlar 9'dan başlar.
+- İlanlar sayfasında kurum türü, çalışma statüsü, meslek grubu ve eğitim düzeyi filtreleri var. Seçeneklerde yalnız sitede karşılığı olan değerler görünür.
+- "Nerede" kutusunda il adı, plaka ya da "Yurt geneli" yazılabilir. Subay ve icra müdürü gibi atama yeri belli olmayan pozisyonlar yurt geneli sayılır; haritada bir ile düşmez.
+- Pozisyon ayrıntısında şartlar türlerine göre (eğitim, sınav puanı, yaş, deneyim…), başvuru bilgileri ve seçme aşamaları ayrı bölümlerde görünür.
 - Kurumlar sayfası kurum türlerine, Ünvanlar sayfası meslek gruplarına göre gruplanmış durumda.
-- Ana sayfada statüye, kurum türüne ve meslek grubuna göre göz atma listeleri var; her satır ilanlar sayfasını o filtreyle açar.
-- İlan alarmı formunda il, kurum türü, çalışma statüsü, meslek grubu ve anahtar kelime seçilir. Tarayıcılarda kayıtlı eski alarmlar yeni türlere aktarılır: Üniversite → Devlet üniversitesi; Belediye → üç belediye türü; Bakanlık → Bakanlık; Hastane → Sağlık meslek grubu.
+- İlan alarmı formunda il (ya da yurt geneli), kurum türü, çalışma statüsü, meslek grubu ve anahtar kelime seçilir. Tarayıcılarda kayıtlı eski alarmlar yeni türlere aktarılır: Üniversite → Devlet üniversitesi; Belediye → üç belediye türü; Bakanlık → Bakanlık; Hastane → Sağlık meslek grubu.
 
 ## 7. Açık sorular
 
 1. **Site adı:** Repoda "Kamu İlan Platformu", claude.ai sohbetinde "KamuKariyerim" geçiyor. Hangisi kullanılacak?
 2. **Vakıf üniversiteleri** kapsam dışı kalsın mı? Akademik ilan arayanlar için eklenebilir, ama site "kamu ilanları" olarak tanımlı.
-3. **Malatya Turgut Özal Üniversitesi'nin iki "Büro Personeli" pozisyonu** aynı ilanın iki kadrosu mu, iki ayrı ilan mı? Şimdilik tek ilan olarak girildi.
-4. Mevcut ilanların resmi ilan bağlantıları varsa statüleri ve eksik bilgileri onlardan doğrulayalım.
+3. **TMSF'nin kurum türü:** düzenleyici kurum mu, özel statülü kurum mu?
+4. **Tahmini tarihler:** Hacı Bayram Veli ve Sakarya Uygulamalı Bilimler'de son başvuru günü Resmî Gazete tarihine 15 gün eklenerek hesaplandı; Ahi Evran'ın yayım tarihi bilinmiyor. Kurumların duyurularından doğrulanmalı.

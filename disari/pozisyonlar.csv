@@ -1,0 +1,276 @@
+﻿id;ilan;kurum;kod;unvan;ilandakiAd;kidem;birim;alan;adet;statu;egitim;yontem;il;cinsiyet;kontenjan;derece;hizmetSinifi;ucret_kati;cagriSayisi;sart_sayisi
+9;hbv-2026-ogretim-uyesi;hbv;;dr-ogretim-uyesi;;;Edebiyat Fakültesi · Arkeoloji Bölümü;Klasik Arkeoloji;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+10;hbv-2026-ogretim-uyesi;hbv;;dr-ogretim-uyesi;;;Edebiyat Fakültesi · Felsefe Bölümü;Bilim Tarihi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+11;hbv-2026-ogretim-uyesi;hbv;;docent;;;Hukuk Fakültesi · Özel Hukuk Bölümü;Ticaret Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+12;hbv-2026-ogretim-uyesi;hbv;;docent;;;Hukuk Fakültesi · Özel Hukuk Bölümü;Ticaret Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+13;hbv-2026-ogretim-uyesi;hbv;;profesor;;;Hukuk Fakültesi · Özel Hukuk Bölümü;İş ve Sosyal Güvenlik Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+14;hbv-2026-ogretim-uyesi;hbv;;docent;;;Hukuk Fakültesi · Özel Hukuk Bölümü;Medeni Usul ve İcra İflas Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+15;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · Çalışma Ekonomisi ve Endüstri İlişkileri Bölümü;Çalışma Ekonomisi ve Endüstri İlişkileri;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+16;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · İşletme Bölümü;İşletme;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+17;hbv-2026-ogretim-uyesi;hbv;;docent;;;İktisadi ve İdari Bilimler Fakültesi · İşletme Bölümü;İşletme;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+18;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · Yönetim Bilişim Sistemleri Bölümü;Yönetim Bilişim Sistemleri;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+19;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · İktisat Bölümü;İktisat;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+20;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · İktisat Bölümü;İktisat;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+21;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · Siyaset Bilimi ve Kamu Yönetimi Bölümü;Kamu Yönetimi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+22;hbv-2026-ogretim-uyesi;hbv;;docent;;;İktisadi ve İdari Bilimler Fakültesi · Siyaset Bilimi ve Kamu Yönetimi Bölümü;Kamu Yönetimi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+23;hbv-2026-ogretim-uyesi;hbv;;docent;;;İktisadi ve İdari Bilimler Fakültesi · Siyaset Bilimi ve Kamu Yönetimi Bölümü;Kamu Yönetimi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+24;hbv-2026-ogretim-uyesi;hbv;;dr-ogretim-uyesi;;;İktisadi ve İdari Bilimler Fakültesi · Siyaset Bilimi ve Kamu Yönetimi Bölümü;Kamu Yönetimi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+25;hbv-2026-ogretim-uyesi;hbv;;docent;;;İktisadi ve İdari Bilimler Fakültesi · Uluslararası Ticaret ve Finansman Bölümü;Uluslararası Ticaret ve Finansman;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+26;hbv-2026-ogretim-uyesi;hbv;;dr-ogretim-uyesi;;;İlahiyat Fakültesi · Temel İslam Bilimleri Bölümü;Tasavvuf;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+27;hbv-2026-ogretim-uyesi;hbv;;docent;;;İlahiyat Fakültesi · Temel İslam Bilimleri Bölümü;Kuran'ı Kerim Okuma ve Kıraat İlmi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+28;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İlahiyat Fakültesi · Temel İslam Bilimleri Bölümü;Tefsir;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+29;hbv-2026-ogretim-uyesi;hbv;;dr-ogretim-uyesi;;;İlahiyat Fakültesi · Felsefe ve Din Bilimleri Bölümü;Din Felsefesi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+30;hbv-2026-ogretim-uyesi;hbv;;dr-ogretim-uyesi;;;İletişim Fakültesi · Gazetecilik Bölümü;Gazetecilik;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+31;hbv-2026-ogretim-uyesi;hbv;;profesor;;;İletişim Fakültesi · Halkla İlişkiler ve Tanıtım Bölümü;Halkla İlişkiler ve Tanıtım;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+32;hbv-2026-ogretim-uyesi;hbv;;docent;;;İletişim Fakültesi · Halkla İlişkiler ve Tanıtım Bölümü;Halkla İlişkiler ve Tanıtım;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+33;hbv-2026-ogretim-uyesi;hbv;;profesor;;;Türk Müziği Devlet Konservatuvarı · Çalgı Eğitimi Bölümü;Çalgı Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+34;hbv-2026-ogretim-uyesi;hbv;;docent;;;Türk Müziği Devlet Konservatuvarı · Çalgı Eğitimi Bölümü;Çalgı Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+35;hbv-2026-ogretim-uyesi;hbv;;docent;;;Turizm Fakültesi · Turizm Rehberliği Bölümü;Turizm Rehberliği;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+36;hbv-2026-ogretim-uyesi;hbv;;profesor;;;Turizm Fakültesi · Gastronomi ve Mutfak Sanatları Bölümü;Gastronomi ve Mutfak Sanatları;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+37;hbv-2026-ogretim-uyesi;hbv;;docent;;;Tapu Kadastro Yüksekokulu · Tapu Kadastro Bölümü;Tapu Kadastro;1;akademik-kadro;doktora;akademik-degerlendirme;06;;;;;;;6
+38;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Çiçekdağı Meslek Yüksekokulu · Çocuk Bakımı ve Gençlik Hizmetleri;Çocuk Gelişimi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+39;ahievran-2026-ogretim-uyesi;ahievran;;profesor;;;Eğitim Fakültesi · Matematik ve Fen Bilimleri Eğitimi;Matematik Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+40;ahievran-2026-ogretim-uyesi;ahievran;;profesor;;;Eğitim Fakültesi · Türkçe ve Sosyal Bilimler Eğitimi;Türkçe Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+41;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Eğitim Fakültesi · Yabancı Diller Eğitimi;İngiliz Dili Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+42;ahievran-2026-ogretim-uyesi;ahievran;;profesor;;;Eğitim Fakültesi · Eğitim Bilimleri;Öğretim Teknolojileri;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+43;ahievran-2026-ogretim-uyesi;ahievran;;profesor;;;Fen Edebiyat Fakültesi · Matematik;Cebir ve Sayılar Teorisi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+44;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Fen Edebiyat Fakültesi · Matematik;Topoloji;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+45;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Fen Edebiyat Fakültesi · Antropoloji;Fiziki Antropoloji;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+46;ahievran-2026-ogretim-uyesi;ahievran;;profesor;;;İktisadi ve İdari Bilimler Fakültesi · İşletme;Kooperatifçilik;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+47;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;İktisadi ve İdari Bilimler Fakültesi · İşletme;Üretim Yönetimi ve Pazarlama;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+48;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;İktisadi ve İdari Bilimler Fakültesi · Siyaset Bilimi ve Kamu Yönetimi;Yönetim Bilimleri;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+49;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;İlahiyat Fakültesi · Temel İslam Bilimleri;Hadis;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+50;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;İlahiyat Fakültesi · Felsefe ve Din Bilimleri Bölümü;Din Felsefesi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+51;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;İlahiyat Fakültesi · Felsefe ve Din Bilimleri Bölümü;Din Sosyolojisi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+52;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Kaman Meslek Yüksekokulu · Gıda İşleme;Gıda Teknolojisi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+53;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Mucur Meslek Yüksekokulu · Finans- Bankacılık ve Sigortacılık;Bankacılık ve Sigortacılık;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+54;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Mühendislik- Mimarlık Fakültesi · Mimarlık;Yapı Bilgisi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+55;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Sağlık Bilimleri Fakültesi · Hemşirelik;İç Hastalıkları Hemşireliği;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+56;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Sosyal Bilimler Meslek Yüksekokulu · Dış Ticaret;Dış Ticaret;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;3;;;;6
+57;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Tıp Fakültesi · Temel Tıp Bilimleri;Fizyoloji;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+58;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Tıp Fakültesi · Temel Tıp Bilimleri;Histoloji ve Embriyoloji;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+59;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Tıp Fakültesi · Dahili Tıp Bilimleri;Halk Sağlığı;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+60;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Tıp Fakültesi · Dahili Tıp Bilimleri;Nöroloji;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+61;ahievran-2026-ogretim-uyesi;ahievran;;dr-ogretim-uyesi;;;Tıp Fakültesi · Cerrahi Tıp Bilimleri;Göz Hastalıkları;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+62;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Ziraat Fakültesi · Zootekni;Yemler ve Hayvan Besleme;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+63;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Ziraat Fakültesi · Toprak Bilimi ve Bitki Besleme;Toprak Bilimi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+64;ahievran-2026-ogretim-uyesi;ahievran;;docent;;;Ziraat Fakültesi · Toprak Bilimi ve Bitki Besleme;Toprak Bilimi;1;akademik-kadro;doktora;akademik-degerlendirme;40;;;1;;;;6
+65;alku-2026-03-ogretim-uyesi;alku;2026/03-1;profesor;;;Rafet Kayış Mühendislik Fakültesi · Metalurji ve Malzeme Mühendisliği;Metalurji ve Malzeme Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+66;alku-2026-03-ogretim-uyesi;alku;2026/03-2;profesor;;;Rafet Kayış Mühendislik Fakültesi · Mühendislik Temel Bilimleri;Mühendislik Temel Bilimleri;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+67;alku-2026-03-ogretim-uyesi;alku;2026/03-3;docent;;;Rafet Kayış Mühendislik Fakültesi · Mühendislik Temel Bilimleri;Mühendislik Temel Bilimleri;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;2;;;;6
+68;alku-2026-03-ogretim-uyesi;alku;2026/03-4;dr-ogretim-uyesi;;;Rafet Kayış Mühendislik Fakültesi · Endüstri Mühendisliği;Endüstri Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+69;alku-2026-03-ogretim-uyesi;alku;2026/03-5;profesor;;;İktisadi, İdari ve Sosyal Bilimler Fakültesi · İşletme;Ticaret Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+70;alku-2026-03-ogretim-uyesi;alku;2026/03-6;docent;;;Diş Hekimliği Fakültesi · Klinik Bilimler;Diş Hastalıkları ve Tedavisi;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+71;alku-2026-03-ogretim-uyesi;alku;2026/03-7;profesor;;;Eğitim Fakültesi · Yabancı Diller Eğitimi;İngiliz Dili Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+72;alku-2026-03-ogretim-uyesi;alku;2026/03-8;profesor;;;Tıp Fakültesi · Dahili Tıp Bilimleri;Aile Hekimliği;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+73;alku-2026-03-ogretim-uyesi;alku;2026/03-9;profesor;;;Tıp Fakültesi · Dahili Tıp Bilimleri;İç Hastalıkları;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+74;alku-2026-03-ogretim-uyesi;alku;2026/03-10;docent;;;Tıp Fakültesi · Dahili Tıp Bilimleri;Radyoloji;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+75;alku-2026-03-ogretim-uyesi;alku;2026/03-11;dr-ogretim-uyesi;;;Tıp Fakültesi · Dahili Tıp Bilimleri;Nükleer Tıp;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;5;;;;6
+76;alku-2026-03-ogretim-uyesi;alku;2026/03-12;profesor;;;Tıp Fakültesi · Cerrahi Tıp Bilimleri;Üroloji;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+77;alku-2026-03-ogretim-uyesi;alku;2026/03-13;profesor;;;Tıp Fakültesi · Cerrahi Tıp Bilimleri;Kalp ve Damar Cerrahisi;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+78;alku-2026-03-ogretim-uyesi;alku;2026/03-14;docent;;;Tıp Fakültesi · Cerrahi Tıp Bilimleri;Göz Hastalıkları;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+79;alku-2026-03-ogretim-uyesi;alku;2026/03-15;docent;;;Tıp Fakültesi · Cerrahi Tıp Bilimleri;Kalp ve Damar Cerrahisi;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+80;alku-2026-03-ogretim-uyesi;alku;2026/03-16;dr-ogretim-uyesi;;;Tıp Fakültesi · Cerrahi Tıp Bilimleri;Üroloji;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;4;;;;6
+81;alku-2026-03-ogretim-uyesi;alku;2026/03-17;dr-ogretim-uyesi;;;Tıp Fakültesi · Temel Tıp Bilimleri;Biyoistatistik ve Tıp Bilişimi;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;2;;;;6
+82;alku-2026-03-ogretim-uyesi;alku;2026/03-18;profesor;;;Sağlık Bilimleri Fakültesi · Hemşirelik;Doğum, Kadın Sağlığı ve Hastalıkları Hemşireliği;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+83;alku-2026-03-ogretim-uyesi;alku;2026/03-19;docent;;;Spor Bilimleri Fakültesi · Antrenörlük Eğitimi;Hareket ve Antrenman Bilimleri;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+84;alku-2026-03-ogretim-uyesi;alku;2026/03-20;docent;;;Alanya Ticaret ve Sanayi Odası Turizm Meslek Yüksekokulu · Seyahat-Turizm ve Eğlence Hizmetleri;Turizm Animasyonu;1;akademik-kadro;doktora;akademik-degerlendirme;07;;;1;;;;6
+85;tkgm-2026-bilisim;tkgm;;yazilim-takim-lideri;Yazılım Takım Lideri;;Bilgi Teknolojileri Dairesi Başkanlığı;;2;375-bilisim;lisans;sozlu-sinav;06;;;;;4;;8
+86;tkgm-2026-bilisim;tkgm;;yazilim-takim-lideri;CBS Yazılım Takım Lideri;;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;4;;9
+87;tkgm-2026-bilisim;tkgm;;siber-guvenlik-uzmani;Kıdemli Siber Güvenlik Uzmanı;kidemli;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;4;;9
+88;tkgm-2026-bilisim;tkgm;;devops-uzmani;Kıdemli DevOps Uzmanı;kidemli;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;4;;9
+89;tkgm-2026-bilisim;tkgm;;sistem-uzmani;Kıdemli Sistem Uzmanı;kidemli;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;4;;9
+90;tkgm-2026-bilisim;tkgm;;yazilim-gelistirme-uzmani;Kıdemli Yazılım Geliştirme Uzmanı;kidemli;Bilgi Teknolojileri Dairesi Başkanlığı;;3;375-bilisim;lisans;sozlu-sinav;06;;;;;3;;8
+91;tkgm-2026-bilisim;tkgm;;veritabani-uzmani;Kıdemli Veritabanı Uzmanı;kidemli;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;3;;9
+92;tkgm-2026-bilisim;tkgm;;yazilim-gelistirme-uzmani;Yazılım Geliştirme Uzmanı;;Bilgi Teknolojileri Dairesi Başkanlığı;;6;375-bilisim;lisans;sozlu-sinav;06;;;;;2;;8
+93;tkgm-2026-bilisim;tkgm;;siber-guvenlik-uzmani;Siber Güvenlik Uzmanı;;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;2;;9
+94;tkgm-2026-bilisim;tkgm;;ag-uzmani;Ağ Uzmanı;;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;2;;9
+95;tkgm-2026-bilisim;tkgm;;sistem-uzmani;Sistem Uzmanı;;Bilgi Teknolojileri Dairesi Başkanlığı;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;2;;8
+96;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Matematik;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+97;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Fizik;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+98;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Eğitim Bilimleri;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+99;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;İstatistik;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+100;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Türk Dili ve Edebiyatı;8;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+101;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Hukuk;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+102;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Rehberlik;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+103;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Arapça;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+104;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Fransızca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+105;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;İngilizce;8;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+106;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Almanca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+107;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Bulgarca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+108;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;İbranice;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+109;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Rusça;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+110;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;İspanyolca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+111;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;İtalyanca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+112;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Çince;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+113;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Romence;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+114;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Yunanca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+115;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Uluslararası İlişkiler;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+116;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Uçak Gövde Motor;2;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+117;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Tarih;4;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;9
+118;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Kütüphanecilik;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+119;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Psikoloji;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+120;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Beden Eğitimi;8;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+121;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Bilgisayar;6;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+122;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Endüstri;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+123;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Elektrik;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+124;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Uçak;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+125;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Makine;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+126;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Mekatronik;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+127;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;İnşaat;3;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+128;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Kara Kuvvetleri Komutanlığı;Elektronik;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+129;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Matematik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+130;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Fizik;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+131;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Eğitim Bilimleri;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+132;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;İstatistik;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+133;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Türk Dili ve Edebiyatı;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+134;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Hukuk;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+135;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Arapça;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+136;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Fransızca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+137;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;İngilizce;6;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+138;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Almanca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+139;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Rusça;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+140;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;İspanyolca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+141;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Çince;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+142;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Yunanca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+143;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Uluslararası İlişkiler;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+144;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Tarih;2;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;9
+145;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Kütüphanecilik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+146;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Psikoloji;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+147;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Beden Eğitimi;6;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+148;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Uçak Helo. Bakım;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+149;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Korece;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+150;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Bilgisayar;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+151;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Gemi İnşa;5;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+152;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Endüstri;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+153;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Elektrik;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+154;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Uçak;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+155;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Makine;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+156;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;İnşaat;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+157;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Deniz Kuvvetleri Komutanlığı;Elektronik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+158;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Matematik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+159;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Fizik;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+160;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Eğitim Bilimleri;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+161;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;İstatistik;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+162;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Türk Dili ve Edebiyatı;4;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+163;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Hukuk;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+164;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Rehberlik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+165;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Arapça;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+166;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Fransızca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+167;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;İngilizce;6;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+168;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Rusça;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+169;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Çince;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+170;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Yunanca;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+171;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Uluslararası İlişkiler;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+172;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Uçak Gövde Motor;2;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+173;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Tarih;2;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;9
+174;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Kütüphanecilik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+175;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Psikoloji;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+176;msu-2026-muvazzaf-subay;msu;;subay;Öğretmen sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Beden Eğitimi;6;subay-astsubay;lisans;askeri-secim;TR;;;;;;;9
+177;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Bilgisayar;3;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+178;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Havacılık ve Uzay;2;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+179;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Endüstri;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+180;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Elektrik;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+181;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Uçak;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+182;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Makine;1;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+183;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Mekatronik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+184;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;İnşaat;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;8
+185;msu-2026-muvazzaf-subay;msu;;subay;Mühendis sınıfı subay;;MSÜ Hava Kuvvetleri Komutanlığı;Elektronik;2;subay-astsubay;lisans;askeri-secim;TR;;;;;;;8
+186;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.26;profesor;;;Hendek Meslek Yüksekokulu · Elektrik ve Enerji;Elektrik;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;1;;;;4
+187;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.27;docent;;;Teknoloji Fakültesi · Mühendislik Temel Bilimleri(Matematik);Mühendislik Temel Bilimleri(Matematik);1;akademik-kadro;doktora;akademik-degerlendirme;54;;;1;;;;4
+188;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.28;dr-ogretim-uyesi;;;Teknoloji Fakültesi · İnşaat Mühendisliği;İnşaat Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+189;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.29;dr-ogretim-uyesi;;;Teknoloji Fakültesi · Bilgisayar Mühendisliği;Bilgisayar Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+190;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.30;dr-ogretim-uyesi;;;Teknoloji Fakültesi · Mekatronik Mühendisliği;Mekatronik Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+191;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.31;dr-ogretim-uyesi;;;Teknoloji Fakültesi · Metalurji ve Malzeme Mühendisliği;Metalurji ve Malzeme Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+192;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.32;dr-ogretim-uyesi;;;İşletme ve Yönetim Bilimleri Fakültesi · Uluslararası Ticaret ve Finansman;Uluslararası Ticaret ve Finansman;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+193;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.33;dr-ogretim-uyesi;;;Sağlık Bilimleri Fakültesi · Hemşirelik;Hemşirelik;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+194;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.34;dr-ogretim-uyesi;;;Akyazı Sağlık Hizmetleri Meslek Yüksekokulu · Tıbbi Hizmetler ve Teknikler;İlk ve Acil Yardım;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;3;;;;4
+195;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.35;dr-ogretim-uyesi;;;Bilişim Teknolojileri Meslek Yüksekokulu · Bilgisayar Teknolojileri;Bilgisayar Programcılığı;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;1;;;;4
+196;subu-2026-ogretim-uyesi;subu;ÖÜ-2026.36;dr-ogretim-uyesi;;;Pamukova Meslek Yüksekokulu · Gıda İşleme;Gıda Teknolojisi;1;akademik-kadro;doktora;akademik-degerlendirme;54;;;1;;;;4
+197;bddk-2026-bilisim;bddk;;siber-guvenlik-uzmani;Kıdemli Siber Güvenlik Uzmanı;kidemli;;;2;375-bilisim;lisans;sozlu-sinav;34;;;;;3;20;10
+198;bddk-2026-bilisim;bddk;;yazilim-gelistirme-uzmani;Kıdemli Yazılım Geliştirme Uzmanı;kidemli;;;4;375-bilisim;lisans;sozlu-sinav;34;;;;;3;40;10
+199;bddk-2026-bilisim;bddk;;yapay-zeka-uzmani;Yapay Zekâ Geliştirme Uzmanı;;;;2;375-bilisim;lisans;sozlu-sinav;34;;;;;2;20;9
+200;bddk-2026-bilisim;bddk;;siber-guvenlik-uzmani;Ağ Güvenlik Uzmanı;;;;3;375-bilisim;lisans;sozlu-sinav;34;;;;;2;30;10
+201;bddk-2026-bilisim;bddk;;sistem-uzmani;Sistem Uzmanı;;;;2;375-bilisim;lisans;sozlu-sinav;34;;;;;2;20;10
+202;bddk-2026-bilisim;bddk;;yazilim-gelistirme-uzmani;Yazılım Geliştirme Uzmanı;;;;2;375-bilisim;lisans;sozlu-sinav;34;;;;;2;20;10
+203;tmsf-2026-giris-sinavi;tmsf;;denetci-yardimcisi;Fon Denetçi Yardımcısı;;İstanbul merkez teşkilatı;;10;ozel-kanun-kadrolu;lisans;kurum-sinavi;34;;;9;;;200;7
+204;tmsf-2026-giris-sinavi;tmsf;;uzman-yardimcisi;Fon Uzman Yardımcısı;;İstanbul merkez teşkilatı;;45;ozel-kanun-kadrolu;lisans;kurum-sinavi;34;;;9;;;900;7
+205;tmsf-2026-giris-sinavi;tmsf;;avukat;Fon Avukatı;;İstanbul merkez teşkilatı;Hukuk;20;ozel-kanun-kadrolu;lisans;kurum-sinavi;34;;;9;;;400;7
+206;adalet-2026-icra-muduru;adalet;;icra-muduru;İcra Müdürü ve İcra Müdür Yardımcısı;;;;150;657-4a;onlisans;kurum-sinavi;TR;;;;;;;4
+207;yargitay-2026-bilisim;yargitay;;yazilim-gelistirme-uzmani;Mobil Yazılım Geliştirme Uzmanı;;Bilgi İşlem Merkezi Müdürlüğü;;2;375-bilisim;lisans;sozlu-sinav;06;;;;;2;;11
+208;yargitay-2026-bilisim;yargitay;;siber-guvenlik-uzmani;Siber Güvenlik Uzmanı;;Bilgi İşlem Merkezi Müdürlüğü;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;2;;11
+209;yargitay-2026-bilisim;yargitay;;siber-guvenlik-uzmani;Kıdemli Siber Güvenlik Uzmanı;kidemli;Bilgi İşlem Merkezi Müdürlüğü;;1;375-bilisim;lisans;sozlu-sinav;06;;;;;3;;10
+210;istka-2026-uzman;istka;;uzman;Uzman (KPSS ile);;;Mühendislik, matematik, şehir ve bölge planlama, YBS;2;kurum-sozlesmeli;lisans;sozlu-sinav;34;;;;;;;7
+211;istka-2026-uzman;istka;;uzman;Uzman (KPSS ile);;;İktisat, işletme, maliye;2;kurum-sozlesmeli;lisans;sozlu-sinav;34;;;;;;;7
+212;istka-2026-uzman;istka;;uzman;Uzman (KPSS'siz, deneyimle);;;Mühendislik, matematik, şehir ve bölge planlama, YBS;1;kurum-sozlesmeli;lisans;sozlu-sinav;34;;;;;;;7
+213;mevka-2026-uzman;mevka;;uzman;;;;İnşaat mühendisliği;1;kurum-sozlesmeli;lisans;sozlu-sinav;42 70;;;;;;;7
+214;vgm-2026-uzman-yardimcisi;vgm;1. Grup;uzman-yardimcisi;Vakıf Uzman Yardımcısı;;Merkez teşkilatı;Arap Dili ve Edebiyatı;3;657-4a;lisans;kurum-sinavi;06;;;7;GİH;;;5
+215;vgm-2026-uzman-yardimcisi;vgm;2. Grup;uzman-yardimcisi;Vakıf Uzman Yardımcısı;;Merkez teşkilatı;İlahiyat;2;657-4a;lisans;kurum-sinavi;06;;;7;GİH;;;5
+216;kesan-bel-2026-memur;kesan-bel;1;muhendis;;;;İnşaat mühendisliği;1;657-4a;lisans;kpss-kurum;22;;;8;TH;;;3
+217;kesan-bel-2026-memur;kesan-bel;2;muhendis;;;;Elektrik-elektronik mühendisliği;1;657-4a;lisans;kpss-kurum;22;;;8;TH;;;3
+218;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Jandarma;70;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+219;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Jandarma;2;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+220;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Jandarma;6;subay-astsubay;lisans;askeri-secim;TR;erkek;sehit-gazi-yakini;;;;;10
+221;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Jandarma;1;subay-astsubay;lisans;askeri-secim;TR;kadin;sehit-gazi-yakini;;;;;10
+222;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;İstihkam;11;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+223;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Muhabere;9;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+224;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Muhabere;1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+225;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;İkmal;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+226;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Bakım;7;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+227;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Maliye;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+228;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Maliye;1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+229;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Mühendis (İnşaat);1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+230;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Mühendis (İnşaat);1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+231;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (Beden Eğitimi);3;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;11
+232;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (Rehberlik);1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+233;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (Hukuk);3;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+234;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (Hukuk);1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+235;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Veteriner;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;9
+236;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (İngilizce);3;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;12
+237;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (İngilizce);1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;12
+238;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (İtalyanca);1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;12
+239;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Öğretmen (Fransızca);1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;12
+240;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Hukuk;3;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;10
+241;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Hukuk;1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;10
+242;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Tabip;2;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;7
+243;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Diş Tabibi;1;subay-astsubay;lisans;askeri-secim;TR;erkek;;;;;;7
+244;jgk-2027-muvazzaf-subay;jgk;;subay;Muvazzaf subay;;Jandarma ve Sahil Güvenlik Akademisi Başkanlığı;Diş Tabibi;1;subay-astsubay;lisans;askeri-secim;TR;kadin;;;;;;7
+245;itu-2026-sozlesmeli;itu;DP-1;destek-personeli;;;;Destek hizmetleri;12;657-4b;ortaogretim;kpss-kurum;34;;;;;;;5
+246;itu-2026-sozlesmeli;itu;KGG-1;koruma-guvenlik-gorevlisi;;;;;11;657-4b;onlisans;kpss-kurum;34;erkek;;;;;;7
+247;itu-2026-sozlesmeli;itu;KGG-2;koruma-guvenlik-gorevlisi;;;;;1;657-4b;onlisans;kpss-kurum;34;kadin;;;;;;7
+248;itu-2026-sozlesmeli;itu;TKN-1;teknisyen;;;;Tesisat teknolojisi ve iklimlendirme;1;657-4b;ortaogretim;kpss-kurum;34;erkek;;;;;;5
+249;omu-2026-ogretim-uyesi;omu;2026/97;profesor;;;Ali Fuad Başgil Hukuk Fakültesi;Ticaret Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+250;omu-2026-ogretim-uyesi;omu;2026/98;dr-ogretim-uyesi;;;Ali Fuad Başgil Hukuk Fakültesi;İş ve Sosyal Güvenlik Hukuku;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+251;omu-2026-ogretim-uyesi;omu;2026/99;docent;;;Bafra Meslek Yüksekokulu;Muhasebe ve Vergi Uygulamaları;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+252;omu-2026-ogretim-uyesi;omu;2026/100;dr-ogretim-uyesi;;;Çarşamba İnsan ve Toplum Bilimleri Fakültesi;Genel Türk Tarihi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+253;omu-2026-ogretim-uyesi;omu;2026/101;dr-ogretim-uyesi;;;Devlet Konservatuvarı;Türk Halk Müziği;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+254;omu-2026-ogretim-uyesi;omu;2026/102;dr-ogretim-uyesi;;;Diş Hekimliği Fakültesi;Pedodonti;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+255;omu-2026-ogretim-uyesi;omu;2026/103;dr-ogretim-uyesi;;;Eczacılık Fakültesi;Klinik Eczacılık;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+256;omu-2026-ogretim-uyesi;omu;2026/104;dr-ogretim-uyesi;;;Eczacılık Fakültesi;Farmasötik Biyoteknoloji;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+257;omu-2026-ogretim-uyesi;omu;2026/105;dr-ogretim-uyesi;;;Eczacılık Fakültesi;Farmakoloji;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+258;omu-2026-ogretim-uyesi;omu;2026/106;dr-ogretim-uyesi;;;Eğitim Fakültesi;Öğretim Teknolojileri;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+259;omu-2026-ogretim-uyesi;omu;2026/107;dr-ogretim-uyesi;;;Eğitim Fakültesi;Sınıf Eğitimi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+260;omu-2026-ogretim-uyesi;omu;2026/108;dr-ogretim-uyesi;;;Eğitim Fakültesi;Rehberlik ve Psikolojik Danışmanlık;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+261;omu-2026-ogretim-uyesi;omu;2026/109;docent;;;Fen Fakültesi;Fonksiyonlar Teorisi ve Fonksiyonel Analiz;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+262;omu-2026-ogretim-uyesi;omu;2026/110;dr-ogretim-uyesi;;;Fen Fakültesi;Bilgi Güvenliği Teknolojisi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+263;omu-2026-ogretim-uyesi;omu;2026/111;dr-ogretim-uyesi;;;Fen Fakültesi;Yazılım Geliştirme;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+264;omu-2026-ogretim-uyesi;omu;2026/112;dr-ogretim-uyesi;;;Güzel Sanatlar Fakültesi;Endüstriyel Tasarım;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+265;omu-2026-ogretim-uyesi;omu;2026/113;dr-ogretim-uyesi;;;Havza Meslek Yüksekokulu;İşletme Yönetimi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+266;omu-2026-ogretim-uyesi;omu;2026/114;dr-ogretim-uyesi;;;İktisadi ve İdari Bilimler Fakültesi;Sayısal Yöntemler;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+267;omu-2026-ogretim-uyesi;omu;2026/115;dr-ogretim-uyesi;;;İlahiyat Fakültesi;Mantık;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+268;omu-2026-ogretim-uyesi;omu;2026/116;dr-ogretim-uyesi;;;İletişim Fakültesi;Gazetecilik;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+269;omu-2026-ogretim-uyesi;omu;2026/117;dr-ogretim-uyesi;;;İnsan ve Toplum Bilimleri Fakültesi;Sualtı Arkeolojisi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+270;omu-2026-ogretim-uyesi;omu;2026/118;dr-ogretim-uyesi;;;Kenevir Araştırmaları Enstitüsü;Tarım ve Islah;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+271;omu-2026-ogretim-uyesi;omu;2026/119;dr-ogretim-uyesi;;;Mühendislik Fakültesi;Malzeme Bilimi ve Mühendisliği;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+272;omu-2026-ogretim-uyesi;omu;2026/120;dr-ogretim-uyesi;;;Mühendislik Fakültesi;Mekanik;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+273;omu-2026-ogretim-uyesi;omu;2026/121;dr-ogretim-uyesi;;;Sağlık Bilimleri Fakültesi;Toplum Beslenmesi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+274;omu-2026-ogretim-uyesi;omu;2026/122;dr-ogretim-uyesi;;;Sağlık Hizmetleri Meslek Yüksekokulu;İlk ve Acil Yardım;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+275;omu-2026-ogretim-uyesi;omu;2026/123;dr-ogretim-uyesi;;;Samsun Meslek Yüksekokulu;Muhasebe ve Vergi Uygulamaları;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+276;omu-2026-ogretim-uyesi;omu;2026/124;dr-ogretim-uyesi;;;Terme Meslek Yüksekokulu;Pazarlama;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+277;omu-2026-ogretim-uyesi;omu;2026/125;dr-ogretim-uyesi;;;Turizm Fakültesi;Turizm İşletmeciliği;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+278;omu-2026-ogretim-uyesi;omu;2026/126;dr-ogretim-uyesi;;;Veteriner Fakültesi;Veteriner Viroloji;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+279;omu-2026-ogretim-uyesi;omu;2026/127;dr-ogretim-uyesi;;;Vezirköprü Meslek Yüksekokulu;Çocuk Gelişimi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+280;omu-2026-ogretim-uyesi;omu;2026/128;dr-ogretim-uyesi;;;Yeşilyurt Demir Çelik Meslek Yüksekokulu;Hibrid ve Elektrikli Taşıtlar Teknolojisi;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+281;omu-2026-ogretim-uyesi;omu;2026/129;docent;;;Ziraat Fakültesi;Robotik ve Otonom Sistemleri;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+282;omu-2026-ogretim-uyesi;omu;2026/130;dr-ogretim-uyesi;;;Ziraat Fakültesi;Toprak;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5
+283;omu-2026-ogretim-uyesi;omu;2026/131;dr-ogretim-uyesi;;;Ziraat Fakültesi;Tarımsal Yapılar ve Sulama;1;akademik-kadro;doktora;akademik-degerlendirme;55;;;;;;;5

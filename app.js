@@ -1,6 +1,8 @@
 // app.js
 // Tüm sayfaların davranışı. Hangi sayfada olduğumuz <body data-page="..."> ile belirlenir.
-// Veri data.js'ten (KURUMLAR, ILANLAR), sınıflandırma siniflandirma.js'ten, il adları iller.js'ten gelir.
+// Veri veri/ klasöründeki katmanlardan gelir: 1 sözlük (ILLER, SINIFLANDIRMA), 2 kalıplar (KALIPLAR),
+// 3 kurumlar (KURUMLAR), 4 ilanlar (ILANLAR). Bu dosya 5. katmanı, yani türetilen bilgileri üretir:
+// kalıptan miras alınan alanlar, birleştirilmiş şartlar, etiketler ve başvuru durumu.
 (function () {
     const S = window.SINIFLANDIRMA;
     const collator = new Intl.Collator('tr');
@@ -55,16 +57,108 @@
     const EGITIM = sozluk(S.EGITIM_DUZEYLERI);
     const YONTEM = sozluk(S.ALIM_YONTEMLERI);
     const KAYNAK = sozluk(S.KAYNAKLAR);
+    const SINAV = sozluk(S.SINAVLAR || []);
+    const SART_TUR = sozluk(S.SART_TURLERI || []);
+    const KANAL = sozluk(S.BASVURU_KANALLARI || []);
+    const KONTENJAN = sozluk(S.KONTENJAN_TURLERI || []);
     const IL = new Map((window.ILLER || []).map(x => [x.plaka, x.il]));
+    const YURT_GENELI = 'TR';
+    const YURT_GENELI_AD = 'Yurt geneli';
 
     function veriUyarisi(...parca) {
-        console.warn('data.js:', ...parca);
+        console.warn('veri:', ...parca);
     }
 
-    // ---------- Veri: kurum → ilan → pozisyon ----------
-    // Sayfalar düz bir pozisyon listesiyle çalışır; her pozisyon kurum ve ilan bilgisini taşır.
+    // ---------- Veri: kalıp → kurum → ilan → pozisyon ----------
+    // Sayfalar düz bir pozisyon listesiyle çalışır; her pozisyon kurum, ilan ve kalıp bilgisini taşır.
+    const kaliplar = sozluk(window.KALIPLAR || []);
     const kurumlar = sozluk(window.KURUMLAR || []);
     const pozisyonlar = [];
+    const BUGUN = (() => { const d = new Date(); return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`; })();
+
+    function gunFarki(a, b) {
+        return Math.round((new Date(`${b}T00:00:00`) - new Date(`${a}T00:00:00`)) / 86400000);
+    }
+
+    // Üst düzey nesneyi alt düzeyle birleştirir; alt düzeyde yazılan (null olmayan) değer üsttekini ezer.
+    function birlestir(...katmanlar) {
+        const sonuc = {};
+        katmanlar.forEach(k => {
+            if (!k) return;
+            Object.entries(k).forEach(([a, v]) => { if (v != null) sonuc[a] = v; });
+        });
+        return sonuc;
+    }
+
+    // Şartın "kosul" alanı pozisyona uyuyor mu? Her anahtar bir değer listesidir; hepsi tutmalı.
+    const KOSUL_ALANI = {
+        ucretKati: p => (p.ucret ? p.ucret.tavanKati : null),
+        unvan: p => p.unvanId,
+        alan: p => p.alan,
+        cinsiyet: p => p.cinsiyet,
+        kontenjan: p => p.kontenjan,
+        kod: p => p.kod
+    };
+
+    function kosulUyar(kosul, p, yer) {
+        if (!kosul) return true;
+        return Object.entries(kosul).every(([anahtar, degerler]) => {
+            const oku = KOSUL_ALANI[anahtar];
+            if (!oku) {
+                veriUyarisi('bilinmeyen şart koşulu:', anahtar, yer);
+                return false;
+            }
+            return Array.isArray(degerler) && degerler.includes(oku(p));
+        });
+    }
+
+    // Şartlar üç düzeyden gelir: kalıp → ilan (ortakSartlar) → pozisyon. Alt düzeyde "yerineGecer"
+    // işaretli bir şart, üst düzeydeki aynı türden şartları düşürür.
+    function sartlariBirlestir(kalip, ilan, poz, p) {
+        const katmanlar = [
+            ['kalip', kalip ? kalip.sartlar : null],
+            ['ilan', ilan.ortakSartlar],
+            ['pozisyon', poz.sartlar]
+        ];
+        let sonuc = [];
+        katmanlar.forEach(([katman, liste]) => {
+            const uygun = (Array.isArray(liste) ? liste : []).filter(sart => {
+                if (!sart || !SART_TUR.has(sart.tur)) {
+                    veriUyarisi('bilinmeyen şart türü:', sart && sart.tur, `(pozisyon ${p.id})`);
+                    return false;
+                }
+                return kosulUyar(sart.kosul, p, `(pozisyon ${p.id})`);
+            });
+            const ezilen = new Set(uygun.filter(x => x.yerineGecer).map(x => x.tur));
+            sonuc = sonuc.filter(x => !ezilen.has(x.tur)).concat(uygun.map(x => ({ ...x, katman })));
+        });
+        return sonuc;
+    }
+
+    // Başvuru durumu bugünün tarihine göre hesaplanır.
+    function durumBul(basvuru) {
+        if (basvuru.baslangic && basvuru.baslangic > BUGUN) return 'yakinda';
+        if (!basvuru.bitis) return 'bilinmiyor';
+        const kalan = gunFarki(BUGUN, basvuru.bitis);
+        if (kalan < 0) return 'bitti';
+        if (kalan <= 3) return 'son-gunler';
+        return 'acik';
+    }
+
+    // Kartlarda gösterilen kısa etiketler: şartlardan ve ilan bilgilerinden türetilir.
+    function etiketleriBul(p) {
+        const e = [];
+        const kpss = p.sartlar.filter(x => x.tur === 'sinav' && x.sinav === 'kpss');
+        if (!kpss.length) e.push({ metin: 'KPSS şartı yok', tur: 'olumlu' });
+        else if (kpss.every(x => x.zorunlu === false)) e.push({ metin: 'KPSS\'siz de başvurulabilir', tur: 'olumlu' });
+        const yas = p.sartlar.filter(x => x.tur === 'yas' && typeof x.enFazla === 'number' && !x.istisna);
+        if (yas.length) e.push({ metin: `Yaş sınırı ${Math.min(...yas.map(x => x.enFazla))}`, tur: '' });
+        if (p.cinsiyet) e.push({ metin: p.cinsiyet === 'kadin' ? 'Kadın kadrosu' : 'Erkek kadrosu', tur: '' });
+        if (p.kontenjan && p.kontenjan !== 'genel') e.push({ metin: KONTENJAN.has(p.kontenjan) ? KONTENJAN.get(p.kontenjan).ad : p.kontenjan, tur: '' });
+        if (p.basvuru.ucret) e.push({ metin: 'Ücretli başvuru', tur: '' });
+        if (p.basvuru.tekBasvuru) e.push({ metin: 'Tek başvuru hakkı', tur: '' });
+        return e;
+    }
 
     (function duzlestir() {
         const kullanilan = new Set();
@@ -77,6 +171,14 @@
             const tur = KURUM_TUR.get(kurum.tur);
             if (!tur) veriUyarisi('bilinmeyen kurum türü:', kurum.tur, `(kurum ${kurum.id})`);
             if (ilan.kaynak && !KAYNAK.has(ilan.kaynak)) veriUyarisi('bilinmeyen kaynak:', ilan.kaynak, `(ilan ${ilan.id})`);
+            const kalip = ilan.kalip ? kaliplar.get(ilan.kalip) : null;
+            if (ilan.kalip && !kalip) veriUyarisi('kalıp bulunamadı:', ilan.kalip, `(ilan ${ilan.id})`);
+
+            const varsayilan = birlestir(kalip && kalip.varsayilan, ilan.varsayilan);
+            const basvuru = birlestir(kalip && kalip.basvuru, ilan.basvuru);
+            const secme = birlestir(kalip && kalip.secme, ilan.secme);
+            (basvuru.kanal || []).forEach(k => { if (!KANAL.has(k)) veriUyarisi('bilinmeyen başvuru kanalı:', k, `(ilan ${ilan.id})`); });
+            const durum = durumBul(basvuru);
 
             (ilan.pozisyonlar || []).forEach(poz => {
                 if (typeof poz.id !== 'number') {
@@ -88,47 +190,97 @@
                     return;
                 }
                 kullanilan.add(poz.id);
+                const al = a => (poz[a] != null ? poz[a] : varsayilan[a] != null ? varsayilan[a] : null);
 
-                const unvan = UNVAN.get(poz.unvan);
-                const statu = poz.statu ? STATU.get(poz.statu) : null;
-                if (!unvan) veriUyarisi('bilinmeyen ünvan:', poz.unvan, `(pozisyon ${poz.id})`);
-                if (poz.statu && !statu) veriUyarisi('bilinmeyen statü:', poz.statu, `(pozisyon ${poz.id})`);
-                if (poz.egitim && !EGITIM.has(poz.egitim)) veriUyarisi('bilinmeyen eğitim düzeyi:', poz.egitim, `(pozisyon ${poz.id})`);
-                if (poz.yontem && !YONTEM.has(poz.yontem)) veriUyarisi('bilinmeyen alım yöntemi:', poz.yontem, `(pozisyon ${poz.id})`);
+                const unvanId = al('unvan');
+                const unvan = UNVAN.get(unvanId);
+                const statuId = al('statu');
+                const statu = statuId ? STATU.get(statuId) : null;
+                const egitim = al('egitim');
+                const yontem = al('yontem') || secme.yontem || null;
+                if (!unvan) veriUyarisi('bilinmeyen ünvan:', unvanId, `(pozisyon ${poz.id})`);
+                if (statuId && !statu) veriUyarisi('bilinmeyen statü:', statuId, `(pozisyon ${poz.id})`);
+                if (egitim && !EGITIM.has(egitim)) veriUyarisi('bilinmeyen eğitim düzeyi:', egitim, `(pozisyon ${poz.id})`);
+                if (yontem && !YONTEM.has(yontem)) veriUyarisi('bilinmeyen alım yöntemi:', yontem, `(pozisyon ${poz.id})`);
+                if (poz.kontenjan && !KONTENJAN.has(poz.kontenjan)) veriUyarisi('bilinmeyen kontenjan türü:', poz.kontenjan, `(pozisyon ${poz.id})`);
 
-                const plaka = poz.il || kurum.il;
+                // Konum: tek il, birden fazla il (iller) ya da yurt geneli ("TR").
+                const iller = Array.isArray(poz.iller) ? poz.iller.map(String) : null;
+                const ilDeger = iller || al('il') || kurum.il;
+                const yurtGeneli = ilDeger === YURT_GENELI;
+                const plakalar = yurtGeneli ? [] : (Array.isArray(ilDeger) ? ilDeger : [String(ilDeger)]);
+                plakalar.forEach(pl => { if (!IL.has(pl)) veriUyarisi('bilinmeyen il:', pl, `(pozisyon ${poz.id})`); });
+
                 const p = {
                     id: poz.id,
                     ilanId: ilan.id,
+                    ilanBaslik: ilan.baslik || '',
+                    kalip: kalip ? kalip.id : null,
+                    kalipAd: kalip ? kalip.ad : null,
+                    dayanak: ilan.dayanak || (kalip ? kalip.dayanak : null),
                     kurumId: kurum.id,
                     kurum: kurum.ad,
                     kurumTur: tur ? tur.id : 'diger-kurum',
                     kurumTurAd: tur ? tur.ad : 'Diğer kamu kurumu',
                     kurumGrup: tur ? tur.grup : 'diger',
-                    unvanId: String(poz.unvan),
-                    unvan: unvan ? unvan.ad : String(poz.unvan),
+                    unvanId: String(unvanId),
+                    unvan: unvan ? unvan.ad : String(unvanId),
                     unvanEs: unvan && unvan.es ? unvan.es : [],
+                    ilandakiAd: al('ilandakiAd'),
+                    kidem: poz.kidem || null,
+                    kod: poz.kod || null,
+                    birim: al('birim'),
                     meslek: unvan ? unvan.grup : 'diger',
                     alan: poz.alan || '',
                     statu: statu ? statu.id : null,
                     statuAd: statu ? statu.ad : null,
                     statuGrup: statu ? statu.grup : null,
                     adet: typeof poz.adet === 'number' ? poz.adet : null,
-                    egitim: EGITIM.has(poz.egitim) ? poz.egitim : null,
-                    yontem: YONTEM.has(poz.yontem) ? poz.yontem : null,
-                    plaka,
-                    il: IL.get(plaka) || plaka,
-                    yayinTarihi: ilan.yayinTarihi || null,
-                    sonBasvuru: ilan.sonBasvuru || null,
+                    derece: al('derece'),
+                    hizmetSinifi: al('hizmetSinifi'),
+                    ucret: poz.ucret || null,
+                    cinsiyet: poz.cinsiyet || null,
+                    kontenjan: poz.kontenjan || null,
+                    cagriSayisi: poz.cagriSayisi || null,
+                    egitim: EGITIM.has(egitim) ? egitim : null,
+                    yontem: YONTEM.has(yontem) ? yontem : null,
+                    plaka: yurtGeneli ? YURT_GENELI : plakalar[0],
+                    plakalar,
+                    yurtGeneli,
+                    il: yurtGeneli ? YURT_GENELI_AD : plakalar.map(x => IL.get(x) || x).join(' veya '),
+                    yayinTarihi: ilan.yayinTarihi || ilan.resmiGazete || null,
+                    resmiGazete: ilan.resmiGazete || null,
+                    sonBasvuru: basvuru.bitis || null,
+                    basvuru,
+                    secme,
+                    durum,
+                    notlar: Array.isArray(ilan.notlar) ? ilan.notlar : [],
+                    kontenjanNotu: ilan.kontenjanNotu || null,
                     kaynak: KAYNAK.has(ilan.kaynak) ? ilan.kaynak : null,
                     link: typeof ilan.link === 'string' && /^https?:\/\//i.test(ilan.link) ? ilan.link : null
                 };
-                p.arama = norm([p.unvan, ...p.unvanEs, p.alan, p.kurum, p.il].join(' '));
+                p.sartlar = sartlariBirlestir(kalip, ilan, poz, p);
+                p.etiketler = etiketleriBul(p);
+                // Arama metni: ünvan ve eş yazılışları, kurum, yer, alan; şartlardaki bölüm adları ve teknik maddeler.
+                const sartMetni = p.sartlar.flatMap(x => [...(x.bolumler || []), ...(x.tur === 'teknik' ? x.maddeler || [] : [])]);
+                p.arama = norm([p.unvan, ...p.unvanEs, p.ilandakiAd || '', p.alan, p.birim || '', p.kurum, p.il, p.kod || '', ...sartMetni].join(' '));
                 pozisyonlar.push(p);
             });
         });
         pozisyonlar.sort((a, b) => b.id - a.id); // en yeni pozisyon üstte
     })();
+
+    // Bir pozisyonun bir ile düşüp düşmediği; "TR" seçimi yurt geneli pozisyonları getirir.
+    function ildeMi(p, plaka) {
+        return plaka === YURT_GENELI ? p.yurtGeneli : p.plakalar.includes(plaka);
+    }
+
+    // İl başına pozisyon sayısı (birden fazla ilde olan pozisyon her ilde sayılır).
+    function ilSay(liste) {
+        const map = new Map();
+        liste.forEach(p => (p.yurtGeneli ? [YURT_GENELI] : p.plakalar).forEach(k => map.set(k, (map.get(k) || 0) + 1)));
+        return map;
+    }
 
     // ---------- Ortak görünüm parçaları ----------
     const tarihBicim = new Intl.DateTimeFormat('tr', { day: 'numeric', month: 'long', year: 'numeric' });
@@ -139,12 +291,18 @@
     }
 
     function ilEtiket(plaka) {
-        return IL.get(plaka) || plaka;
+        return plaka === YURT_GENELI ? YURT_GENELI_AD : IL.get(plaka) || plaka;
+    }
+
+    function ilGecerli(plaka) {
+        return plaka === YURT_GENELI || IL.has(plaka);
     }
 
     // "Nerede" kutusuna yazılan il adını ya da plaka kodunu plakaya çevirir; bulunamazsa ''.
+    // "Yurt geneli" (ya da "Türkiye") yurt geneli pozisyonları seçer.
     function ilBul(metin) {
         const n = norm(metin);
+        if (n === norm(YURT_GENELI_AD) || n === 'turkiye' || n === 'tr') return YURT_GENELI;
         if (/^\d{1,2}$/.test(n)) {
             const plaka = n.padStart(2, '0');
             return IL.has(plaka) ? plaka : '';
@@ -155,6 +313,7 @@
 
     function ilListesiDoldur(datalist) {
         if (!datalist) return;
+        datalist.appendChild(secenek(YURT_GENELI_AD, ''));
         [...IL.values()].sort(collator.compare).forEach(ad => {
             const o = document.createElement('option');
             o.value = ad;
@@ -188,22 +347,49 @@
     }
 
     function plakaBadge(plaka) {
-        return `<span class="plaka" title="Plaka kodu">${esc(plaka)}</span>`;
+        return `<span class="plaka" title="${plaka === YURT_GENELI ? 'Yurt geneli' : 'Plaka kodu'}">${esc(plaka)}</span>`;
     }
 
+    // Kartta ve ayrıntıda görünen başlık: ilandaki ad (yoksa standart ünvan) ve alan.
     function pozisyonBasligi(p) {
-        return p.alan ? `${p.unvan} · ${p.alan}` : p.unvan;
+        const ad = p.ilandakiAd || p.unvan;
+        return p.alan && !norm(ad).includes(norm(p.alan)) ? `${ad} · ${p.alan}` : ad;
+    }
+
+    // Aynı başlığı taşıyan pozisyonlar (ör. üç kuvvetteki matematik öğretmeni) birim, cinsiyet ve kontenjanla ayrılır.
+    function ayirtEdiciBaslik(p, liste) {
+        const baslik = pozisyonBasligi(p);
+        if (liste.filter(x => pozisyonBasligi(x) === baslik).length < 2) return baslik;
+        const ek = [];
+        if (p.birim && liste.some(x => pozisyonBasligi(x) === baslik && x.birim !== p.birim)) ek.push(p.birim);
+        if (p.cinsiyet) ek.push(p.cinsiyet === 'kadin' ? 'kadın' : 'erkek');
+        if (p.kontenjan && KONTENJAN.has(p.kontenjan)) ek.push(KONTENJAN.get(p.kontenjan).ad.toLocaleLowerCase('tr'));
+        if (!ek.length && p.kod) ek.push(p.kod);
+        return ek.length ? `${baslik} (${ek.join(', ')})` : baslik;
+    }
+
+    const DURUM = {
+        yakinda: { metin: 'Başvuru yakında', sinif: '' },
+        'son-gunler': { metin: 'Son günler', sinif: 'uyari' },
+        bitti: { metin: 'Süresi doldu', sinif: 'soluk' }
+    };
+
+    function sonBasvuruMetni(p) {
+        if (!p.sonBasvuru) return '';
+        return `Son başvuru ${tarihYaz(p.sonBasvuru)}${p.basvuru.bitisTahmini ? ' (tahmini)' : ''}`;
     }
 
     // İlan kartının içi: ünvan, kurum, il, statü ve öne çıkan bilgiler.
     function kartIcerik(p, yeni) {
         const etiketler = [];
         if (yeni) etiketler.push('<span class="chip-sm new">Yeni</span>');
+        if (DURUM[p.durum]) etiketler.push(`<span class="chip-sm ${DURUM[p.durum].sinif}">${DURUM[p.durum].metin}</span>`);
         if (p.statuAd) etiketler.push(`<span class="chip-sm">${esc(p.statuAd)}</span>`);
         if (p.adet) etiketler.push(`<span class="chip-sm">${p.adet} kadro</span>`);
-        if (p.egitim) etiketler.push(`<span class="chip-sm">${esc(EGITIM.get(p.egitim).ad)}</span>`);
+        if (p.ucret && p.ucret.tavanKati) etiketler.push(`<span class="chip-sm">Ücret tavanının ${p.ucret.tavanKati} katı</span>`);
+        p.etiketler.slice(0, 2).forEach(e => etiketler.push(`<span class="chip-sm">${esc(e.metin)}</span>`));
         const alt = [p.kurumTurAd];
-        if (p.sonBasvuru) alt.push(`Son başvuru ${tarihYaz(p.sonBasvuru)}`);
+        if (p.sonBasvuru) alt.push(sonBasvuruMetni(p));
         return `<span class="job-title">${esc(pozisyonBasligi(p))}</span>
             <span class="job-company">${esc(p.kurum)}</span>
             <span class="job-location">${KONUM}${esc(p.il)}</span>
@@ -352,7 +538,7 @@
     }
 
     function eslesir(a, p) {
-        if (a.iller.length && !a.iller.includes(p.plaka)) return false;
+        if (a.iller.length && !a.iller.some(il => ildeMi(p, il))) return false;
         if (a.turler.length && !a.turler.some(v => degerUyar(v, p.kurumTur, p.kurumGrup))) return false;
         if (a.statuler.length && !(p.statu && a.statuler.some(v => degerUyar(v, p.statu, p.statuGrup)))) return false;
         if (a.meslekler.length && !a.meslekler.includes(p.meslek)) return false;
@@ -446,7 +632,7 @@
     // ---------- Ana sayfa ----------
     function initIndex() {
         const $ = id => document.getElementById(id);
-        const ilSayilari = say(pozisyonlar, 'plaka');
+        const ilSayilari = ilSay(pozisyonlar);
         const statuSay = say(pozisyonlar, 'statuGrup');
         const turSay = say(pozisyonlar, 'kurumTur');
         const meslekSay = say(pozisyonlar, 'meslek');
@@ -478,10 +664,11 @@
         ].slice(0, 6).map(([h, ad]) => `<li><a class="chip" href="ilanlar.html#${esc(h)}">${esc(ad)}</a></li>`).join('');
 
         $('stats').innerHTML = [
-            [new Set(pozisyonlar.map(p => p.ilanId)).size, 'aktif ilan'],
+            [new Set(pozisyonlar.map(p => p.ilanId)).size, 'ilan'],
             [pozisyonlar.length, 'pozisyon'],
+            [pozisyonlar.reduce((t, p) => t + (p.adet || 0), 0), 'kadro'],
             [new Set(pozisyonlar.map(p => p.kurumId)).size, 'kurum'],
-            [ilSayilari.size, 'il']
+            [[...ilSayilari.keys()].filter(k => k !== YURT_GENELI).length, 'il']
         ].map(([n, ad]) => `<li><strong>${n}</strong> ${ad}</li>`).join('');
 
         // Harita: pozisyon sayısına göre mavi tonlar.
@@ -516,8 +703,9 @@
             path.addEventListener('blur', hide);
         });
 
+        // Yurt geneli pozisyonlar haritada bir ile düşmez; listenin başında ayrı gösterilir.
         $('il-chips').innerHTML = [...ilSayilari.keys()]
-            .sort((a, b) => collator.compare(ilEtiket(a), ilEtiket(b)))
+            .sort((a, b) => (a === YURT_GENELI ? -1 : b === YURT_GENELI ? 1 : collator.compare(ilEtiket(a), ilEtiket(b))))
             .map(p => `<li><a class="chip" href="ilanlar.html#${esc(p)}">
                 ${plakaBadge(p)} ${esc(ilEtiket(p))} <span class="count">${ilSayilari.get(p)}</span>
             </a></li>`).join('');
@@ -615,8 +803,8 @@
             seciliPoz = null;
             let h = '';
             try { h = decodeURIComponent(window.location.hash.slice(1)); } catch (e) { return; }
-            if (/^\d{2}$/.test(h)) {
-                if (IL.has(h)) ilAyarla(h);
+            if (/^\d{2}$/.test(h) || h === YURT_GENELI) {
+                if (ilGecerli(h)) ilAyarla(h);
                 return;
             }
             const m = h.match(/^(kurum|unvan|tur|statu|meslek|egitim|poz)-(.+)$/);
@@ -639,7 +827,7 @@
         function filtrele() {
             const q = norm(ne.value);
             return pozisyonlar.filter(p =>
-                (!ilSecili || p.plaka === ilSecili) &&
+                (!ilSecili || ildeMi(p, ilSecili)) &&
                 (!f.tur.value || degerUyar(f.tur.value, p.kurumTur, p.kurumGrup)) &&
                 (!f.statu.value || (p.statu && degerUyar(f.statu.value, p.statu, p.statuGrup))) &&
                 (!f.meslek.value || p.meslek === f.meslek.value) &&
@@ -653,46 +841,99 @@
             const statu = p.statu ? STATU.get(p.statu) : null;
             const grup = KURUM_GRUP.get(p.kurumGrup);
             const yontem = p.yontem ? YONTEM.get(p.yontem) : null;
-            const bilgiler = [
-                ['Çalışma statüsü', statu ? statu.ad : null, statu ? [statu.dayanak, statu.aciklama].filter(Boolean).join('. ') : ''],
-                ['Kurum türü', p.kurumTurAd, grup ? grup.ad : ''],
-                ['Meslek grubu', meslekEtiket(p.meslek), ''],
-                ['Alan', p.alan || null, ''],
-                ['Kadro sayısı', p.adet ? String(p.adet) : null, ''],
-                ['Eğitim düzeyi', p.egitim ? EGITIM.get(p.egitim).ad : null, ''],
-                ['Alım yöntemi', yontem ? yontem.ad : null, yontem && yontem.aciklama ? yontem.aciklama : ''],
-                ['Yayın tarihi', p.yayinTarihi ? tarihYaz(p.yayinTarihi) : null, ''],
-                ['Son başvuru', p.sonBasvuru ? tarihYaz(p.sonBasvuru) : null, ''],
-                ['İlan kaynağı', p.kaynak ? KAYNAK.get(p.kaynak).ad : null, '']
-            ];
-            const bilinen = bilgiler.filter(b => b[1]);
-            const eksik = bilgiler.filter(b => !b[1] && b[0] !== 'Alan').map(b => b[0].toLocaleLowerCase('tr'));
-            const digerleri = pozisyonlar.filter(x => x.ilanId === p.ilanId && x.id !== p.id).sort((a, b) => a.id - b.id);
-            const ana = p.link ? `<a class="btn-primary" href="${esc(p.link)}" target="_blank" rel="noopener">İlan metnine git</a>` : '';
+            const b = p.basvuru;
+            const sm = p.secme;
+            const fact = (ad, deger, not) => (deger ? `<div class="fact"><dt>${esc(ad)}</dt><dd>${esc(deger)}${not ? `<span class="fact-note">${esc(not)}</span>` : ''}</dd></div>` : '');
+            const bolum = (id, baslik, icerik) => (icerik ? `<section class="detail-section" aria-labelledby="${id}"><h3 id="${id}">${baslik}</h3>${icerik}</section>` : '');
+            const madde = liste => `<ul class="bullet-list">${liste.map(x => `<li>${esc(x)}</li>`).join('')}</ul>`;
+            const acilir = (ozet, liste) => `<details class="mini-details"><summary>${esc(ozet)} (${liste.length})</summary>${madde(liste)}</details>`;
+
+            // Pozisyon bilgileri
+            const cagri = p.cagriSayisi || (sm.cagriKati && p.adet ? sm.cagriKati * p.adet : null);
+            const pozBilgi = [
+                fact('Ünvan', p.ilandakiAd && p.ilandakiAd !== p.unvan ? p.unvan : null, p.ilandakiAd ? `İlandaki adı: ${p.ilandakiAd}` : ''),
+                fact('Kadro kodu', p.kod),
+                fact('Birim', p.birim),
+                fact('Alan', p.alan || null),
+                fact('Kadro sayısı', p.adet ? String(p.adet) : null),
+                fact('Kadro derecesi', p.derece ? `${p.derece}. derece${p.hizmetSinifi ? ` · ${p.hizmetSinifi}` : ''}` : (p.hizmetSinifi || null)),
+                fact('Ücret', p.ucret && p.ucret.tavanKati ? `Sözleşme ücret tavanının ${p.ucret.tavanKati} katına kadar` : null),
+                fact('Cinsiyet', p.cinsiyet ? (p.cinsiyet === 'kadin' ? 'Kadın kadrosu' : 'Erkek kadrosu') : null),
+                fact('Kontenjan', p.kontenjan && KONTENJAN.has(p.kontenjan) ? KONTENJAN.get(p.kontenjan).ad : null),
+                fact('Çalışma statüsü', statu ? statu.ad : null, statu ? [statu.dayanak, statu.aciklama].filter(Boolean).join('. ') : ''),
+                fact('Kurum türü', p.kurumTurAd, grup ? grup.ad : ''),
+                fact('Meslek grubu', meslekEtiket(p.meslek)),
+                fact('En düşük eğitim düzeyi', p.egitim ? EGITIM.get(p.egitim).ad : null),
+                fact('Sınava çağrılacak aday', cagri ? String(cagri) : null, sm.cagriKati ? `Kadronun ${sm.cagriKati} katı` : '')
+            ].join('');
+
+            // Başvuru şartları: türlerine göre gruplanır.
+            const sartHtml = S.SART_TURLERI.map(t => {
+                const liste = p.sartlar.filter(x => x.tur === t.id);
+                if (!liste.length) return '';
+                return `<div class="sart-grup"><h4>${esc(t.ad)}</h4><ul class="sart-list">${liste.map(x => {
+                    const ek = [];
+                    if (x.bolumler && x.bolumler.length) ek.push(acilir('Kabul edilen bölümler', x.bolumler));
+                    if (x.maddeler && x.maddeler.length) ek.push(x.maddeler.length > 4 ? acilir(x.metin || 'Maddeler', x.maddeler) : madde(x.maddeler));
+                    const metin = x.maddeler && x.maddeler.length > 4 ? '' : esc(x.metin || x.ad || '');
+                    return `<li>${metin}${ek.join('')}</li>`;
+                }).join('')}</ul></div>`;
+            }).join('');
+            const kendin = p.sartlar.some(x => SART_TUR.has(x.tur) && !SART_TUR.get(x.tur).denetlenebilir && ['akademik', 'teknik'].includes(x.tur));
+
+            // Başvuru
+            const tarih = b.baslangic || b.bitis
+                ? [b.baslangic ? tarihYaz(b.baslangic) : '', b.bitis ? tarihYaz(b.bitis) : '…'].filter(Boolean).join(' – ') + (b.saat ? ` (son gün ${b.saat})` : '')
+                : null;
+            const kanallar = (b.kanal || []).map(k => (KANAL.has(k) ? KANAL.get(k).ad : k)).join(', ');
+            const adres = b.adres ? (/^https?:\/\//i.test(b.adres) ? `<a href="${esc(b.adres)}" target="_blank" rel="noopener">${esc(b.adres.replace(/^https?:\/\//, ''))}</a>` : esc(b.adres)) : '';
+            const basvuruHtml = [
+                fact('Başvuru tarihleri', tarih, b.bitisTahmini ? 'Son gün, Resmî Gazete yayımına süre eklenerek hesaplandı; kurumun duyurusundan doğrulayın.' : (!b.bitis ? 'Son başvuru tarihi henüz eklenmedi.' : '')),
+                fact('Geç başvuru', b.gecBasvuru ? tarihYaz(b.gecBasvuru) : null),
+                fact('Başvuru yolu', kanallar || null),
+                adres ? `<div class="fact"><dt>Başvuru adresi</dt><dd>${adres}</dd></div>` : '',
+                fact('Ücret', b.ucret ? (b.ucret.tutar ? `${b.ucret.tutar} TL` : 'Ücretli') : null, b.ucret ? b.ucret.aciklama : ''),
+                fact('Tek başvuru', b.tekBasvuru ? 'Bu ilanda yalnızca bir kadroya başvurulabilir.' : null),
+                b.belgeler && b.belgeler.length ? `<div class="fact"><dt>İstenen belgeler</dt><dd>${acilir('Belge listesi', b.belgeler)}</dd></div>` : ''
+            ].join('');
+
+            // Seçme ve değerlendirme
+            const sinavTarihi = sm.sinavTarihi ? sm.sinavTarihi.split('/').map(tarihYaz).join(' – ') : null;
+            const secmeHtml = [
+                fact('Yöntem', yontem ? yontem.ad : null, sm.aciklama || ''),
+                sm.asamalar && sm.asamalar.length ? `<div class="fact"><dt>Aşamalar</dt><dd>${esc(sm.asamalar.join(' → '))}</dd></div>` : '',
+                fact('Puan hesabı', sm.formul || null),
+                fact('Başarı puanı', sm.gecmeNotu ? `En az ${sm.gecmeNotu}` : null),
+                fact('Sınav tarihi', sinavTarihi),
+                fact('Sınav yeri', sm.sinavYeri || null)
+            ].join('');
+
+            const notlar = [...(p.kontenjanNotu ? [p.kontenjanNotu] : []), ...p.notlar];
+            const digerleri = pozisyonlar.filter(x => x.ilanId === p.ilanId && x.id !== p.id).sort((a, b2) => a.id - b2.id);
+            const ana = p.link ? `<a class="btn-primary" href="${esc(p.link)}" target="_blank" rel="noopener">İlan sayfasına git</a>` : '';
+            const durum = DURUM[p.durum] ? `<span class="chip-sm ${DURUM[p.durum].sinif}">${DURUM[p.durum].metin}</span>` : '';
 
             return `<div class="detail-head">
                 <button type="button" class="detail-back btn-text" data-geri>← Sonuçlara dön</button>
                 <h2 id="detay-baslik">${esc(pozisyonBasligi(p))}</h2>
                 <button type="button" class="detail-company" data-kurum-filtre="${esc(p.kurumId)}">${esc(p.kurum)}</button>
-                <p class="detail-location">${KONUM}${esc(p.il)} (${esc(p.plaka)})</p>
+                <p class="detail-location">${KONUM}${esc(p.il)}${p.plakalar.length === 1 ? ` (${esc(p.plaka)})` : ''}</p>
+                ${p.sonBasvuru ? `<p class="detail-note">${esc(sonBasvuruMetni(p))}</p>` : ''}
+                ${durum || p.etiketler.length ? `<span class="job-tags">${durum}${p.etiketler.map(e => `<span class="chip-sm">${esc(e.metin)}</span>`).join('')}</span>` : ''}
                 <div class="detail-actions">
                     ${ana}
                     <a class="${p.link ? 'btn-secondary' : 'btn-primary'}" href="alarm.html" data-alarm-benzer="${p.id}">${ZIL}Benzer ilanlar için alarm kur</a>
                 </div>
-                ${p.link ? '' : '<p class="detail-note">Bu ilanın resmi bağlantısı henüz eklenmedi.</p>'}
             </div>
             <div class="detail-body">
-                <section class="detail-section" aria-labelledby="d-bilgi">
-                    <h3 id="d-bilgi">Pozisyon bilgileri</h3>
-                    <dl class="facts">
-                        ${bilinen.map(([ad, deger, not]) => `<div class="fact"><dt>${esc(ad)}</dt><dd>${esc(deger)}${not ? `<span class="fact-note">${esc(not)}</span>` : ''}</dd></div>`).join('')}
-                    </dl>
-                    ${eksik.length ? `<p class="missing">Henüz eklenmeyen bilgiler: ${esc(eksik.join(', '))}.</p>` : ''}
-                </section>
-                ${digerleri.length ? `<section class="detail-section" aria-labelledby="d-diger">
-                    <h3 id="d-diger">Bu ilandaki diğer pozisyonlar (${digerleri.length})</h3>
-                    <ul class="other-list">${digerleri.map(x => `<li><button type="button" class="link-btn" data-poz-sec="${x.id}">${esc(pozisyonBasligi(x))}</button></li>`).join('')}</ul>
-                </section>` : ''}
+                ${bolum('d-bilgi', 'Pozisyon bilgileri', `<dl class="facts">${pozBilgi}</dl>`)}
+                ${bolum('d-sart', 'Başvuru şartları', sartHtml ? `${sartHtml}${kendin ? '<p class="missing">Akademik ve teknik şartları ilan metnine göre kendiniz değerlendirin; site bunları otomatik denetlemez.</p>' : ''}` : '<p class="missing">Bu pozisyonun şartları henüz eklenmedi.</p>')}
+                ${bolum('d-basvuru', 'Başvuru', basvuruHtml ? `<dl class="facts">${basvuruHtml}</dl>` : '')}
+                ${bolum('d-secme', 'Seçme ve değerlendirme', secmeHtml ? `<dl class="facts">${secmeHtml}</dl>` : '')}
+                ${bolum('d-not', 'Notlar', notlar.length || p.dayanak ? `${notlar.length ? madde(notlar) : ''}${p.dayanak ? `<p class="fact-note">Dayanak: ${esc(p.dayanak)}</p>` : ''}` : '')}
+                ${digerleri.length ? bolum('d-diger', `Bu ilandaki diğer pozisyonlar (${digerleri.length})`,
+                    `<ul class="other-list">${digerleri.slice(0, 25).map(x => `<li><button type="button" class="link-btn" data-poz-sec="${x.id}">${esc(ayirtEdiciBaslik(x, digerleri.concat(p)))}</button></li>`).join('')}</ul>
+                    ${digerleri.length > 25 ? `<p class="fact-note">ve ${digerleri.length - 25} pozisyon daha. Tümü için kurumun adına tıklayın.</p>` : ''}`) : ''}
                 <p class="detail-disclaimer">Başvurmadan önce ilanın tam metnini kurumun resmi sitesinden okuyun. Çalışma statüsü ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
             </div>`;
         }
@@ -718,7 +959,7 @@
 
             const kurum = ekFiltre.kurum ? kurumlar.get(ekFiltre.kurum) : null;
             heading.textContent = kurum ? `${kurum.ad} ilanları`
-                : ilSecili && !filtreVarIlDisinda() ? `${ilEtiket(ilSecili)} ilindeki ilanlar`
+                : ilSecili && !filtreVarIlDisinda() ? (ilSecili === YURT_GENELI ? 'Yurt geneli ilanlar' : `${ilEtiket(ilSecili)} ilindeki ilanlar`)
                 : filtreVar() ? 'Arama sonuçları' : 'Tüm aktif ilanlar';
 
             const aktif = [];
@@ -818,7 +1059,7 @@
                 // Benzer ilanlar: aynı il, aynı statü ve aynı ünvan; alarm sayfasında değiştirilebilir.
                 const p = pozisyonlar.find(x => x.id === Number(alarmBtn.dataset.alarmBenzer));
                 if (p) depoYaz('sessionStorage', TASLAK_KEY, {
-                    iller: [p.plaka], turler: [], statuler: p.statu ? [p.statu] : [], meslekler: [], kelimeler: [p.unvan]
+                    iller: p.yurtGeneli ? [YURT_GENELI] : p.plakalar, turler: [], statuler: p.statu ? [p.statu] : [], meslekler: [], kelimeler: [p.unvan]
                 });
             }
         });
@@ -853,7 +1094,7 @@
         if (arama && typeof arama === 'object') {
             depoYaz('sessionStorage', ARAMA_KEY, null);
             if (typeof arama.q === 'string') ne.value = arama.q;
-            if (typeof arama.il === 'string' && IL.has(arama.il)) ilAyarla(arama.il);
+            if (typeof arama.il === 'string' && ilGecerli(arama.il)) ilAyarla(arama.il);
         }
         mobilDetay = seciliPoz != null;
         render();
@@ -907,7 +1148,7 @@
         function unvanSatiri(id, poz) {
             const alanlar = [...new Set(poz.map(p => p.alan).filter(Boolean))];
             const kurumAdlari = [...new Set(poz.map(p => p.kurum))];
-            const alt = alanlar.length ? `Alanlar: ${alanlar.join(', ')}` : kurumAdlari.join(', ');
+            const alt = alanlar.length ? `Alanlar: ${kisalt(alanlar, 'alan')}` : kisalt(kurumAdlari, 'kurum');
             const ad = `<span class="category-name">${esc(poz[0].unvan)}</span><span class="category-num">${poz.length}</span>`;
             return `<li>
                 ${UNVAN.has(id) ? `<a href="ilanlar.html#unvan-${esc(id)}">${ad}</a>` : `<span class="category-row">${ad}</span>`}
@@ -957,9 +1198,11 @@
 
         // Seçenekler: 81 il ve sözlüğün tamamı; ileride açılacak ilanlar için de alarm kurulabilsin.
         const ilSel = $('alarm-il');
-        const ilSay = say(pozisyonlar, 'plaka');
+        const ilSayisi = ilSay(pozisyonlar);
+        const yg = ilSayisi.get(YURT_GENELI);
+        ilSel.appendChild(secenek(YURT_GENELI, yg ? `${YURT_GENELI_AD} · ${yg} pozisyon` : YURT_GENELI_AD));
         (window.ILLER || []).slice().sort((a, b) => collator.compare(a.il, b.il)).forEach(k => {
-            const n = ilSay.get(k.plaka);
+            const n = ilSayisi.get(k.plaka);
             ilSel.appendChild(secenek(k.plaka, n ? `${k.il} (${k.plaka}) · ${n} pozisyon` : `${k.il} (${k.plaka})`));
         });
         grupluDoldur($('alarm-tur'), S.KURUM_GRUPLARI, S.KURUM_TURLERI);

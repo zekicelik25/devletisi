@@ -1,6 +1,6 @@
 # 17 gerçek ilanın analizi (Ekim 2026)
 
-Kullanıcının yüklediği 17 ilan metni, sınıflandırmamızı ve başvuru şartlarını nasıl tutacağımızı sınamak için okundu. Bu belge ilanları özetler, sözlüğümüzün nerede tuttuğunu ve nerede eksik kaldığını gösterir, başvuru şartları için bir model önerir. Siteye henüz bir şey eklenmedi.
+Kullanıcının yüklediği 17 ilan metni, sınıflandırmamızı ve başvuru şartlarını nasıl tutacağımızı sınamak için okundu. Bu belge ilanları özetler, sözlüğümüzün nerede tuttuğunu ve nerede eksik kaldığını gösterir, başvuru şartları için bir model önerir. Öneriler uygulandı ve 17 ilan siteye girildi (bkz. 5. bölüm ve `docs/veri-modeli.md`).
 
 ## 1. İlanların özeti
 
@@ -118,3 +118,5 @@ Beş öğretim üyesi ilanı da 2547 sayılı Kanun'un 23, 24 ve 26. maddeleri, 
 2. **İcra Müdürü ve İcra Müdür Yardımcısı** sözlüğe eklenecek.
 3. **TMSF'nin kurum türü** netleştirilecek.
 4. **Siteye ekleme:** Bu 17 ilan yaklaşık 200 pozisyon satırı eder; 150 icra müdürü tek satırda "adet 150" olarak tutulur. Sitedeki eski 8 örnek ilan bunlarla değiştirilebilir. Önce yukarıdaki şart modeli sözlüğe ve veri yapısına eklenir, sonra ilanlar girilir.
+
+**Uygulandı (Ekim 2026):** Bilişim ünvanları ve İcra Müdürü sözlüğe eklendi; şart modeli ve ilan kalıpları `veri/` katmanlarına işlendi; eski 8 örnek pozisyon kaldırılıp 17 ilan 275 pozisyon satırı (777 kadro) olarak girildi. İcra müdürlüğü 150 kadro tek satırdır; askerî alımlar branş, kuvvet ve cinsiyete göre ayrı satırlardır. TMSF'nin kurum türü hâlâ açık sorudur (şimdilik düzenleyici kurum).

@@ -1,0 +1,18 @@
+﻿id;kurum;kalip;baslik;resmiGazete;yayinTarihi;baslangic;bitis;bitisTahmini;kanal;ucret_tl;tekBasvuru;cagriKati;sinavTarihi;sinavYeri;kaynak;link;pozisyon_sayisi;kadro
+hbv-2026-ogretim-uyesi;hbv;ogretim-uyesi;Öğretim üyesi alım ilanı;2026-10-05;;2026-10-05;2026-10-20;true;kurum-sistemi;;;;;;resmi-gazete;https://ilan.hacibayram.edu.tr;29;29
+ahievran-2026-ogretim-uyesi;ahievran;ogretim-uyesi;Öğretim üyesi alım ilanı;;;;;;kurum-sistemi;;true;;;;resmi-gazete;https://basvuru.ahievran.edu.tr/;27;27
+alku-2026-03-ogretim-uyesi;alku;ogretim-uyesi;Öğretim üyesi alım ilanı (2026/03);;;2026-09-29;2026-10-13;;sahsen;;;;;;resmi-gazete;https://pdb.alanya.edu.tr;20;20
+tkgm-2026-bilisim;tkgm;sozlesmeli-bilisim;Sözleşmeli bilişim personeli alım ilanı;;2026-09-28;2026-10-12;2026-10-19;;kariyer-kapisi;;true;10;2026-11-10/2026-11-20;Tapu ve Kadastro Genel Müdürlüğü;kariyer-kapisi;https://kariyerkapisi.gov.tr;11;19
+msu-2026-muvazzaf-subay;msu;muvazzaf-subay;Muvazzaf subay (öğretmen ve mühendis) temini;;;2026-10-05;2026-10-20;;personel-temin;600;;;;MEBS Okulu ve Eğitim Merkezi Komutanlığı, Mamak/Ankara;kurum-sitesi;https://personeltemin.msb.gov.tr;90;219
+subu-2026-ogretim-uyesi;subu;ogretim-uyesi;Öğretim üyesi alım ilanı;2026-10-07;;2026-10-07;2026-10-22;true;sahsen | posta;;true;;;;resmi-gazete;https://personel.subu.edu.tr/tr;11;11
+bddk-2026-bilisim;bddk;sozlesmeli-bilisim;Sözleşmeli bilişim personeli alım ilanı;;;2026-10-19;2026-11-02;;kariyer-kapisi;;;10;;BDDK hizmet binası, Ümraniye/İstanbul;kariyer-kapisi;https://kariyerkapisi.gov.tr/isealim;6;15
+tmsf-2026-giris-sinavi;tmsf;;Fon denetçi yardımcılığı, fon uzman yardımcılığı ve fon avukatlığı giriş sınavı;;;2026-10-12;2026-10-30;;kariyer-kapisi;;true;;2026-11-21/2026-11-22;İstanbul;kariyer-kapisi;https://kariyerkapisi.gov.tr/isealim;3;75
+adalet-2026-icra-muduru;adalet;;İcra müdürü ve icra müdür yardımcısı sınavı;;;2026-10-20;2026-10-26;;osym;;;;2026-12-05;Ankara (Çankaya ve Yenimahalle sınav merkezleri);osym;https://ais.osym.gov.tr;1;150
+yargitay-2026-bilisim;yargitay;sozlesmeli-bilisim;Sözleşmeli bilişim personeli alım ilanı;;;2026-10-19;2026-10-23;;kariyer-kapisi;;true;10;;;kariyer-kapisi;https://kariyerkapisi.gov.tr;3;4
+istka-2026-uzman;istka;kalkinma-ajansi-uzman;Uzman personel alım ilanı;;;2026-11-02;2026-11-22;;kariyer-kapisi;;;;;İstanbul Kalkınma Ajansı, Beyoğlu/İstanbul;kariyer-kapisi;https://kariyerkapisi.gov.tr/isealim;3;5
+mevka-2026-uzman;mevka;kalkinma-ajansi-uzman;Uzman personel alım ilanı;;2026-10-13;2026-11-02;2026-11-13;;kariyer-kapisi;;;;;Mevlana Kalkınma Ajansı, Meram/Konya;kariyer-kapisi;https://kariyerkapisi.gov.tr;1;1
+vgm-2026-uzman-yardimcisi;vgm;;Vakıf uzman yardımcılığı sınavı;;;2026-10-12;2026-10-25;;kariyer-kapisi;;;20;2026-11-15;Ankara;kariyer-kapisi;https://kariyerkapisi.cbiko.gov.tr;2;5
+kesan-bel-2026-memur;kesan-bel;;İlk defa atanmak üzere memur alım ilanı;;;2026-11-16;2026-11-19;;e-posta | sahsen | posta;;true;5;2026-12-04;Keşan Belediyesi encümen toplantı salonu;kurum-sitesi;https://www.kesan.bel.tr;2;2
+jgk-2027-muvazzaf-subay;jgk;muvazzaf-subay;Muvazzaf subay temini (2027);;;2026-10-12;2026-10-26;;personel-temin;600;;;;;kurum-sitesi;https://personeltemin.jandarma.gov.tr;27;135
+itu-2026-sozlesmeli;itu;;Sözleşmeli personel alım ilanı (657/4-B);2026-10-13;;2026-10-13;2026-10-27;;kariyer-kapisi;;;3;;;kariyer-kapisi;https://kariyerkapisi.gov.tr;4;25
+omu-2026-ogretim-uyesi;omu;ogretim-uyesi;Öğretim üyesi alım ilanı;;;;2026-10-27;;kurum-sistemi;;true;;;;resmi-gazete;https://ubys.omu.edu.tr/HRM/AkademikBasvuru/PersonelBasvuru/Giris;35;35
