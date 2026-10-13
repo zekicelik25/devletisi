@@ -13,6 +13,7 @@ Kullanıcı Türkçe yazıyor; yanıtlar Türkçe, kısa ve teknik olmayan bir d
 - `iller.js`: 81 il (plaka kodu ve ad).
 - `app.js`: tüm sayfaların davranışı; sayfa `<body data-page="...">` ile seçilir. Veriyi düz bir pozisyon listesine çevirir; bilinmeyen kimlikleri tarayıcı konsolunda `data.js:` ile başlayan uyarıyla bildirir.
 - `docs/siniflandirma.md`: sınıflandırmanın gerekçeli açıklaması ve açık sorular.
+- `docs/ilan-analizi.md`: kullanıcının yüklediği 17 gerçek ilanın (Ekim 2026) analizi ve önerilen başvuru şartı modeli.
 - `turkey.svg`: harita kaynağı. `index.html` içine gömülü harita bundan üretildi; il kimlikleri `TR-xx`, `xx` plaka kodudur.
 
 ## Kararlar
@@ -51,6 +52,8 @@ Kullanıcı Indeed'e benzer bir düzen istedi (önceki "gov-tech" yönünün yer
 - Dal veya branş ünvana değil, pozisyonun `alan` bilgisine yazılır.
 
 ## Bekleyen işler
+
+- 17 gerçek ilan analiz edildi (`docs/ilan-analizi.md`); kullanıcı onayı bekleyen öneriler: bilişim ünvanlarını ve İcra Müdürü / Müdür Yardımcısı ünvanlarını eklemek, TMSF'nin kurum türü, kalkınma ajansı dayanağını 4 sayılı CBK md. 200 olarak düzeltmek, başvuru şartı modelini veri yapısına eklemek, eski 8 örnek ilanı bu ilanlarla değiştirmek.
 
 - Mevcut 8 pozisyonun statüleri ünvandan çıkarıldı; resmi ilan metinlerinden doğrulanmalı. Kadro sayısı, eğitim düzeyi, alım yöntemi, tarihler ve bağlantılar da boş.
 - Açık sorular `docs/siniflandirma.md` sonunda: site adı ("Kamu İlan Platformu" mu "KamuKariyerim" mi), vakıf üniversiteleri, Malatya Turgut Özal Üniversitesi'nin iki "Büro Personeli" pozisyonu.
