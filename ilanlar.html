@@ -6,14 +6,15 @@
     <title>Aktif İlanlar · Kamu İlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="ilanlar">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-name">Kamu <span>İlan</span></span>
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Kamu İlan</span>
                 <span class="brand-tag">Personel alım ilanları</span>
             </a>
             <nav aria-label="Ana menü">
@@ -38,26 +39,54 @@
 
             <form class="filters" role="search" onsubmit="return false">
                 <div class="field">
-                    <label for="il-select">İl</label>
-                    <select id="il-select">
+                    <label for="f-il">İl</label>
+                    <select id="f-il">
                         <option value="">Tüm iller</option>
                     </select>
                 </div>
                 <div class="field">
-                    <label for="ara">Kurum veya ünvan ara</label>
-                    <input id="ara" type="search" placeholder="Örn. öğretim görevlisi" autocomplete="off">
+                    <label for="f-tur">Kurum türü</label>
+                    <select id="f-tur">
+                        <option value="">Tüm kurum türleri</option>
+                    </select>
                 </div>
-                <button type="button" class="btn-reset" id="reset" hidden>Filtreleri temizle</button>
+                <div class="field">
+                    <label for="f-statu">Çalışma statüsü</label>
+                    <select id="f-statu">
+                        <option value="">Tüm statüler</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="f-meslek">Meslek grubu</label>
+                    <select id="f-meslek">
+                        <option value="">Tüm meslek grupları</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <label for="f-egitim">Eğitim düzeyi</label>
+                    <select id="f-egitim">
+                        <option value="">Tüm düzeyler</option>
+                    </select>
+                </div>
+                <div class="field field-wide">
+                    <label for="f-ara">Kurum, ünvan veya alan ara</label>
+                    <input id="f-ara" type="search" placeholder="Örn. öğretim görevlisi, optisyenlik" autocomplete="off">
+                </div>
             </form>
+
+            <ul class="chips active-filters" id="aktif-filtreler" aria-label="Bağlantıyla gelen filtreler" hidden></ul>
 
             <div class="result-bar">
                 <p class="result-count" id="result-count" aria-live="polite"></p>
-                <a class="alarm-link" id="alarm-kur-link" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="alarm-kur-metin">İlan alarmı kur</span></a>
+                <div class="result-actions">
+                    <button type="button" class="btn-text" id="reset" hidden>Filtreleri temizle</button>
+                    <a class="alarm-link" id="alarm-kur-link" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg><span id="alarm-kur-metin">İlan alarmı kur</span></a>
+                </div>
             </div>
             <ul class="rows" id="ilan-list"></ul>
-            <p class="empty" id="empty" hidden>Bu filtrelere uyan ilan yok. İl seçimini veya arama metnini değiştirin ya da bu arama için alarm kurun.</p>
+            <p class="empty" id="empty" hidden>Bu filtrelere uyan pozisyon yok. Filtreleri değiştirin ya da bu arama için alarm kurun; uyan bir ilan eklendiğinde haber verelim.</p>
 
-            <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
+            <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı, çalışma statüsü ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
         </div>
     </main>
 
@@ -69,6 +98,8 @@
     </footer>
 
     <script src="data.js"></script>
+    <script src="siniflandirma.js"></script>
+    <script src="iller.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

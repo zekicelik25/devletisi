@@ -6,14 +6,15 @@
     <title>İlan Alarmı · Kamu İlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="alarm">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-name">Kamu <span>İlan</span></span>
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Kamu İlan</span>
                 <span class="brand-tag">Personel alım ilanları</span>
             </a>
             <nav aria-label="Ana menü">
@@ -33,7 +34,7 @@
             <section class="page-head">
                 <p class="eyebrow">İlan alarmı</p>
                 <h1>Uygun ilan çıkınca haber alın</h1>
-                <p class="lede">İl, kurum türü ve ünvan seçerek alarm kurun. Bu kriterlere uyan yeni bir ilan eklendiğinde menüdeki İlan Alarmı bağlantısında ve sayfaların üstünde gösterilir.</p>
+                <p class="lede">İl, kurum türü, çalışma statüsü ve meslek seçerek alarm kurun. Bu kriterlere uyan yeni bir pozisyon eklendiğinde menüdeki İlan Alarmı bağlantısında ve sayfaların üstünde gösterilir.</p>
             </section>
 
             <p class="notice" id="depo-uyari" hidden>Tarayıcınız bu sitede veri saklamaya izin vermiyor. Kurduğunuz alarmlar sayfayı kapattığınızda silinir.</p>
@@ -51,16 +52,34 @@
                         <p class="hint">Birden fazla il ekleyebilirsiniz. Boş bırakırsanız tüm iller.</p>
                     </div>
 
+                    <div class="field">
+                        <label for="alarm-tur">Kurum türü</label>
+                        <select id="alarm-tur">
+                            <option value="">Kurum türü ekleyin…</option>
+                        </select>
+                        <ul class="chips" id="alarm-tur-secili" aria-label="Seçilen kurum türleri" hidden></ul>
+                        <p class="hint">Bir grubun tamamını ("tümü") veya tek bir türü seçebilirsiniz. Boş bırakırsanız tüm kurumlar.</p>
+                    </div>
+
+                    <div class="field">
+                        <label for="alarm-statu">Çalışma statüsü</label>
+                        <select id="alarm-statu">
+                            <option value="">Statü ekleyin…</option>
+                        </select>
+                        <ul class="chips" id="alarm-statu-secili" aria-label="Seçilen statüler" hidden></ul>
+                        <p class="hint">Örneğin tüm sözleşmeli pozisyonlar ya da yalnız 399 sayılı KHK'ya tabi kadrolar. Boş bırakırsanız tüm statüler.</p>
+                    </div>
+
                     <fieldset class="field">
-                        <legend>Kurum türü</legend>
-                        <div class="pills" id="alarm-turler"></div>
-                        <p class="hint">Boş bırakırsanız tüm kurumlar.</p>
+                        <legend>Meslek grubu</legend>
+                        <div class="pills" id="alarm-meslekler"></div>
+                        <p class="hint">Boş bırakırsanız tüm meslekler.</p>
                     </fieldset>
 
                     <div class="field">
                         <label for="alarm-kelime">Ünvan veya anahtar kelime</label>
                         <input id="alarm-kelime" type="text" placeholder="Örn. büro personeli, itfaiye" autocomplete="off">
-                        <p class="hint">Kelimeleri virgülle ayırın. Herhangi biri ünvanda, alanda veya kurum adında geçen ilanlar uyar.</p>
+                        <p class="hint">Kelimeleri virgülle ayırın. Herhangi biri ünvanda, alanda veya kurum adında geçen pozisyonlar uyar.</p>
                     </div>
 
                     <label class="check" id="bildirim-satiri">
@@ -83,7 +102,7 @@
                 </section>
             </div>
 
-            <p class="note"><b>Bildirimler nasıl çalışır?</b> Alarmlarınız bu tarayıcıda saklanır, üyelik gerekmez. Siteye her girdiğinizde ilanlar alarmlarınızla karşılaştırılır. Uyan yeni ilan varsa menüdeki İlan Alarmı yanında sayı ve sayfanın üstünde bir uyarı görürsünüz. Tarayıcı bildirimine izin verdiyseniz site açıkken bildirim de gelir. Başka bir tarayıcıdan veya cihazdan girdiğinizde alarmlarınız orada görünmez.</p>
+            <p class="note"><b>Bildirimler nasıl çalışır?</b> Alarmlarınız bu tarayıcıda saklanır, üyelik gerekmez. Siteye her girdiğinizde pozisyonlar alarmlarınızla karşılaştırılır. Uyan yeni pozisyon varsa menüdeki İlan Alarmı yanında sayı ve sayfanın üstünde bir uyarı görürsünüz. Tarayıcı bildirimine izin verdiyseniz site açıkken bildirim de gelir. Başka bir tarayıcıdan veya cihazdan girdiğinizde alarmlarınız orada görünmez.</p>
         </div>
     </main>
 
@@ -95,6 +114,7 @@
     </footer>
 
     <script src="data.js"></script>
+    <script src="siniflandirma.js"></script>
     <script src="iller.js"></script>
     <script src="app.js"></script>
 </body>

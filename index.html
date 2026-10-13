@@ -6,14 +6,15 @@
     <title>Kamu İlan Platformu</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="index">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-name">Kamu <span>İlan</span></span>
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Kamu İlan</span>
                 <span class="brand-tag">Personel alım ilanları</span>
             </a>
             <nav aria-label="Ana menü">
@@ -32,18 +33,22 @@
         <div class="wrap">
             <div class="alarm-banner" id="alarm-banner" role="status" hidden></div>
             <section class="page-head">
-                <p class="eyebrow">81 il · tek harita</p>
+                <p class="eyebrow">Kamu personel alım ilanları</p>
                 <h1>Kamu kurumlarının açtığı ilanlar, il il.</h1>
-                <p class="lede">Üniversite, belediye ve diğer kamu kurumlarının personel alım ilanları bir arada. Haritada renkli illerde açık ilan var; ile tıklayınca o ildeki ilanlar listelenir.</p>
-                <ul class="stats" id="stats" aria-label="Özet"></ul>
+                <p class="lede">Bakanlık, üniversite, belediye ve diğer kamu kurumlarının ilanları; kurum türüne, çalışma statüsüne ve ünvana göre ayrılmış olarak. Haritada bir ile tıklayınca o ildeki pozisyonlar listelenir.</p>
             </section>
+
+            <ul class="stats" id="stats" aria-label="Özet"></ul>
 
             <section class="map-panel" aria-labelledby="map-title">
                 <div class="map-bar">
-                    <p class="map-readout" id="map-readout" aria-live="polite"><b id="map-title">İl seçin</b> — üzerine gelince ilin ilan sayısı görünür</p>
-                    <ul class="legend">
-                        <li><span class="swatch on"></span>İlan var</li>
+                    <p class="map-readout" id="map-readout" aria-live="polite"><b id="map-title">İl seçin</b> — üzerine gelince ilin pozisyon sayısı görünür</p>
+                    <ul class="legend" aria-label="Pozisyon sayısı">
                         <li><span class="swatch"></span>İlan yok</li>
+                        <li><span class="swatch lvl-1"></span>1</li>
+                        <li><span class="swatch lvl-2"></span>2–4</li>
+                        <li><span class="swatch lvl-3"></span>5–9</li>
+                        <li><span class="swatch lvl-4"></span>10+</li>
                     </ul>
                 </div>
 <svg id="turkey-map" viewBox="0 0 792.6 334.6" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Türkiye il haritası">
@@ -132,23 +137,31 @@
                 <ul class="chips" id="il-chips" aria-label="İlanı olan iller"></ul>
             </section>
 
+            <section class="section" aria-labelledby="browse-title">
+                <div class="section-head">
+                    <h2 id="browse-title">Sınıflandırmaya göre göz atın</h2>
+                    <a href="ilanlar.html">Tüm pozisyonlar →</a>
+                </div>
+                <div class="browse" id="browse"></div>
+            </section>
+
             <section class="section cta" aria-labelledby="cta-title">
                 <div>
                     <h2 id="cta-title">Aradığınız ilan henüz yok mu?</h2>
-                    <p>İl, kurum türü ve ünvan seçerek alarm kurun. Uygun bir ilan eklendiğinde sitede size haber verelim.</p>
+                    <p>İl, kurum türü, çalışma statüsü ve meslek seçerek alarm kurun. Uygun bir pozisyon eklendiğinde sitede size haber verelim.</p>
                 </div>
                 <a class="btn-primary" href="alarm.html"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>İlan alarmı kur</a>
             </section>
 
             <section class="section" aria-labelledby="recent-title">
                 <div class="section-head">
-                    <h2 id="recent-title">Son eklenen ilanlar</h2>
-                    <a href="ilanlar.html">Tüm ilanlar →</a>
+                    <h2 id="recent-title">Son eklenen pozisyonlar</h2>
+                    <a href="ilanlar.html">Tüm pozisyonlar →</a>
                 </div>
                 <ul class="rows" id="recent"></ul>
             </section>
 
-            <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
+            <p class="note">Başvuru yapmadan önce ilanın tam metnini ilgili kurumun resmi web sitesinden okuyun. Tarih, kadro sayısı, çalışma statüsü ve başvuru şartları için esas olan kurumun kendi duyurusudur.</p>
         </div>
     </main>
 
@@ -160,6 +173,8 @@
     </footer>
 
     <script src="data.js"></script>
+    <script src="siniflandirma.js"></script>
+    <script src="iller.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

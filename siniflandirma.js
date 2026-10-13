@@ -2,8 +2,8 @@
 // İlanların sınıflandırma sözlüğü: kurum türleri, istihdam statüleri, ünvanlar ve ek boyutlar.
 // Gerekçeler ve açıklamalar: docs/siniflandirma.md
 //
-// Henüz sayfalara bağlı değil. Site güncellenirken data.js bu sözlükteki kimliklere (id)
-// göre aşağıdaki veri modeline taşınacak.
+// Tüm sayfalar bu sözlüğü kullanır; data.js kayıtları buradaki kimliklere (id) başvurur.
+// Bir kimliği değiştirmeden önce data.js'te ve kayıtlı ilan alarmlarında kullanıldığını unutmayın.
 //
 // Veri modeli (en küçük birim = pozisyon):
 //   Kurum    { id, ad, tur, il }

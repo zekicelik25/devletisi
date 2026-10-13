@@ -6,14 +6,15 @@
     <title>Kurumlar · Kamu İlan</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&family=Literata:opsz,wght@7..72,600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Public+Sans:wght@400;500;600;700;800&display=swap">
     <link rel="stylesheet" href="style.css">
 </head>
 <body data-page="kurumlar">
     <header class="site-header">
         <div class="wrap">
             <a class="brand" href="index.html">
-                <span class="brand-name">Kamu <span>İlan</span></span>
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span class="brand-name">Kamu İlan</span>
                 <span class="brand-tag">Personel alım ilanları</span>
             </a>
             <nav aria-label="Ana menü">
@@ -34,9 +35,9 @@
             <section class="page-head">
                 <p class="eyebrow">Kurumlar</p>
                 <h1>İlan veren kurumlar</h1>
-                <p class="lede">Sitede şu an açık ilanı bulunan kurumlar. İlan sayısına tıklayınca o ilin ilanları açılır.</p>
+                <p class="lede">Şu an açık pozisyonu bulunan kurumlar, kurum türlerine göre gruplanmış olarak.</p>
             </section>
-            <ul class="rows" id="kurum-list"></ul>
+            <div class="groups" id="kurum-gruplari"></div>
         </div>
     </main>
 
@@ -48,6 +49,8 @@
     </footer>
 
     <script src="data.js"></script>
+    <script src="siniflandirma.js"></script>
+    <script src="iller.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

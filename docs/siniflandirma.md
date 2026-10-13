@@ -1,6 +1,6 @@
 # İlan sınıflandırması
 
-Bu belge sitedeki ilanların hangi boyutlara ayrılacağını ve neden böyle ayrıldığını anlatır. Sözlüğün kendisi `siniflandirma.js` dosyasındadır; aşağıdaki tablolar o dosyadan üretildi. Site henüz bu sınıflandırmaya göre güncellenmedi.
+Bu belge sitedeki ilanların hangi boyutlara ayrıldığını ve neden böyle ayrıldığını anlatır. Sözlüğün kendisi `siniflandirma.js` dosyasındadır; aşağıdaki tablolar o dosyadan üretildi. Sitenin nasıl kullandığı 6. bölümde.
 
 ## Özet
 
@@ -137,23 +137,23 @@ Her ünvanın tek bir standart adı vardır; ilanlarda geçen diğer yazılışl
 
 | Kurum | Kurum türü | Ünvan (meslek grubu) | Alan | Statü | Not |
 |---|---|---|---|---|---|
-| Malatya Turgut Özal Üniversitesi | Devlet üniversitesi | Büro Personeli (Büro ve idari) | — | Sözleşmeli personel (657/4-B) | "Büro personeli" bir sözleşmeli personel ünvanıdır; ilan metninden doğrulanmalı. Sitede iki ayrı satır var. |
+| Malatya Turgut Özal Üniversitesi | Devlet üniversitesi | Büro Personeli (Büro ve idari) | — | Sözleşmeli personel (657/4-B) | "Büro personeli" bir sözleşmeli personel ünvanıdır; ilan metninden doğrulanmalı. Eski sitedeki iki ayrı satır, şimdilik tek ilanın iki pozisyonu olarak girildi. |
 | Mersin Büyükşehir Belediyesi | Büyükşehir belediyesi | İtfaiye Eri (Güvenlik) | — | Kadrolu memur (657/4-A) | İtfaiye eri memur kadrosudur; ilan metninden doğrulanmalı. |
 | Karamanoğlu Mehmetbey Üniversitesi | Devlet üniversitesi | Öğretim Görevlisi (Akademik) | İlk ve Acil Yardım, Optisyenlik, Tıbbi Görüntüleme, Elektrik, Bilgi İşlem | Akademik kadro (2547) | Tek ilanın beş pozisyonu olarak modellenir. |
 
 Statüler ünvandan çıkarıldı; resmi ilan metinleri elimizde olmadığı için kesinleşmiş sayılmamalı. Kadro sayısı, eğitim düzeyi, alım yöntemi ve tarihler de ilan metinlerinden doldurulacak.
 
-## 6. Site güncellendiğinde değişecekler
+## 6. Sitede nasıl kullanılıyor
 
-- `data.js` kurum → ilan → pozisyon modeline taşınacak. Pozisyon numaraları korunacak; kurulmuş ilan alarmları bozulmayacak.
-- İlanlar sayfasına kurum türü, statü, meslek grubu ve eğitim düzeyi filtreleri eklenecek.
-- Kurumlar sayfası kurum türlerine, Ünvanlar sayfası meslek gruplarına göre gruplanacak.
-- İlan alarmı formundaki beş kurum türü (Üniversite, Belediye, Bakanlık, Hastane, Diğer) bu sözlükle değişecek. Tarayıcılarda kayıtlı alarmlar yeni türlere aktarılacak: Üniversite → Devlet üniversitesi; Belediye → üç belediye türü; Hastane → Sağlık meslek grubu.
-- Alarm formuna statü ve meslek grubu seçimi eklenecek.
+- `data.js` kurum → ilan → pozisyon modelinde. Eski pozisyon numaraları (1–8) korundu; kurulmuş ilan alarmları bozulmadı.
+- İlanlar sayfasında kurum türü, çalışma statüsü, meslek grubu ve eğitim düzeyi filtreleri var. Seçeneklerde yalnız sitede karşılığı olan değerler görünür; eğitim düzeyi filtresi, ilanlara bu bilgi girilince kendiliğinden açılır.
+- Kurumlar sayfası kurum türlerine, Ünvanlar sayfası meslek gruplarına göre gruplanmış durumda.
+- Ana sayfada statüye, kurum türüne ve meslek grubuna göre göz atma listeleri var; her satır ilanlar sayfasını o filtreyle açar.
+- İlan alarmı formunda il, kurum türü, çalışma statüsü, meslek grubu ve anahtar kelime seçilir. Tarayıcılarda kayıtlı eski alarmlar yeni türlere aktarılır: Üniversite → Devlet üniversitesi; Belediye → üç belediye türü; Bakanlık → Bakanlık; Hastane → Sağlık meslek grubu.
 
 ## 7. Açık sorular
 
 1. **Site adı:** Repoda "Kamu İlan Platformu", claude.ai sohbetinde "KamuKariyerim" geçiyor. Hangisi kullanılacak?
 2. **Vakıf üniversiteleri** kapsam dışı kalsın mı? Akademik ilan arayanlar için eklenebilir, ama site "kamu ilanları" olarak tanımlı.
-3. **Malatya Turgut Özal Üniversitesi'nin iki "Büro Personeli" satırı** aynı ilanın iki kadrosu mu, iki ayrı ilan mı?
+3. **Malatya Turgut Özal Üniversitesi'nin iki "Büro Personeli" pozisyonu** aynı ilanın iki kadrosu mu, iki ayrı ilan mı? Şimdilik tek ilan olarak girildi.
 4. Mevcut ilanların resmi ilan bağlantıları varsa statüleri ve eksik bilgileri onlardan doğrulayalım.
